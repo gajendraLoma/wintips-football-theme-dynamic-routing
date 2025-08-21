@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { TipsResponse, Tip } from "@/types/tips";
-import { fetchTipsData } from "@/app/apis"; // Corrected import path
+import { fetchTipsData } from "../apis/services/soccer-tips"; // Corrected import path
 
 interface FreeTipsProps {
   initialTips: TipsResponse | null;
