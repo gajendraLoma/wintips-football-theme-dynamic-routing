@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+# Sitemaps
+Sitemap: https://theme.168dev.com/sitemap.xml

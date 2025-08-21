@@ -1,0 +1,608 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  -webkit-font-smoothing: antialiased;
+  @apply outline-sky-600;
+}
+
+
+
+
+
+
+/* Odds Page css  */
+
+.HomeOddsTable .accordion-button:not(.collapsed){
+  background: linear-gradient(90deg, #485892 19.5%, #CBD5F7 90.88%);
+  color: #fff;
+}
+
+.HomeOddsTable .accordion-item .accordion-button{
+  background: linear-gradient(90deg, #485892 19.5%, #CBD5F7 90.88%);
+  color: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 18.15px;
+    height: 40px;
+    width: 100%;
+    padding: 5px 10px;
+}
+.HomeOddsTable .accordion-item:last-of-type .accordion-button.collapsed {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+.live-data-odds-body .live-odds{
+  border: none !important;
+  background: transparent ! IMPORTANT;
+  padding-top: 6px !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: none;
+}
+.HomeOddsTable .accordion-item{
+  border:transparent;
+  background:transparent;
+  margin-bottom: 20px;
+}
+.HomeOddsTable .accordion-item:first-of-type .accordion-button {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.HomeOddsTable .accordion-item:first-of-type {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.HomeOddsTable .accordion{
+  --bs-accordion-border-color:transparent !important;
+}
+.HomeOddsTable .accordion-item:last-of-type {
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.HomeOddsTable .accordion-body {
+  padding: 0;
+}
+.HomeOddsTable .todays-data-odds-body .football-result-wrap{
+  border:none;
+  background: transparent;
+  padding-top: 0;
+}
+.HomeOddsTable .row.row-list:last-of-type {
+  margin-bottom: 0px;
+}
+.home-odds-table .full-handicap span:last-child, .home-odds-table .half-handicap span:last-child,
+.home-odds-table .full-ou span:last-child, .home-odds-table .half-ou span:last-child{
+  width: 50px;
+}
+.home-odds-table .bg-full, .livestream-odds table .bg-full{
+  width: 50px;
+}
+
+.HomeOddsTable .data-odds-sub-header{
+  color: #2E3136;
+  background: linear-gradient(90deg, rgb(123 241 121 / 0%) 0%, rgb(40 97 227 / 44%) 50%, rgb(123 241 121 / 0%) 100%);
+  font-weight: 400;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 19.36px;
+  text-align: center;
+  padding: 4px 0px;
+}
+
+ .HomeOddsTable .todays-data-odds-body .league-name{
+  background: linear-gradient(90deg, rgb(117 152 234) 0%, rgb(121 235 119 / 0%) 94.31%);
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+ .HomeOddsTable .todays-data-odds-body .league-name span{
+  font-weight: 500;
+  font-style: italic;
+  font-size: 14px;
+  line-height: 16.94px;
+  padding-left: 6px;
+  color: #2E3136;
+}
+
+ .row-list {
+ background: linear-gradient(180deg, #7bf17900 67.72%, #4072e5 187.34%);
+  margin-bottom: 8px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.headerBg{
+    background:linear-gradient(to right, #275fe2a3 0%, rgba(26, 34, 45, 0) 100%);
+    border-top-left-radius: 8px;
+}
+
+.headerBg .font-semibold{
+  color: #fff;
+}
+
+.row-list:before {
+  content: '';
+  background: linear-gradient(185deg, rgb(231 162 91 / 0%) 51%, #ffcf9d85 103.14%);
+  width: calc(100% + 2px);
+  height: calc(100% + 1px);
+  position: absolute;
+  z-index: -2;
+  left: -1px;
+  bottom: -1px;
+  border-radius: 7px;
+}
+.row-list:before {
+  content: none;
+}
+
+.row-list:after {
+  content: '';
+  background: #282828;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+  border-radius: 7px;
+}
+.row-list:after {
+  content: none;
+}
+
+ .home-odds-table .border-dotted,  .livestream-odds table .border-dotted{
+ background: linear-gradient(237.8deg, rgba(72, 145, 255, 0) -6.39%, rgba(72, 145, 255, 0.3) 107.88%);
+  border: 0;
+  padding: 4px 0px;
+  border-radius: 50px;
+  color: #2E3136 !important;
+}
+
+.col .text-end.mb-1 span:first-child {
+  color: #2E3136 !important;
+}
+
+ .home-odds-table .bg-full, .livestream-odds table .bg-full {
+  background: linear-gradient(237.8deg, rgba(72, 145, 255, 0) -6.39%, rgba(72, 145, 255, 0.3) 107.88%) !important;
+  border-radius: 50px;
+  padding: 4px 0px;
+  color: #2E3136 !important;
+}
+
+ .makeAlingLeft{
+  max-width: 4%;
+  background: linear-gradient(180deg, rgb(109 146 233 / 50%) -6.39%, rgb(123 241 121 / 0%) 107.88%);
+  border-radius: 10px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  vertical-align: middle;
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  bottom: 0;
+  height: 92%;
+}
+
+ .row-list .ttt .date span:first-child{
+  color: #2E3136 !important;
+}
+
+ .row-list .ttt .date span:last-child{
+  color: #FF0008 !important;
+}
+
+ .div2, .div3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2E3136;
+  background: linear-gradient(90deg, rgb(123 241 121 / 0%) 0%, rgb(40 97 227 / 44%) 50%, rgb(123 241 121 / 0%) 100%);
+  margin-top: 4px;
+}
+
+ .football-result-wrap {
+    padding: 15px;
+    border: 0;
+    box-shadow: none;
+    background: transparent;
+    border-radius: 15px;
+}
+ .makeAlingLeft{
+  max-width: 4% !important;
+  width: 100%;
+}
+ .home-highlight.HomeOddsTable h1{
+    text-align: center;
+    font-weight: 700;
+    font-size: 24px;
+    padding-bottom: 10px;
+}
+
+.home-odds-table .full-handicap span:last-child, .home-odds-table .half-handicap span:last-child, .home-odds-table .full-ou span:last-child, .home-odds-table .half-ou span:last-child {
+    width: 50px;
+}
+.home-odds-table .full-handicap span:last-child, .home-odds-table .half-handicap span:last-child, .home-odds-table .full-ou span:last-child, .home-odds-table .half-ou span:last-child {
+    display: inline-block;
+    width: 45px;
+    text-align: center;
+    margin: 0 0 0 5px !important;
+}
+
+ .home-odds-table .border-dotted,  .livestream-odds table .border-dotted {
+    background: linear-gradient(237.8deg, rgba(72, 145, 255, 0) -6.39%, rgba(72, 145, 255, 0.3) 107.88%);
+    border: 0;
+    padding: 4px 0px;
+    border-radius: 50px;
+    color: #2E3136 !important;
+}
+
+.home-odds-table .bg-full, .livestream-odds table .bg-full {
+    width: 50px;
+}
+.home-odds-table .bg-full, .livestream-odds table .bg-full, .livestream-odds table .border-dotted, .home-odds-table .border-dotted {
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+ .searchInput .form-control {
+    background: #ECECEC;
+    box-shadow: none;
+    border-radius: 20px !important;
+    height: 40px;
+    padding-left: 50px;
+    padding-right: 80px;
+    color: #2E3136;
+    width: 100%;
+    outline: none;
+}
+
+ .Arrow_right_rankings_icon {
+    position: absolute !important;
+    right: 5px;
+    top: 4px;
+    padding: 4px 20px;
+    background: linear-gradient(264.68deg, rgba(214, 216, 223, 0) -46.42%, rgba(214, 216, 223, 0.5) 104.88%);
+    box-shadow: none;
+    border-radius: 20px !important;
+    border: 0;
+    z-index: 7 !important;
+}
+
+ .Search_page_ranking_icon {
+    position: absolute;
+    left: 18px;
+    top: 9px;
+    z-index: 7;
+}
+
+ .col {
+  flex: 1 0;
+}
+.flex-1.px-4.club {
+  width: 100%;
+  flex: 2 0;
+  display: grid;
+}
+  .flex-1.px-4.full-1x2.p-0 {
+  display: grid;
+}
+ .flex-1.px-4.half-1x2.p-0 {
+  display: grid;
+}
+
+ .home-odds-table .lblOver,  .livestream-odds table .lblOver {
+  color: #fd7e09;
+  margin-left: 5px;
+}
+ .home-odds-table .lblUnder,  .livestream-odds table .lblUnder {
+  color: #485892;
+  margin-left: 5px;
+}
+ .searchInput {
+  width: 70%;
+  margin: 0 auto;
+}
+
+  .btn-reset {
+  position: absolute !important;
+    right: 5px;
+    top: 4px;
+    padding: 4px 20px;
+    background: linear-gradient(264.68deg, rgba(214, 216, 223, 0) -46.42%, rgba(214, 216, 223, 0.5) 104.88%);
+    box-shadow: none;
+    border-radius: 20px !important;
+    border: 0;
+    z-index: 7 !important;
+}
+
+
+@keyframes showHide {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.time {
+  font-size: 18px;
+  animation: showHide 2s linear infinite;
+}
+/* odds mobile responsive  */
+
+.MOB {
+  padding: 5px 10px;
+  background: #fff;
+}
+
+.MOB  .searchInput {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.MOB .league-name-tr .league-name, .MOB .team-schedule .league-name {
+    background: linear-gradient(90deg, rgb(117 152 234) 0%, rgb(121 235 119 / 0%) 94.31%);
+    padding: 5px;
+    color: #000;
+}
+
+.MOB .table>:not(caption)>*>* {
+    padding: .5rem;
+}
+
+.home-odds-table-mobile .table,
+.livestream-odds .table {
+  vertical-align: unset !important;
+  table-layout: fixed;
+  word-wrap: break-word;
+  width: 100%;
+}
+
+.home-odds-table-mobile td,
+.livestream-odds table td {
+  color: #333ea5;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.home-odds-table-mobile thead tr:first-child th,
+.livestream-odds thead tr:first-child th {
+  color: #000;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  border: none;
+}
+
+.clipBg{
+  background: linear-gradient(90deg, rgb(123 241 121 / 0%) 0%, rgb(40 97 227 / 44%) 50%, rgb(123 241 121 / 0%) 100%);
+}
+.home-odds-table-mobile thead tr:last-child,
+.livestream-odds table thead tr:last-child {
+  background: linear-gradient(90deg, rgba(203, 213, 246, 0), rgba(203, 213, 246, .5) 50%, rgba(203, 213, 246, 0));
+}
+
+.home-odds-table-mobile thead tr:last-child th,
+.livestream-odds table thead tr th {
+  color: #333ea5;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  border: none;
+}
+
+.home-odds-table-mobile .date {
+  vertical-align: middle;
+}
+
+.home-odds-table-mobile .date span {
+  display: block;
+}
+
+.home-odds-table-mobile td,
+.livestream-odds table td {
+  padding: 5px 2px !important;
+}
+
+.home-odds-table-mobile .date span:last-child,
+.livestream-odds table .bookie {
+  color: #167ac6;
+}
+
+.home-odds-table-mobile .club span,
+.livestream-odds table .club span {
+  display: block;
+}
+
+.home-odds-table-mobile .club span,
+.livestream-odds .club span {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.home-odds-table-mobile span,
+.livestream-odds span {
+  font-size: 12px;
+}
+
+.home-odds-table-mobile .border-dotted,
+.livestream-odds table .border-dotted {
+  border: 1px dotted #a1b6dd;
+}
+
+.home-odds-table-mobile .bg-full,
+.livestream-odds table .bg-full {
+  background: linear-gradient(237.8deg, rgba(72, 145, 255, 0) -6.39%, rgba(72, 145, 255, 0.3) 107.88%) !important;
+  width: 45px;
+  text-align: center;
+  color: #000;
+}
+
+.home-odds-table-mobile .bg-full,
+.livestream-odds table .bg-full,
+.livestream-odds table .border-dotted,
+.home-odds-table-mobile .border-dotted {
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.home-odds-table-mobile .full-1x2 span,
+.home-odds-table-mobile .half-1x2 span,
+.livestream-odds table .full-1x2 span,
+.livestream-odds table .half-1x2 span {
+  display: block;
+  margin: auto;
+}
+
+.home-odds-table-mobile .full-handicap span:last-child,
+.home-odds-table-mobile .half-handicap span:last-child,
+.home-odds-table-mobile .full-ou span:last-child,
+.home-odds-table-mobile .half-ou span:last-child,
+.livestream-odds .full-handicap span:last-child,
+.livestream-odds .half-handicap span:last-child,
+.livestream-odds .full-ou span:last-child,
+.livestream-odds .half-ou span:last-child {
+  display: inline-block;
+  width: 45px;
+  text-align: center;
+  margin: 0 0 0 2px !important;
+}
+
+.home-odds-table-mobile .odds-label,
+.livestream-odds .odds-label {
+  background: linear-gradient(90deg, rgb(123 241 121 / 0%) 0%, rgb(40 97 227 / 44%) 50%, rgb(123 241 121 / 0%) 100%);
+}
+
+.home-odds-table-mobile .odds-label td,
+.livestream-odds .odds-label td {
+  padding: 0 2px !important;
+}
+
+.home-odds-table-mobile tbody tr.even,
+.livestream-odds tbody tr.even {
+  background: #edf2f7;
+}
+
+.home-odds-table-mobile .lblOver,
+.livestream-odds table .lblOver {
+  color: #fd7e09;
+  margin-left: 2px;
+}
+
+.home-odds-table-mobile .lblUnder,
+.livestream-odds table .lblUnder {
+  color: #1959fd;
+  margin-left: 5px;
+}
+
+
+
+/* Top Bookmakers Sidenav */
+
+.bookMakersSidebar .contentDiv{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.bookMakersSidebar .contentDiv p {
+   font-weight: 400;
+}
+
+.bookMakersSidebar .contentDiv strong {
+   font-weight: 400;
+   font-size: 10px;
+}
+
+.bookMakersSidebar .contentDiv .text-base {
+    line-height: normal;
+    font-size: 10px;
+}
+
+.bookMakersSidebar .contentDiv .font-bold {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: normal;
+}
+
+.bookMakersSidebar .contentDiv span {
+    font-weight: 400;
+    font-size: 10px;
+}
+
+
+
+/* bookmaker page content  */
+
+.content p {
+    padding: 0 0 12px;
+    text-align: left;
+    margin-top: 0 !important;
+}
+.content h1, .content h2, .content h3, .content h4, .content h5 {
+    margin: 0 0 8px;
+}
+.content h2 {
+    font-size: 20px;
+}
+
+figcaption, figure
+ {
+    display: block;
+    text-align: center;
+        margin: auto;
+}
+
+.content img {
+    border-radius: 5px;
+    width: 900px;
+    height: auto;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+.content figure figcaption, .wp-caption .wp-caption-text em {
+    font-size: 14px;
+    font-style: italic;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+    max-width: 100%;
+    top: 0;
+    border: none;
+    border-radius: 0 0 5px 5px;
+    box-shadow: none;
+    font-weight: 400;
+}
+
+
+
+@media (max-width: 768px) {
+    .content figure, .content iframe {
+        width: 100% !important;
+    }
+}
