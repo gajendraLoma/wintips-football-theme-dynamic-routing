@@ -2,7 +2,9 @@
 import BookmakersTable from '../bookmakers/BookmakersTable';
 import Link from 'next/link';
 import Sidebar from '@/components/layout/Sidebar';
-export default function BookmakersPage({data}: {data: any}) {
+import { BookmakersPageData } from '../../types/bookmaker';
+
+export default function BookmakersPage({ data }: { data: BookmakersPageData }) {
   console.log('BookmakersPage data:', data);
 
   return (
@@ -52,14 +54,13 @@ export default function BookmakersPage({data}: {data: any}) {
         </p>
 
         {/* Table Header */}
-
-        <BookmakersTable />
+        <BookmakersTable bookmakers={data.bookmakers} />
 
         <div className="">
-          <div className="max-w-8xl mx-auto  py-8">
+          <div className="max-w-8xl mx-auto py-8">
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
               <div className="lg:col-span-3 space-y-8">
-                <p className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}} />
+                <p className="content page text-[#323232]" dangerouslySetInnerHTML={{ __html: data.content }} />
               </div>
 
               {/* Sidebar (Right Column) */}

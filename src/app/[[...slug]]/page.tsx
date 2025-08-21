@@ -84,7 +84,7 @@ export default async function DynamicPage({
       pageData = await fetchPageData(path);
       break;
     case 'category':
-      pageData = await fetchPageData(path); // Meta data, fetch posts in component
+      pageData = await fetchPageData(path); 
       break;
     case 'post':
     case 'match':
