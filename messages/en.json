@@ -108,6 +108,8 @@
     "rating": "Rating",
     "links": "Links",
     "visitSite": "Visit Site",
-    "review": "Review"
+    "review": "Review",
+    "round": "Round",
+    "no_data_found": "No data found"
 
 }

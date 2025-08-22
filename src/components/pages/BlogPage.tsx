@@ -113,6 +113,11 @@ export default async function BlogPage({ data }: { data: any }) {
               {/* Pagination */}
               <Pagination />
             </div>
+                    {/* Content */}
+            
+   <p className="content page text-[#323232]"
+          dangerouslySetInnerHTML={{ __html: data.content }}
+        />
           </section>
 
           {/* Sidebar */}

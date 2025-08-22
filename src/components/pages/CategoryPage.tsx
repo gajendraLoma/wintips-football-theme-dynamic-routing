@@ -10,6 +10,7 @@ import Pagination from "@/components/videos/Pagination";
 export default async function CategoryPage({ data, slug }: { data: any; slug: string }) {
   const posts = await fetchPostByCat('post', slug, 'post', 16, 1); 
 
+
   if ('error' in posts) {
     return <div>Error loading category posts</div>;
   }
@@ -131,6 +132,7 @@ console.log('Category Data:', slug);
               {/* Pagination */}
               <Pagination />
             </div>
+         
           </section>
 
           {/* Sidebar */}

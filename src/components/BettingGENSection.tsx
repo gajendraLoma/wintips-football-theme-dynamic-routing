@@ -70,7 +70,6 @@ export default function BettingThreeInOneSection({ data }: BettingThreeInOneSect
       <div className="grid gap-10 md:grid-cols-3">
         {sections.map((section, index) => {
           const featuredImage = getFullImageUrl(section.items[0].featured_image);
-       console.log(`Featured Image for section ${index + 1}:`, section);
           return (            
           <div key={index} className="space-y-4">
               <h2 className="text-xl font-bold mb-4">{section.title}</h2>
@@ -80,7 +79,6 @@ export default function BettingThreeInOneSection({ data }: BettingThreeInOneSect
                   alt={section.items[0].title}
                   fill
                   className="object-cover rounded"
-                  onError={() => console.error(`Failed to load image: ${featuredImage}`)}
                 />
               </div>
               <Link

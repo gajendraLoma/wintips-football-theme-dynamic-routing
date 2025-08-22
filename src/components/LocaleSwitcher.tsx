@@ -100,8 +100,8 @@ export default function LocaleSwitcher() {
           top: 35px;
           right: -45px;
           width: 120px;
-          background: #ececec;
-          border: 1px solid #cecccc;
+          background: #ffffff;
+          border: 1px solid #ffffff;
           border-radius: 6px;
           max-height: 200px;
           overflow-y: auto;
@@ -135,7 +135,9 @@ export default function LocaleSwitcher() {
           margin-right: 8px;
         }
 
-
+      .dropdown-option:hover{
+      color: #5595d5;
+      }
 
       
       `}</style>

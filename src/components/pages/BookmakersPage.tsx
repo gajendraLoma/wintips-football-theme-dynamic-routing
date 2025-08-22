@@ -13,7 +13,7 @@ export default function BookmakersPage({ data }: { data: BookmakersPageData }) {
         {/* Breadcrumb */}
         <nav className="flex text-sm text-gray-500 mb-2">
           <Link href="/" className="text-blue-600 hover:underline">
-            Wintips
+            Home
           </Link>
           <svg
             xmlns="http://www.w3.org/2000/svg"

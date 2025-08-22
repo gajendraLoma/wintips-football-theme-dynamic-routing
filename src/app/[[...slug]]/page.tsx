@@ -18,30 +18,54 @@ import StandingsPage from '@/components/pages/StandingsPage';
 import SoccerTipsPage from '@/components/pages/SoccerTipsPage';
 import MatchPredicttionPage from '@/components/pages/MatchPredicttionPage';
 export const dynamic = 'force-dynamic';
+import { getFullImageUrl } from "@/lib/utils";
+  export async function generateMetadata({
+    params: paramsPromise,
+  }: {
+    params: Promise<{ slug?: string[] }>;
+  }): Promise<Metadata> {
+    const params = await paramsPromise;
+    const path = params.slug ? params.slug.join("/") : "";
+    const domain = process.env.NEXT_PUBLIC_API_BASE_URL;
+    const SITENAME = process.env.SITE_NAME;
+    const slugType = await fetchSlugType(path);
 
-export async function generateMetadata({
-  params: paramsPromise
-}: {
-  params: Promise<{slug?: string[]}>;
-}): Promise<Metadata> {
-  const params = await paramsPromise;
-  const path = params.slug ? params.slug.join('/') : '';
-  const slugType = await fetchSlugType(path);
-  if ('error' in slugType || !slugType.type) return {title: 'Not Found'};
+    if ("error" in slugType || !slugType.type) return { title: "Not Found" };
 
-  let pageData: any;
-  if (['page', 'category', 'league'].includes(slugType.type)) {
-    pageData = await fetchPageData(path);
-  } else {
-    pageData = await fetchPostBySlug(slugType.type, path);
-  }
+    let pageData: any;
+    if (["page", "category", "league"].includes(slugType.type)) {
+      pageData = await fetchPageData(path);
+    } else {
+      pageData = await fetchPostBySlug(slugType.type, path);
+    }
 
-  if ('error' in pageData || !pageData) return {title: 'Not Found'};
-  return {
-    title: pageData.seo_title || pageData.title || 'Football Theme',
-    description: pageData.seo_description || 'Football betting and predictions'
+    if ("error" in pageData || !pageData) return { title: "Not Found" };
+
+    const seoTitle = pageData.seo_title || pageData.title;
+    const seoDescription = pageData.seo_description;
+    const imageUrl = getFullImageUrl(pageData.image);
+
+    return {
+      title: seoTitle,
+      description: seoDescription,
+      alternates: {
+        canonical: `${domain}/${path}`,
+      },
+      openGraph: {
+        title: seoTitle,
+        description: seoDescription,
+        url: `${domain}/${path}`,
+        images: [
+          {
+            width: 800,
+            height: 600,
+            url: imageUrl,
+          },
+        ],
+        siteName: SITENAME,
+      },
+    };
   };
-}
 
 export default async function DynamicPage({
   params: paramsPromise

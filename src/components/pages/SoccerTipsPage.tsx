@@ -107,7 +107,7 @@ console.log('SoccerTipsPage data:', data);
               {/* Breadcrumb */}
               <nav className="flex text-sm text-gray-500 mb-2">
                 <Link href="/" className="text-blue-600 hover:underline">
-                  Wintips
+                  Home
                 </Link>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -130,25 +130,7 @@ console.log('SoccerTipsPage data:', data);
               <h1 className="text-2xl font-bold mb-2">
                 {data.title}
               </h1>
-              <h3 className="text-gray-700 mb-6">
-                <Link
-                  href="https://www.wintips.com"
-                  className="text-blue-600 hover:underline"
-                >
-                  Soccer Tips
-                </Link>{' '}
-                (or Football Tips, Football Betting tips) are expert
-                predictions, advice, or recommendations provided about upcoming
-                soccer matches. They are designed to assist bettors in making
-                informed decisions by offering insights into potential outcomes,
-                betting markets, and strategies. Soccer tips often include match
-                result predictions, scoreline forecasts, goal statistics (e.g.,
-                over/under goals), player performance expectations, and analysis
-                of factors like team form, head-to-head records, injuries, or
-                tactical approaches. These tips can be free or part of premium
-                services provided by analysts, statisticians, or betting
-                experts.
-              </h3>
+             
 
               {/* Premium Soccer Tips */}
               <h3 className="text-lg font-semibold mb-4">
@@ -225,6 +207,11 @@ console.log('SoccerTipsPage data:', data);
                 ))}
               </div>
             </div>
+             {/* Content */}
+            
+         <p className="content page text-[#323232]"
+          dangerouslySetInnerHTML={{ __html: data.content }}
+        />
           </div>
 
           {/* Sidebar (Right Column) */}

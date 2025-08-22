@@ -43,7 +43,6 @@ export default async function Home({data}: {data: any}) {
   const homeData = data;
 
 const tipsResponse = await fetchTipsData(1, 10);
-  console.log('Home Data111:', tipsResponse);
 
   // Handle the response and align with TipsResponse | null
   const tips: TipsResponse | null = 'data' in tipsResponse && tipsResponse.data === null

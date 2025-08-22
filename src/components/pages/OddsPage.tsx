@@ -241,7 +241,7 @@ export default function OddsPage({data}: {data: any}) {
         {/* Breadcrumb */}
         <nav className="flex text-sm text-gray-500 mb-2">
           <Link href="/" className="text-blue-600 hover:underline">
-            Wintips
+            Home
           </Link>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -262,20 +262,7 @@ export default function OddsPage({data}: {data: any}) {
 
         {/* Title & Description */}
         <h1 className="text-2xl font-bold mb-2">{data.title}</h1>
-        <h3 className="text-gray-700 mb-6">
-          Football betting odds and supercomputers prediction are two useful
-          tools for football bettors. These tools are developed based on the
-          actual needs of players, helping you get the most accurate betting
-          options. Using algorithms and formulas that have been programmed. At{' '}
-          <Link href="#" className="text-blue-600 hover:underline">
-            Wintips,
-          </Link>{' '}
-          we collect and analyze complete information about upcoming matches.
-          Referring to today’s football betting odds combined with supercomputer
-          prediction will help you increase your winning rate when participating
-          in football betting.
-        </h3>
-
+      
         {/* Odd data */}
         {isMobile ? (
           <>
@@ -2723,6 +2710,14 @@ export default function OddsPage({data}: {data: any}) {
             </div>
           </>
         )}
+
+        {/* Content */}
+            
+   <p className="content page text-[#323232]"
+          dangerouslySetInnerHTML={{ __html: data.content }}
+        />
+
+
       </div>
     </div>
   );

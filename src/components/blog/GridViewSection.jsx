@@ -13,7 +13,7 @@ export default function GridViewSection({ gridMatches }) {
           className="bg-white rounded-md grid gap-2 items-start group cursor-pointer relative"
         >
           {/* Image + Title Link */}
-          <Link href={`/matches/${match.slug || ""}`} className="contents">
+          <Link href={`/${match.slug || ""}`} className="contents">
             {/* Image wrapper */}
             <div className="relative shrink-0 overflow-hidden rounded-md">
               <Image
@@ -26,13 +26,13 @@ export default function GridViewSection({ gridMatches }) {
               />
 
               {/* Category Tag Link inside image wrapper */}
-              <Link
-                href={`/category/${match.categorySlug || "default-category"}`}
+              <span
+             
                 className="absolute bottom-2 left-2 inline-block bg-[#00000080] hover:bg-[#4CA5FF] p-1 rounded px-3 text-[12px] text-white transition-transform duration-300 hover:scale-110"
-                onClick={(e) => e.stopPropagation()}
+               onClick={() => window.location.href = `/category/${match.categorySlug}`}
               >
                 Category Tag
-              </Link>
+              </span>
             </div>
 
             {/* Title text */}
