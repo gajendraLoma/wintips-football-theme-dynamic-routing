@@ -2,7 +2,7 @@
 'use client';
 
 import {useEffect, useState} from 'react';
-import {ApiResponse, TLeague, TMatch} from '../../types/schedule';
+import { TLeague, TMatch} from '../../types/schedule';
 import {TMatchCompetition} from '../../types/schedule';
 import {
   fetchMatchSchedule,
@@ -18,16 +18,15 @@ import Link from 'next/link';
 import {getFullImageUrl} from '@/lib/utils';
 
 // Define proper types for the component props
-interface ResultPageProps {
+interface SchedulePageProps {
   data: {
     title: string;
     content: string;
     league_id?: string;
   };
 }
-const imageBaseUrl = 'https://5goal.vip';
-console.log('Image Base URL:', imageBaseUrl);
-export default function SchedulePage({data}: ResultPageProps) {
+
+export default function SchedulePage({data}: SchedulePageProps) {
   const t = useTranslations();
   const [activeDay, setActiveDay] = useState(
     new Date().toISOString().split('T')[0]
@@ -37,7 +36,7 @@ export default function SchedulePage({data}: ResultPageProps) {
   const [scheduleByLeagues, setScheduleByLeagues] = useState<TLeague[]>([]);
 
   useEffect(() => {
-    const fetchResults = async () => {
+    const fetchSchedule = async () => {
       setLoading(true);
 
       try {
@@ -57,7 +56,7 @@ export default function SchedulePage({data}: ResultPageProps) {
           }
         }
       } catch (error) {
-        console.error('Error fetching results:', error);
+        console.error('Error fetching Schedule:', error);
         setLeagues([]);
         setScheduleByLeagues([]);
       } finally {
@@ -65,7 +64,7 @@ export default function SchedulePage({data}: ResultPageProps) {
       }
     };
 
-    fetchResults();
+    fetchSchedule();
   }, [data.league_id, activeDay]);
 
   return (
@@ -228,7 +227,7 @@ export default function SchedulePage({data}: ResultPageProps) {
               </div>
             </div>
             {/* Content */}
-            content :{' '}
+           
             <p
               className="content page text-[#323232]"
               dangerouslySetInnerHTML={{__html: data.content}}

@@ -1,3 +1,5 @@
+// apis/services/Schedule.ts
+
 export const fetchMatchSchedule = async (date: string = '') => {
     try {
         const response = await fetch('https://api.5goall.com/schedules', {
@@ -22,7 +24,7 @@ export const fetchMatchSchedule = async (date: string = '') => {
 }
 
 
-// apis/services/results.ts
+
 export const fetchMatchScheduleByLeague = async (leagueId: string) => {
     try {
         const response = await fetch(`https://api.5goall.com/schedulesByLeague`, {

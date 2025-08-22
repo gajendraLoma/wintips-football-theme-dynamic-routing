@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ApiResponse, TLeague, TMatch } from "../../types/results";
+import {  TLeague, TMatch } from "../../types/results";
 import { TMatchCompetition } from "../../types/results"; 
 import {
   fetchMatchResult,
@@ -26,7 +26,7 @@ interface ResultPageProps {
   };
 }
 const imageBaseUrl = 'https://5goal.vip';
-console.log("Image Base URL:", imageBaseUrl);
+
 export default function ResultPage({ data }: ResultPageProps) {
   const t = useTranslations();
   const [activeDay, setActiveDay] = useState(
