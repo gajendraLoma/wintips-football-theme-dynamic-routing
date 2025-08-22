@@ -72,7 +72,6 @@ export interface TMatchCompetition {
     live: boolean;
 }
 
-
 export type TLeagueRankingPromotion = {
     id: string;
     name: string;

@@ -8,9 +8,9 @@ import {
   fetchMatchResult,
   fetchMatchResultByLeague,
 } from "@/apis/services/results";
-import Spinner from "../../components/common/Loader";
-import MatchResultScore from "../../components/result/MatchResultScore"; 
-import LeagueMatch from "../../components/result/LeagueMatch";
+import Spinner from "../common/Loader";
+import MatchResultScore from "../result/MatchResultScore"; 
+import LeagueMatch from "../result/LeagueMatch";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import Sidebar from "@/components/layout/Sidebar";
@@ -126,7 +126,7 @@ export default function ResultPage({ data }: ResultPageProps) {
                                     />
                                   </div>
                                 )}
-                                <p className="text-sm font-bold text-white">
+                                <p className="text-sm font-bold">
                                   {league.league_name}{" "}
                                   {Number(league.league_round) > 0 && (
                                     <span>
@@ -175,7 +175,7 @@ export default function ResultPage({ data }: ResultPageProps) {
                                     />
                                   </div>
                                 )}
-                                <p className="text-sm font-bold ">
+                                <p className="text-sm font-bold">
                                   {league?.competition_name}{" "}
                                  
                                 </p>
