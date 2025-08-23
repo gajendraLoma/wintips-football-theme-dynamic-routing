@@ -1,23 +1,21 @@
 // components/pages/SchedulePage.tsx
-'use client';
-
-import {useEffect, useState} from 'react';
-import { TLeague, TMatch} from '../../types/schedule';
-import {TMatchCompetition} from '../../types/schedule';
+import MatchScheduleScore from '../schedule/MatchScheduleScore';
+import LeagueScheduleMatch from '../schedule/LeagueScheduleMatch';
+import Image from 'next/image';
+import {getTranslations} from 'next-intl/server';
+import Sidebar from '@/components/layout/Sidebar';
+import Link from 'next/link';
+import {getFullImageUrl} from '@/lib/utils';
+import {
+  TLeague,
+  TMatch,
+  TCompetition,
+  TMatchCompetition
+} from '../../types/schedule';
 import {
   fetchMatchSchedule,
   fetchMatchScheduleByLeague
 } from '@/apis/services/schedule';
-import Spinner from '../common/Loader';
-import MatchScheduleScore from '../schedule/MatchScheduleScore';
-import LeagueScheduleMatch from '../schedule/LeagueScheduleMatch';
-import Image from 'next/image';
-import {useTranslations} from 'next-intl';
-import Sidebar from '@/components/layout/Sidebar';
-import Link from 'next/link';
-import {getFullImageUrl} from '@/lib/utils';
-
-// Define proper types for the component props
 interface SchedulePageProps {
   data: {
     title: string;
@@ -26,46 +24,34 @@ interface SchedulePageProps {
   };
 }
 
-export default function SchedulePage({data}: SchedulePageProps) {
-  const t = useTranslations();
-  const [activeDay, setActiveDay] = useState(
-    new Date().toISOString().split('T')[0]
-  );
-  const [leagues, setLeagues] = useState<TLeague[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [scheduleByLeagues, setScheduleByLeagues] = useState<TLeague[]>([]);
+export default async function SchedulePage({data}: SchedulePageProps) {
+  const t = await getTranslations();
 
-  useEffect(() => {
-    const fetchSchedule = async () => {
-      setLoading(true);
+  // Fetch data based on league_id or date
+  let scheduleData;
+  if (data.league_id) {
+    scheduleData = await fetchMatchScheduleByLeague(data.league_id);
+  } else {
+    const activeDay = new Date().toISOString().split('T')[0];
+    scheduleData = await fetchMatchSchedule(activeDay);
+  }
 
-      try {
-        if (data.league_id) {
-          // Fetch by league
-          const scheduleData = await fetchMatchScheduleByLeague(data.league_id);
-          if (scheduleData) {
-            setScheduleByLeagues(scheduleData);
-            setLeagues([]);
-          }
-        } else {
-          // Fetch by date
-          const scheduleData = await fetchMatchSchedule(activeDay);
-          if (scheduleData?.result) {
-            setLeagues(scheduleData.result);
-            setScheduleByLeagues([]);
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching Schedule:', error);
-        setLeagues([]);
-        setScheduleByLeagues([]);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // Handle error or no data
+  if (!scheduleData || 'error' in scheduleData) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <h1 className="text-2xl font-bold">{t('not_found')}</h1>
+      </div>
+    );
+  }
 
-    fetchSchedule();
-  }, [data.league_id, activeDay]);
+  // Derive leagues and scheduleByLeagues based on API response
+  const leagues = Array.isArray(scheduleData.result) ? scheduleData.result : [];
+  const scheduleByLeagues = data.league_id
+    ? Array.isArray(scheduleData)
+      ? scheduleData
+      : [scheduleData]
+    : [];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -99,88 +85,82 @@ export default function SchedulePage({data}: SchedulePageProps) {
               <h1 className="text-2xl font-bold mb-2">{data.title}</h1>
 
               <div className="bg-white rounded-2xl">
-                {loading ? (
-                  <div className="w-full py-8 flex justify-center">
-                    <Spinner />
-                  </div>
-                ) : (
-                  <>
-                    {/* Render leagues data (date-based) */}
-                    {leagues.length > 0 && (
-                      <div className="w-full py-2">
-                        {leagues.map((league: TLeague, index: number) => (
-                          <div key={index} className="w-full mb-6">
-                            <div className="group headerBg text-[#07302C] flex justify-between items-center py-2 px-4">
-                              <div className="px-0 flex gap-4 items-center">
-                                {league.league_logo && (
-                                  <div className="w-6 h-6 relative">
-                                    <Image
-                                      src={getFullImageUrl(league.league_logo)}
-                                      alt="league logo"
-                                      height={24}
-                                      width={24}
-                                      objectFit="contain"
-                                    />
-                                  </div>
+                <>
+                  {/* Render leagues data (date-based) */}
+                  {leagues.length > 0 && (
+                    <div className="w-full py-2">
+                      {leagues.map((league: TLeague, index: number) => (
+                        <div key={index} className="w-full">
+                          <div className="group headerBg text-[#07302C] flex justify-between items-center py-2 px-4">
+                            <div className="px-0 flex gap-4 items-center">
+                              {league.league_logo && (
+                                <div className="w-6 h-6 relative">
+                                  <Image
+                                    src={getFullImageUrl(league.league_logo)}
+                                    alt="league logo"
+                                    height={24}
+                                    width={24}
+                                  />
+                                </div>
+                              )}
+                              <p className="text-sm font-bold">
+                                {league.league_name}{' '}
+                                {Number(league.league_round) > 0 && (
+                                  <span>
+                                    : {t('round')} {league.league_round}
+                                  </span>
                                 )}
-                                <p className="text-sm font-bold">
-                                  {league.league_name}{' '}
-                                  {Number(league.league_round) > 0 && (
-                                    <span>
-                                      : {t('round')} {league.league_round}
-                                    </span>
-                                  )}
-                                </p>
-                              </div>
-                            </div>
-                            <div className="w-full px-0 sm:px-8">
-                              <ul className="flex flex-col">
-                                {league.fixtures?.length > 0 ? (
-                                  league.fixtures.map(
-                                    (match: TMatch, index: number) => (
-                                      <MatchScheduleScore
-                                        key={index}
-                                        match={match}
-                                      />
-                                    )
-                                  )
-                                ) : (
-                                  <li className="py-2 text-center">
-                                    {t('no_matches_available')}
-                                  </li>
-                                )}
-                              </ul>
+                              </p>
                             </div>
                           </div>
-                        ))}
-                      </div>
-                    )}
+                          <div className="w-full px-0 sm:px-8">
+                            <ul className="flex flex-col">
+                              {league.fixtures?.length > 0 ? (
+                                league.fixtures.map(
+                                  (match: TMatch, index: number) => (
+                                    <MatchScheduleScore
+                                      key={index}
+                                      match={match}
+                                    />
+                                  )
+                                )
+                              ) : (
+                                <li className="py-2 text-center">
+                                  {t('no_matches_available')}
+                                </li>
+                              )}
+                            </ul>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
-                    {/* Render scheduleByLeagues data (league-based) */}
-                    {scheduleByLeagues.length > 0 && (
-                      <div className="w-full py-2">
-                        {scheduleByLeagues.map((league: any, index: number) => (
-                          <div key={index} className="w-full mb-6">
+                  {/* Render scheduleByLeagues data (league-based) */}
+                  {scheduleByLeagues.length > 0 && (
+                    <div className="w-full py-2">
+                      {scheduleByLeagues.map(
+                        (competition: TCompetition, index: number) => (
+                          <div key={index} className="w-full">
                             <div className="group headerBg text-[#07302C] flex justify-between items-center py-2 px-4">
                               <div className="px-0 flex gap-4 items-center">
-                                {league.competition_logo && (
+                                {competition.competition_logo && (
                                   <div className="w-6 h-6 relative">
                                     <Image
                                       src={getFullImageUrl(
-                                        league.competition_logo
+                                        competition.competition_logo
                                       )}
                                       alt="league logo"
                                       height={24}
                                       width={24}
-                                      objectFit="contain"
                                     />
                                   </div>
                                 )}
                                 <p className="text-sm font-bold">
-                                  {league?.competition_name}{' '}
-                                  {Number(league.round_num) > 0 && (
+                                  {competition.competition_name}{' '}
+                                  {Number(competition.round_num) > 0 && (
                                     <span>
-                                      : {t('round')} {league.round_num}
+                                      : {t('round')} {competition.round_num}
                                     </span>
                                   )}
                                 </p>
@@ -188,8 +168,8 @@ export default function SchedulePage({data}: SchedulePageProps) {
                             </div>
                             <div className="w-full px-0 sm:px-8">
                               <ul className="flex flex-col">
-                                {league?.matches?.length > 0 ? (
-                                  league.matches.map(
+                                {competition.matches?.length > 0 ? (
+                                  competition.matches.map(
                                     (
                                       match: TMatchCompetition,
                                       index: number
@@ -208,26 +188,24 @@ export default function SchedulePage({data}: SchedulePageProps) {
                               </ul>
                             </div>
                           </div>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Show message when no data is available */}
-                    {leagues.length === 0 &&
-                      scheduleByLeagues.length === 0 &&
-                      !loading && (
-                        <div className="w-full py-4">
-                          <div className="text-center text-xl font-bold">
-                            {t('no_data_found')}
-                          </div>
-                        </div>
+                        )
                       )}
-                  </>
-                )}
+                    </div>
+                  )}
+
+                  {/* Show message when no data is available */}
+                  {leagues.length === 0 && scheduleByLeagues.length === 0 && (
+                    <div className="w-full py-4">
+                      <div className="text-center text-xl font-bold">
+                        {t('no_data_found')}
+                      </div>
+                    </div>
+                  )}
+                </>
               </div>
             </div>
             {/* Content */}
-           
+            content:{' '}
             <p
               className="content page text-[#323232]"
               dangerouslySetInnerHTML={{__html: data.content}}

@@ -1,16 +1,10 @@
 // components/pages/StandingsPage.tsx
-'use client';
-import { useEffect, useState } from 'react';
-import {
-  fetchMatchStandings,
-  fetchMatchStandingsByLeague
-} from '@/apis/services/standings';
-import Spinner from '../common/Loader';
-import Image from 'next/image';
-import { useTranslations } from 'next-intl';
-import Sidebar from '@/components/layout/Sidebar';
-import Link from 'next/link';
-import { getFullImageUrl } from '@/lib/utils';
+import Image from "next/image";
+import {getTranslations} from 'next-intl/server';
+import Sidebar from "@/components/layout/Sidebar";
+import Link from "next/link";
+import { getFullImageUrl } from "@/lib/utils";
+import { fetchMatchStandings, fetchMatchStandingsByLeague } from "@/apis/services/standings";
 interface StandingsPageProps {
   data: {
     title: string;
@@ -19,49 +13,33 @@ interface StandingsPageProps {
   };
 }
 
-const imageBaseUrl = 'https://5goal.vip';
-export default function StandingsPage({ data }: StandingsPageProps) {
-  const t = useTranslations();
-  const [leagues, setLeagues] = useState<TLeague[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [standingsByLeagues, setStandingsByLeagues] = useState<TLeagueRankingResponse | null>(null);
+const imageBaseUrl = "https://5goal.vip";
+export default async function StandingsPage({ data }: StandingsPageProps) {
+  const t = await getTranslations();
+
+  // Fetch data based on league_id or default standings
+  let standingsData;
+  if (data.league_id) {
+    standingsData = await fetchMatchStandingsByLeague(data.league_id);
+  } else {
+    standingsData = await fetchMatchStandings();
+  }
+
+  // Handle error or no data
+  if (!standingsData || "error" in standingsData) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <h1 className="text-2xl font-bold">{t("not_found")}</h1>
+      </div>
+    );
+  }
+
+  // Derive leagues and standingsByLeagues based on API response
+  const leagues = Array.isArray(standingsData?.data) ? standingsData.data : [];
+  const standingsByLeagues = data.league_id ? standingsData : null;
 
   const standingTables = standingsByLeagues?.result?.[0]?.standing?.tables?.[0]?.rows || [];
-  const promotions = standingsByLeagues?.result?.[0]?.standing?.promotions || []; // Fixed indexing
-
-  useEffect(() => {
-    const fetchStandings = async () => {
-      setLoading(true);
-
-      try {
-        if (data.league_id) {
-          // Fetch by league
-          const standingsData = await fetchMatchStandingsByLeague(data.league_id);
-          if (standingsData) {
-            setStandingsByLeagues(standingsData);
-            setLeagues([]);
-          }
-        } else {
-          // Fetch standings data
-          const standingsData = await fetchMatchStandings();
-          if (standingsData?.data) {
-            setLeagues(standingsData.data);
-            setStandingsByLeagues(null);
-          } else {
-            setLeagues([]);
-          }
-        }
-      } catch (error) {
-        console.error('Error fetching Standings:', error);
-        setLeagues([]);
-        setStandingsByLeagues(null);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchStandings();
-  }, [data.league_id]);
+  const promotions = standingsByLeagues?.result?.[0]?.standing?.promotions || [];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -95,14 +73,10 @@ export default function StandingsPage({ data }: StandingsPageProps) {
               <h1 className="text-2xl font-bold text-gray-800 mb-6">{data.title}</h1>
 
               {/* Content Area */}
-              {loading ? (
-                <div className="flex justify-center py-12">
-                  <Spinner />
-                </div>
-              ) : (
+           
                 <div className="space-y-6">
-          
-                  {leagues.length > 0 && (
+                  {/* Render leagues data (standings-based) */}
+                  {/* {leagues.length > 0 && (
                     <div className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {leagues.slice(0, 18).map((league: TLeague, index: number) => (
@@ -112,7 +86,7 @@ export default function StandingsPage({ data }: StandingsPageProps) {
                                 <div className="relative w-10 h-10">
                                   <Image
                                     src={getFullImageUrl(league.logo)}
-                                    alt={'League logo'}
+                                    alt="League logo"
                                     fill
                                     className="object-contain"
                                   />
@@ -120,17 +94,16 @@ export default function StandingsPage({ data }: StandingsPageProps) {
                               )}
                               <h3 className="font-medium text-gray-800">{league.name}</h3>
                             </div>
-                     
                           </div>
                         ))}
                       </div>
                     </div>
-                  )}
+                  )} */}
 
                   {/* Render standingsByLeagues data (league-based with matches) */}
                   {standingsByLeagues && (
                     <div className="w-full bg-white rounded-2xl py-2">
-                      <div className="w-full px-2 sm:px-8 py-2">
+                      <div className="w-full py-2">
                         <table className="w-full text-[#454745]">
                           <thead>
                             <tr>
@@ -156,8 +129,8 @@ export default function StandingsPage({ data }: StandingsPageProps) {
                                   <tr key={index} className="border-b last:border-b-0 text-[11px] sm:text-sm border-[#ECEFF3] hover:bg-[#275fe2a3] transition ease-linear">
                                     <td className="text-center py-2">
                                       <div className="w-full flex items-center justify-center">
-                                        <div 
-                                          className={`min-h-5 min-w-5 max-h-6 max-w-6 rounded-full aspect-square ${promotion ? 'text-white' : ''}`}
+                                        <div
+                                          className={`min-h-5 min-w-5 max-h-6 max-w-6 rounded-full aspect-square ${promotion ? "text-white" : ""}`}
                                           style={promotion ? { backgroundColor: promotion.color } : {}}
                                         >
                                           {row.position}
@@ -167,7 +140,7 @@ export default function StandingsPage({ data }: StandingsPageProps) {
                                     <td className="py-2">
                                       <div className="flex gap-2 items-center">
                                         <Image
-                                          src={`${imageBaseUrl}${row.logo}`} 
+                                          src={`${imageBaseUrl}${row.logo}`}
                                           alt="home logo"
                                           height={20}
                                           width={20}
@@ -185,44 +158,46 @@ export default function StandingsPage({ data }: StandingsPageProps) {
                                   </tr>
                                 );
                               })
-                            ) : <p className="text-center py-4">Data not found!</p>}
+                            ) : (
+                              <p className="text-center py-4">Data not found!</p>
+                            )}
                           </tbody>
                         </table>
                         <div className="flex flex-wrap py-2 gap-2">
                           {promotions.length > 0 ? (
                             promotions.map((promotion: TLeagueRankingPromotion, index: number) => (
                               <div key={index} className="flex items-center gap-2">
-                                <div 
+                                <div
                                   className="w-3 h-3 rounded-full"
                                   style={{ backgroundColor: promotion.color }}
                                 ></div>
                                 <p className="text-[12px] text-[#A2A3A2]">{promotion.name}</p>
                               </div>
                             ))
-                          ) : <></>}
+                          ) : (
+                            <></>
+                          )}
                         </div>
                       </div>
                     </div>
                   )}
 
                   {/* Empty state */}
-                  {leagues.length === 0 && !standingsByLeagues && !loading && (
+                  {leagues.length === 0 && !standingsByLeagues && (
                     <div className="py-8 text-center">
                       <div className="text-xl font-semibold text-gray-600 mb-2">
-                        {t('no_data_found')}
+                        {t("no_data_found")}
                       </div>
                     </div>
                   )}
                 </div>
-              )}
-
-            
+             
             </div>
-              {/* Content */}
-             content : <p
-                className="content page text-[#323232]"
-                dangerouslySetInnerHTML={{ __html: data.content }}
-              />
+            {/* Content */}
+           content: <p
+              className="content page text-[#323232]"
+              dangerouslySetInnerHTML={{ __html: data.content }}
+            />
           </div>
 
           {/* Sidebar (Right Column) */}
