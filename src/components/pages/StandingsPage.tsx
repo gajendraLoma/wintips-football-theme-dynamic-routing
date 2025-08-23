@@ -1,21 +1,16 @@
 // components/pages/StandingsPage.tsx
 'use client';
-
 import { useEffect, useState } from 'react';
-import { TLeague } from '../../types/standings';
-import { TMatchCompetition } from '../../types/standings';
 import {
   fetchMatchStandings,
   fetchMatchStandingsByLeague
 } from '@/apis/services/standings';
 import Spinner from '../common/Loader';
-import LeagueStandingsMatch from '../standings/LeagueStandingsMatch';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import Sidebar from '@/components/layout/Sidebar';
 import Link from 'next/link';
 import { getFullImageUrl } from '@/lib/utils';
-
 interface StandingsPageProps {
   data: {
     title: string;
@@ -24,14 +19,15 @@ interface StandingsPageProps {
   };
 }
 
+const imageBaseUrl = 'https://5goal.vip';
 export default function StandingsPage({ data }: StandingsPageProps) {
   const t = useTranslations();
   const [leagues, setLeagues] = useState<TLeague[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [standingsByLeagues, setStandingsByLeagues] = useState<TLeague[]>([]);
+  const [standingsByLeagues, setStandingsByLeagues] = useState<TLeagueRankingResponse | null>(null);
 
-
-console.log("standingsByLeagues",standingsByLeagues)
+  const standingTables = standingsByLeagues?.result?.[0]?.standing?.tables?.[0]?.rows || [];
+  const promotions = standingsByLeagues?.result?.[0]?.standing?.promotions || []; // Fixed indexing
 
   useEffect(() => {
     const fetchStandings = async () => {
@@ -50,7 +46,7 @@ console.log("standingsByLeagues",standingsByLeagues)
           const standingsData = await fetchMatchStandings();
           if (standingsData?.data) {
             setLeagues(standingsData.data);
-            setStandingsByLeagues([]);
+            setStandingsByLeagues(null);
           } else {
             setLeagues([]);
           }
@@ -58,7 +54,7 @@ console.log("standingsByLeagues",standingsByLeagues)
       } catch (error) {
         console.error('Error fetching Standings:', error);
         setLeagues([]);
-        setStandingsByLeagues([]);
+        setStandingsByLeagues(null);
       } finally {
         setLoading(false);
       }
@@ -67,21 +63,13 @@ console.log("standingsByLeagues",standingsByLeagues)
     fetchStandings();
   }, [data.league_id]);
 
-  // Handle image errors
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    const target = e.target as HTMLImageElement;
-    target.src = '/images/placeholder-team-logo.png';
-    target.onerror = null;
-  };
-
   return (
-   <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <div className="lg:col-span-3 space-y-8">
             <div className="bg-white px-4 md:px-8 py-6 max-w-[1280px] mx-auto">
               {/* Breadcrumb */}
-      
               <nav className="flex text-sm text-gray-500 mb-2">
                 <Link href="/" className="text-blue-600 hover:underline">
                   Home
@@ -113,28 +101,26 @@ console.log("standingsByLeagues",standingsByLeagues)
                 </div>
               ) : (
                 <div className="space-y-6">
-                  {/* Render leagues data (standings-based) */}
+          
                   {leagues.length > 0 && (
                     <div className="space-y-6">
-                     
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {leagues.slice(0, 60).map((league: TLeague, index: number) => (
-                          <div key={index} className="bg-gray-50 rounded p-4 shadow-sm  border-gray-200">
+                        {leagues.slice(0, 18).map((league: TLeague, index: number) => (
+                          <div key={index} className="bg-gray-50 rounded p-4 shadow-sm border-gray-200">
                             <div className="flex items-center space-x-3 mb-3">
                               {league.logo && (
                                 <div className="relative w-10 h-10">
                                   <Image
                                     src={getFullImageUrl(league.logo)}
-                                    alt={league.name || 'League logo'}
+                                    alt={'League logo'}
                                     fill
                                     className="object-contain"
-                                    onError={handleImageError}
                                   />
                                 </div>
                               )}
                               <h3 className="font-medium text-gray-800">{league.name}</h3>
                             </div>
-                            {/* Add more league details here as needed */}
+                     
                           </div>
                         ))}
                       </div>
@@ -142,69 +128,101 @@ console.log("standingsByLeagues",standingsByLeagues)
                   )}
 
                   {/* Render standingsByLeagues data (league-based with matches) */}
-                  {standingsByLeagues.length > 0 && (
-                    <div className="space-y-6">
-                      <h2 className="text-xl font-semibold text-gray-700">{t('matches')}</h2>
-                      {standingsByLeagues.map((league: any, index: number) => (
-                        <div key={index} className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-                          {/* League Header */}
-                          <div className="bg-green-100 px-4 py-3 flex items-center space-x-3">
-                            {league.competition_logo && (
-                              <div className="relative w-6 h-6">
-                                <Image
-                                  src={getFullImageUrl(league.competition_logo)}
-                                  alt={league.competition_name || 'Competition logo'}
-                                  fill
-                                  className="object-contain"
-                                  onError={handleImageError}
-                                />
+                  {standingsByLeagues && (
+                    <div className="w-full bg-white rounded-2xl py-2">
+                      <div className="w-full px-2 sm:px-8 py-2">
+                        <table className="w-full text-[#454745]">
+                          <thead>
+                            <tr>
+                              <th className="w-[5%]"></th>
+                              <th className="w-[50%] text-sm font-bold text-[#A2A3A2] text-left">Team</th>
+                              <th className="w-[5%] text-sm font-bold text-[#A2A3A2]">MP</th>
+                              <th className="w-[5%] text-sm font-bold text-[#A2A3A2]">W</th>
+                              <th className="w-[5%] text-sm font-bold text-[#A2A3A2]">D</th>
+                              <th className="w-[5%] text-sm font-bold text-[#A2A3A2]">L</th>
+                              <th className="w-[5%] text-sm font-bold text-[#A2A3A2]">G</th>
+                              <th className="w-[5%] text-sm font-bold text-[#A2A3A2]">PTS</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td className="text-center py-2"></td>
+                            </tr>
+                            {standingTables.length > 0 ? (
+                              standingTables.map((row: TStandingTableRow, index: number) => {
+                                const promotion = promotions.find((promotion: TLeagueRankingPromotion) => promotion.id === row.promotion_id);
+
+                                return (
+                                  <tr key={index} className="border-b last:border-b-0 text-[11px] sm:text-sm border-[#ECEFF3] hover:bg-[#275fe2a3] transition ease-linear">
+                                    <td className="text-center py-2">
+                                      <div className="w-full flex items-center justify-center">
+                                        <div 
+                                          className={`min-h-5 min-w-5 max-h-6 max-w-6 rounded-full aspect-square ${promotion ? 'text-white' : ''}`}
+                                          style={promotion ? { backgroundColor: promotion.color } : {}}
+                                        >
+                                          {row.position}
+                                        </div>
+                                      </div>
+                                    </td>
+                                    <td className="py-2">
+                                      <div className="flex gap-2 items-center">
+                                        <Image
+                                          src={`${imageBaseUrl}${row.logo}`} 
+                                          alt="home logo"
+                                          height={20}
+                                          width={20}
+                                          objectFit="contain"
+                                        />
+                                        <p>{row.team_name}</p>
+                                      </div>
+                                    </td>
+                                    <td className="text-center py-2">{row.total}</td>
+                                    <td className="text-center py-2">{row.won}</td>
+                                    <td className="text-center py-2">{row.draw}</td>
+                                    <td className="text-center py-2">{row.loss}</td>
+                                    <td className="text-center py-2">{row.goals}:{row.goals_against}</td>
+                                    <td className="text-center py-2">{row.points}</td>
+                                  </tr>
+                                );
+                              })
+                            ) : <p className="text-center py-4">Data not found!</p>}
+                          </tbody>
+                        </table>
+                        <div className="flex flex-wrap py-2 gap-2">
+                          {promotions.length > 0 ? (
+                            promotions.map((promotion: TLeagueRankingPromotion, index: number) => (
+                              <div key={index} className="flex items-center gap-2">
+                                <div 
+                                  className="w-3 h-3 rounded-full"
+                                  style={{ backgroundColor: promotion.color }}
+                                ></div>
+                                <p className="text-[12px] text-[#A2A3A2]">{promotion.name}</p>
                               </div>
-                            )}
-                            <div className="font-semibold text-gray-800">
-                              {league.competition_name}
-                              {Number(league.round_num) > 0 && (
-                                <span className="text-sm font-normal ml-2">
-                                  {t('round')} {league.round_num}
-                                </span>
-                              )}
-                            </div>
-                          </div>
-                          
-                          {/* Matches List */}
-                          <div className="divide-y divide-gray-100">
-                            {league.matches?.length > 0 ? (
-                              league.matches.map((match: TMatchCompetition, matchIndex: number) => (
-                                <LeagueStandingsMatch key={matchIndex} match={match} />
-                              ))
-                            ) : (
-                              <div className="py-4 text-center text-gray-500">
-                                {t('no_matches_available')}
-                              </div>
-                            )}
-                          </div>
+                            ))
+                          ) : <></>}
                         </div>
-                      ))}
+                      </div>
                     </div>
                   )}
 
                   {/* Empty state */}
-                  {leagues.length === 0 && standingsByLeagues.length === 0 && !loading && (
+                  {leagues.length === 0 && !standingsByLeagues && !loading && (
                     <div className="py-8 text-center">
                       <div className="text-xl font-semibold text-gray-600 mb-2">
                         {t('no_data_found')}
                       </div>
-                      <p className="text-gray-500">{t('try_again_later')}</p>
                     </div>
                   )}
                 </div>
               )}
 
-          {/* Content */}
-            <p
-              className="content page text-[#323232]"
-              dangerouslySetInnerHTML={{__html: data.content}}
-            />
+            
             </div>
+              {/* Content */}
+             content : <p
+                className="content page text-[#323232]"
+                dangerouslySetInnerHTML={{ __html: data.content }}
+              />
           </div>
 
           {/* Sidebar (Right Column) */}
