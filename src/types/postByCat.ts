@@ -17,3 +17,33 @@ export interface PostByCatResponse {
   seo_desc: string | null;
 }
 
+
+export interface Category {
+  name: string;
+  slug: string;
+}
+
+export interface Breadcrumb {
+  name: string;
+  slug: string;
+}
+
+export interface RelatedPost {
+  title: string;
+  featured_image: string;
+  slug: string;
+}
+
+export interface PostDetails {
+  status: number;
+  post_image: string;
+  title: string;
+  content: string;
+  published_date: string;
+  seo_title: string;
+  seo_description: string;
+  categories: Category[];
+  breadcrumb: Breadcrumb;
+  related_posts: RelatedPost[];
+}
+

@@ -113,5 +113,7 @@
     "round": "Vòng đấu",
     "no_data_found": "Không tìm thấy dữ liệu",
     "no_matches_available":"Không có trận đấu nào có sẵn",
-    "votes":"phiếu bầu"
+    "votes":"phiếu bầu",
+    "related_posts":"bài viết liên quan",
+     "publish_date":"Xuất bản trên"
 }
