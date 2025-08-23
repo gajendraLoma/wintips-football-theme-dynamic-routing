@@ -6,7 +6,6 @@ import {ReactNode} from 'react';
 import './globals.css';
 import Navigation from '@/components/common/Navigation';
 import Footer from '@/components/common/Footer';
-import { fetchMenuData, fetchAllFooterData } from '@/apis/services/menu';
 const inter = Inter({subsets: ['latin']});
 
 type Props = {
@@ -15,8 +14,6 @@ type Props = {
 
 export default async function LocaleLayout({children}: Props) {
   const locale = await getLocale();
-const menuData = await fetchMenuData();
-  const footerData = await fetchAllFooterData();
   return (
     <html lang={locale}>
       <body
@@ -26,9 +23,9 @@ const menuData = await fetchMenuData();
         )}
       >
         <NextIntlClientProvider>
-          <Navigation initialMenuData={menuData} />
+          <Navigation locale={locale} />
            <main>{children}</main>
-        <Footer initialFooterData={footerData} />
+        <Footer locale={locale} />
         </NextIntlClientProvider>
       </body>
     </html>

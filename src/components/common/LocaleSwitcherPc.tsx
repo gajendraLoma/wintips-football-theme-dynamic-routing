@@ -1,35 +1,36 @@
-'use client';
+"use client";
+import { useLocale, useTranslations } from "next-intl";
+import { useTransition, useState, useEffect, useRef } from "react";
+import { Locale } from "@/i18n/config";
+import { setUserLocale } from "@/services/locale";
 
-import { useLocale, useTranslations } from 'next-intl';
-import { useTransition, useState, useEffect, useRef } from 'react';
-import {  Locale } from '@/i18n/config'; 
-import { setUserLocale,  } from '@/services/locale';
-
-
-export default function LocaleSwitcher() {
+export default function LocaleSwitcherPc() {
   const t = useTranslations();
   const locale = useLocale();
   const [isPending, startTransition] = useTransition();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-
-  const theme = "dark"
   const flagMap: Record<string, string> = {
-    en: '/svg/eenFlag.svg',
-    vi: '/svg/vviFlag.svg',
+    en: "/svg/eenFlag.svg",
+    vi: "/svg/vviFlag.svg",
   };
-
   const languages = [
-    { code: 'en', name: t('en') },
-    { code: 'vi', name: t('vi') },
+    { code: "en", name: t("en") },
+    { code: "vi", name: t("vi") },
   ];
 
   const handleLocaleChange = (value: string) => {
     startTransition(() => {
-      setUserLocale(value as Locale);
+      setUserLocale(value as Locale).then(() => {
+      }).catch((err) => {
+        console.error("Locale update failed:", err);
+      });
     });
     setIsOpen(false);
+  };
+
+  const handleToggle = () => {
+    setIsOpen((prev) => !prev);
   };
 
   useEffect(() => {
@@ -38,31 +39,32 @@ export default function LocaleSwitcher() {
         setIsOpen(false);
       }
     };
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
   return (
     <div className="relative flex items-center justify-center" ref={dropdownRef}>
-       
       <div
-        className="dropdown-mob"
-        onClick={() => setIsOpen(!isOpen)}
-        onBlur={() => setIsOpen(false)}
+        className="dropdown-pc"
+        onClick={handleToggle}
+        onBlur={() => {
+          setIsOpen(false);
+        }}
       >
         <img
           src={flagMap[locale]}
           alt={`${locale} flag`}
-        className='object-cover'
+          className="object-cover"
         />
       </div>
-      <div className="dropdown-options-mob">
-        {languages && languages.map((lang) => (
+      <div className="dropdown-options-pc">
+        {languages.map((lang) => (
           <div
             key={lang.code}
-            className="dropdown-option-mob"
+            className="dropdown-option-pc"
             style={{ backgroundImage: `url(${flagMap[lang.code]})` }}
             onClick={() => handleLocaleChange(lang.code)}
           >
@@ -71,9 +73,8 @@ export default function LocaleSwitcher() {
         ))}
       </div>
 
-
- <style >{`
-        .dropdown-mob {
+      <style>{`
+        .dropdown-pc {
           position: relative;
           width: 32px;
           height: 32px;
@@ -85,7 +86,7 @@ export default function LocaleSwitcher() {
           align-items: center;
           transition: all 0.2s ease;
         }
-        .dropdown-mob img {
+        .dropdown-pc img {
           width: 22px;
           height: 22px;
           position: absolute;
@@ -95,18 +96,18 @@ export default function LocaleSwitcher() {
           border-radius: 100px;
           object-fit: cover;
         }
-        .dropdown-options-mob {
+        .dropdown-options-pc {
           position: absolute;
-          top: 35px;
-          right: -45px;
+          top: 40px; 
+          right: 0; 
           width: 120px;
-          background: #ececec;
-          border: 1px solid #cecccc;
+          background: #ffffff;
+          border: 1px solid #ffffff;
           border-radius: 6px;
           max-height: 200px;
           overflow-y: auto;
           z-index: 1000;
-          display: ${isOpen ? 'block' : 'none'};
+          display: ${isOpen ? "block" : "none"};
           box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
           animation: slideUp 0.2s ease-out;
         }
@@ -120,7 +121,7 @@ export default function LocaleSwitcher() {
             transform: translateY(0);
           }
         }
-        .dropdown-option-mob {
+        .dropdown-option-pc {
           padding: 8px 10px 8px 35px;
           color: #000;
           background-repeat: no-repeat;
@@ -131,35 +132,20 @@ export default function LocaleSwitcher() {
           align-items: center;
           transition: background-color 0.2s ease;
         }
-        .dropdown-option-mob img {
+        .dropdown-option-pc img {
           margin-right: 8px;
         }
-
-@media(max-width:678px){
-     .dropdown-mob img {
-      width: 18px;
-      height: 18px;
-      }
-
-        .dropdown-mob {
-          position: relative;
-          width: 28px;
-          height: 28px;
-           }
-
-        .dropdown-options-mob {
-          position: absolute;
-          top: 32px;
-          right: -28px; 
+        .dropdown-option-pc:hover {
+          color: #5595d5;
         }
-
-}
-
-
-
-
+        @media (max-width: 678px) {
+          .dropdown-pc,
+          .dropdown-options-pc,
+          .dropdown-option-pc {
+            display: none; 
+          }
+        }
       `}</style>
-
     </div>
   );
 }

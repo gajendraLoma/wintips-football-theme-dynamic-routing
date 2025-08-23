@@ -111,5 +111,6 @@
     "review": "Review",
     "round": "Round",
     "no_data_found": "No data found",
-    "no_matches_available":"No Matches Available"
+    "no_matches_available":"No Matches Available",
+    "votes":"votes"
 }

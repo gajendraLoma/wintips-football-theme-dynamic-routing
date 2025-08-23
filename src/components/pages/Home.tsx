@@ -7,8 +7,8 @@ import Aids from '@/components/common/Aids';
 import PredectionList from '@/components/predection/PredectionList';
 import BettingGENSection from '@/components/BettingGENSection';
 import {getTranslations} from 'next-intl/server';
-import {fetchTipsData} from '@/apis/services/soccer-tips';
-import { TipsResponse } from "@/types/tips";
+import {fetchTipsData} from '@/apis/services/tips';
+import {TipsResponse} from '@/types/tips';
 
 const SectionHeader = ({title, href}: {title: string; href: string}) => (
   <div className="flex items-center justify-between">
@@ -42,12 +42,13 @@ export default async function Home({data}: {data: any}) {
   const t = await getTranslations();
   const homeData = data;
 
-const tipsResponse = await fetchTipsData(1, 10);
+  const tipsResponse = await fetchTipsData(1, 10);
 
   // Handle the response and align with TipsResponse | null
-  const tips: TipsResponse | null = 'data' in tipsResponse && tipsResponse.data === null
-    ? null
-    : tipsResponse as TipsResponse;
+  const tips: TipsResponse | null =
+    'data' in tipsResponse && tipsResponse.data === null
+      ? null
+      : (tipsResponse as TipsResponse);
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

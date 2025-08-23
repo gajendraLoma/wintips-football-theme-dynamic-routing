@@ -1,10 +1,7 @@
-// apis/tips.ts
+// apis/services/tips.ts
 import { TipsResponse } from '@/types/tips';
-// apis/services/soccer-tips.ts
-
 const winTipBaseUrl = process.env.WINTIPS_DOMAIN;
-
-export async function fetchTipsData(page: number = 1, limit: number = 15): Promise<TipsResponse | { data: null; error: string }> {
+export async function fetchTipsData(page: number = 1, limit: number = 60): Promise<TipsResponse | { data: null; error: string }> {
   try {
     const res = await fetch(`${winTipBaseUrl}/api/tips/?page=${page}&limit=${limit}`, {
       method: 'GET',

@@ -1,10 +1,9 @@
-// components/pages/Bookmakers.tsx
 import BookmakersTable from '../bookmakers/BookmakersTable';
 import Link from 'next/link';
 import Sidebar from '@/components/layout/Sidebar';
 import { BookmakersPageData } from '../../types/bookmaker';
 
-export default function BookmakersPage({ data }: { data: BookmakersPageData }) {
+export default async function BookmakersPage({ data }: { data: BookmakersPageData }) {
   console.log('BookmakersPage data:', data);
 
   return (
@@ -34,24 +33,6 @@ export default function BookmakersPage({ data }: { data: BookmakersPageData }) {
 
         {/* Title & Description */}
         <h1 className="text-2xl font-bold mb-2">{data.title}</h1>
-        <p className="text-gray-700 mb-6">
-          Betting bonus at Wintips.com – A site specializing in compiling the
-          hottest promotions today with many attractive promotions. Stay
-          constantly updated with the highest and latest promotions from
-          reputable bookmakers, sports bookmakers and redemption games. Bonus
-          promotions are offered by bookmakers to attract new members, while
-          retaining old members who are using the services that the bookmaker
-          provides. At
-          <Link
-            href="https://www.wintips.com"
-            className="text-blue-600 hover:underline"
-          >
-            Wintips.com
-          </Link>{' '}
-          , we will not only provide you with the latest and most attractive
-          promotion information, but also the promotions that are considered the
-          most valuable for players.
-        </p>
 
         {/* Table Header */}
         <BookmakersTable bookmakers={data.bookmakers} />

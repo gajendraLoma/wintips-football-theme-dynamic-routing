@@ -112,5 +112,6 @@
     "review": "Đánh giá",
     "round": "Vòng đấu",
     "no_data_found": "Không tìm thấy dữ liệu",
-    "no_matches_available":"Không có trận đấu nào có sẵn"
+    "no_matches_available":"Không có trận đấu nào có sẵn",
+    "votes":"phiếu bầu"
 }

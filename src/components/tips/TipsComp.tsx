@@ -1,100 +1,27 @@
-// components/HomeFreeTips.tsx
-'use client';
 
-import Image from 'next/image';
-import Link from 'next/link';
-import {useTranslations} from 'next-intl';
-import {TipsResponse} from '@/types/tips';
+import Image from "next/image";
+import {getTranslations} from 'next-intl/server';
+import { TipsResponse, Tip } from "../../types/tips";
 
 interface FreeTipsProps {
-  tips: TipsResponse | null;
+  initialTips: TipsResponse | null;
 }
 
-export default function HomeFreeTips({tips}: FreeTipsProps) {
-  const t = useTranslations();
-  console.log('Home Free Tips:', tips);
+export default async function TipsComp({ initialTips }: FreeTipsProps) {
+  const t = await getTranslations();
 
-  if (!tips || !tips.items || tips.items.length === 0) {
-    return (
-      <section className="bg-white rounded-lg shadow-sm overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
-                  {t('timeLeague')}
-                </th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
-                  {t('match')}
-                </th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
-                  {t('tips')}
-                </th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
-                  {t('odds')}
-                </th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
-                  {t('premiumSite')}
-                </th>
-                <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
-                  {t('result')}
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {Array.from({length: 5}).map((_, index) => (
-                <tr key={index} className="animate-pulse">
-                  <td className="px-4 py-4">
-                    <div className="h-4 bg-gray-300 rounded w-20" />
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="space-y-2">
-                      <div className="h-4 bg-gray-300 rounded w-32" />
-                      <div className="h-4 bg-gray-300 rounded w-32" />
-                    </div>
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="h-4 bg-gray-300 rounded w-24" />
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="h-4 bg-gray-300 rounded w-12" />
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="h-4 bg-gray-300 rounded w-28" />
-                  </td>
-                  <td className="px-4 py-4">
-                    <div className="h-[30px] w-[30px] bg-gray-300 rounded-full" />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className="px-6 py-4 bg-gray-50 text-center">
-          <div className="h-4 bg-gray-300 rounded w-20 mx-auto" />
-        </div>
-      </section>
-    );
-  }
 
   const formatMatchTime = (matchTime: string) => {
     const date = new Date(matchTime);
-    return `${date.toLocaleDateString('en-US', {month: '2-digit', day: '2-digit'})} ${date.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true})}`;
+    return `${date.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' })} ${date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}`;
   };
 
-  const getTipDisplay = (
-    tipType: string,
-    tipValue: string,
-    fixedOdd: number
-  ) => {
-    if (tipType === 'OverUnder') {
+  const getTipDisplay = (tipType: string, tipValue: string, fixedOdd: number) => {
+    if (tipType === "OverUnder") {
       return `${tipValue} ${fixedOdd}`;
     }
     return `${tipValue} ${fixedOdd >= 0 ? `+${fixedOdd}` : fixedOdd}`;
   };
-
-  // Limit to first 10 items (already handled by fetchTipsData limit)
-  const displayedItems = tips.items;
 
   return (
     <section className="bg-white rounded-lg shadow-sm overflow-hidden">
@@ -103,27 +30,27 @@ export default function HomeFreeTips({tips}: FreeTipsProps) {
           <thead className="bg-gray-100">
             <tr>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
-                {t('timeLeague')}
+                {t("timeLeague")}
               </th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
-                {t('match')}
+                {t("match")}
               </th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
-                {t('tips')}
+                {t("tips")}
               </th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
-                {t('odds')}
+                {t("odds")}
               </th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
-                {t('premiumSite')}
+                {t("premiumSite")}
               </th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
-                {t('result')}
+                {t("result")}
               </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {displayedItems.map((tip: any) => (
+            {initialTips && initialTips.items.map((tip: Tip) => (
               <tr key={tip.id} className="hover:bg-gray-50 transition-colors">
                 <td className="px-4 py-4">
                   <div className="text-sm font-medium text-gray-900">
@@ -189,15 +116,7 @@ export default function HomeFreeTips({tips}: FreeTipsProps) {
           </tbody>
         </table>
       </div>
-
-      <div className="px-6 py-4 bg-gray-50 text-center">
-        <Link
-          href={'/soccer-tips'}
-          className="text-[#227ad3] hover:text-blue-800 font-medium"
-        >
-          {t('viewMore')}
-        </Link>
-      </div>
+     
     </section>
   );
 }
