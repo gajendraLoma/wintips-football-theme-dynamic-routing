@@ -1,65 +1,54 @@
-// components/pages/CategoryPage.tsx
-import { fetchPostByCat } from '@/apis';
 import Link from "next/link";
 import Sidebar from "@/components/layout/Sidebar";
 import BigImageBlogSection from "@/components/blog/BigImageBlogSection";
 import GridViewSection from "@/components/blog/GridViewSection";
 import ListViewSection from "@/components/blog/ListViewSection";
-
 import Pagination from "@/components/videos/Pagination";
-export default async function CategoryPage({ data, slug }: { data: any; slug: string }) {
-  const posts = await fetchPostByCat('post', slug, 'post', 16, 1); 
+import { fetchPostByCat } from "@/apis/services/postByCat"; // Adjusted import path
+import { Post, PostByCatResponse } from "../../types/postByCat";
 
+export default async function CategoryPage({ data: initialData, slug }: { data: any; slug: string }) {
 
-  if ('error' in posts) {
-    return <div>Error loading category posts</div>;
+  // Fetch data using fetchPostByCat with category slug
+  const currentDateTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Bangkok", hour12: false });
+  console.log(`Fetching posts for category '${slug}' at ${currentDateTime}...`);
+  const blogData: PostByCatResponse = await fetchPostByCat("category", slug, "post", 16, 1);
+  console.log(`CategoryPage data received at ${currentDateTime}:`, blogData);
+
+  // Check if data is valid or contains an error
+  if (!blogData || !blogData.posts || blogData.total_posts === 0 || 'error' in blogData) {
+    console.warn(`No posts found for category '${slug}' at ${currentDateTime}.`);
+    return (
+      <main className="min-h-screen bg-gray-50">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <p>No posts available for this category.</p>
+        </div>
+      </main>
+    );
   }
 
-   const mainMatch = {
-    title: "Atalanta vs Parma, Prediction & Betting Tips",
-    banner:
-      "https://static.wintips.com/images/wintips-page/5-24-2025/atalanta-vs-parma-prediction.webp",
-  };
+  // Use the first post as mainMatch if available
+  const mainMatch: Post = blogData.posts.length > 0
+    ? { ...blogData.posts[0] }
+    : { title: "No Data", featured_image: "", slug: "", published_date: "", vn_date: "" };
 
-  const sidebarMatches = {
-    title: "How to play series soccer tips - How to make $100 per day",
-    desc: "Series Soccer Tips is a betting strategy based on a progressive staking system (similar to the Martingale method), aimed at...",
-    banner:
-      "https://static.wintips.com/images/wintips-page/5-24-2025/atalanta-vs-parma-prediction.webp",
-  };
+  // Use the second post as sidebarMatches if available
+  const sidebarMatches: Post = blogData.posts.length > 1
+    ? { ...blogData.posts[1] }
+    : { title: "No Data", featured_image: "", slug: "", published_date: "", vn_date: "" };
 
-  const gridMatches = [
-    "Rapid Wien vs Dundee United",
-    "Rakow Czestochowa vs Maccabi Haifa",
-    "Hajduk Split vs KS Dinamo Tirana",
-  ];
+  // Use remaining posts for gridMatches (starting from index 2, up to 3 items)
+  const gridMatches: Post[] = blogData.posts.length > 2
+    ? blogData.posts.slice(2, 5)
+    : [];
 
-  const listMatches = [
-    {
-      title: "Essential live betting strategy tips for higher payouts",
-      desc: "Live betting, also known as in-play or in-game betting, has transformed the world of sports wagering. Instead of placing all...",
-      cover: "/images/volume-betting-tips-blog-card-list.webp",
-    },
-    {
-      title: "Essential live betting strategy tips for higher payouts",
-      desc: "Live betting, also known as in-play or in-game betting, has transformed the world of sports wagering. Instead of placing all...",
-      cover: "/images/volume-betting-tips-blog-card-list.webp",
-    },
-    {
-      title: "Essential live betting strategy tips for higher payouts",
-      desc: "Live betting, also known as in-play or in-game betting, has transformed the world of sports wagering. Instead of placing all...",
-      cover: "/images/volume-betting-tips-blog-card-list.webp",
-    },
-    {
-      title: "Essential live betting strategy tips for higher payouts",
-      desc: "Live betting, also known as in-play or in-game betting, has transformed the world of sports wagering. Instead of placing all...",
-      cover: "/images/volume-betting-tips-blog-card-list.webp",
-    },
-  ];
+  // Use remaining posts for listMatches
+  const listMatches: Post[] = blogData.posts.length > 2
+    ? blogData.posts.slice(2)
+    : [];
 
-console.log('Category Data:', slug);
   return (
- <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-gray-50">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Main Content */}
@@ -67,11 +56,8 @@ console.log('Category Data:', slug);
             <div className="bg-white px-4 md:px-8 py-6 max-w-[1280px] mx-auto">
               {/* Breadcrumb */}
               <nav className="flex text-sm text-gray-500 mb-2">
-                <Link
-                  href="/"
-                  className="text-blue-600 hover:underline transition-colors"
-                >
-                  Wintips
+                <Link href="/" className="text-blue-600 hover:underline transition-colors">
+                  Home
                 </Link>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -87,13 +73,9 @@ console.log('Category Data:', slug);
                 >
                   <path d="M9 6l6 6l-6 6"></path>
                 </svg>
-                <Link
-                  href="/blog"
-                  className="text-blue-600 hover:underline transition-colors"
-                >
-                  {slug}
+                <Link href="/blogs" className="text-blue-600 hover:underline transition-colors">
+                  Blog
                 </Link>
-
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -112,27 +94,18 @@ console.log('Category Data:', slug);
               </nav>
 
               {/* Title & Description */}
-              <h1 className="text-2xl font-bold mb-2">Betting News</h1>
-              <p className="text-gray-700 mb-6">
-                Betting News is the go-to section for anyone who wants to stay up-to-date on the latest news and developments in the world of betting. 
-                From breaking news stories to in-depth analysis, 
-                Betting News covers all the latest happenings in the world of sports betting, casino games, and other forms of gambling.
-              </p>
+              <h1 className="text-2xl font-bold mb-2">{slug}</h1>
+        
 
               {/* Big Image Section */}
-              <BigImageBlogSection
-                mainMatch={mainMatch}
-                sidebarMatches={sidebarMatches}
-              />
+              <BigImageBlogSection mainMatch={mainMatch} sidebarMatches={sidebarMatches} />
               <div className="my-4" />
               <GridViewSection gridMatches={gridMatches} />
-
               <ListViewSection listMatches={listMatches} />
-
               {/* Pagination */}
-              <Pagination />
+              {/* <Pagination /> */}
             </div>
-         
+            content: <p className="content page text-[#323232]" dangerouslySetInnerHTML={{ __html: initialData.content || "" }} />
           </section>
 
           {/* Sidebar */}
@@ -142,8 +115,5 @@ console.log('Category Data:', slug);
         </div>
       </div>
     </main>
-
-
-
   );
 }

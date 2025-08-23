@@ -17,6 +17,7 @@ import SchedulePage from '@/components/pages/SchedulePage';
 import StandingsPage from '@/components/pages/StandingsPage';
 import SoccerTipsPage from '@/components/pages/SoccerTipsPage';
 import MatchPredicttionPage from '@/components/pages/MatchPredicttionPage';
+import PostDetailsPage from '@/components/pages/PostDetailsPage';
 export const dynamic = 'force-dynamic';
 import { getFullImageUrl } from "@/lib/utils";
   export async function generateMetadata({
@@ -154,6 +155,8 @@ export default async function DynamicPage({
       return <StandingsPage data={pageData} />;
     case 'tips':
       return <SoccerTipsPage data={pageData} />;
+    case 'post':
+    return <PostDetailsPage data={pageData} />;
     case 'default':
       console.log('Falling back to BlogPage for unhandled type:', finalType);
       return <BlogPage data={pageData} />;
