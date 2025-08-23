@@ -78,4 +78,3 @@ export async function fetchPostByCat(type: string, slug: string, post_type = 'po
   }
 }
 
-// Your fetchMenuData and fetchAllFooterData are fine, no changes needed unless you have issues.

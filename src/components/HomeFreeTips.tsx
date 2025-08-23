@@ -190,14 +190,14 @@ export default function HomeFreeTips({tips}: FreeTipsProps) {
         </table>
       </div>
 
-      <div className="px-6 py-4 bg-gray-50 text-center">
+      {/* <div className="px-6 py-4 bg-gray-50 text-center">
         <Link
           href={'/soccer-tips'}
           className="text-[#227ad3] hover:text-blue-800 font-medium"
         >
           {t('viewMore')}
         </Link>
-      </div>
+      </div> */}
     </section>
   );
 }
