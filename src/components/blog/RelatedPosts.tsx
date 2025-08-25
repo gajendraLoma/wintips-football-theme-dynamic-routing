@@ -14,7 +14,7 @@ export default function RelatedPosts({ RelatedPostData }: { RelatedPostData: Rel
   const t = useTranslations();
 
   return (
-    <div className="mt-10">
+    <div className="mt-10 relatedPostSwiper">
       <h2 className="text-2xl font-semibold mb-4">{t("related_posts")}</h2>
       <Swiper
         modules={[Navigation, Pagination]}
@@ -52,30 +52,9 @@ export default function RelatedPosts({ RelatedPostData }: { RelatedPostData: Rel
             </h3>
           </Link>
         </div>
-
-
-
-
-
           </SwiperSlide>
         ))}
       </Swiper>
-
-      <style>
-        {`
-          .swiper-button-prev, .swiper-button-next {
-            background: #0165cb;
-            color: #fff;
-            border-radius: 50px;
-            height: 50px;
-            width: 50px;
-          }
-          .swiper-button-prev:after, .swiper-button-next:after {
-            font-size: 20px;
-            font-weight: 600;
-          }
-        `}
-      </style>
     </div>
   );
 }

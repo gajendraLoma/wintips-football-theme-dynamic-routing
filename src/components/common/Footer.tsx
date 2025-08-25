@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import {getTranslations} from 'next-intl/server';
 import {fetchAllFooters} from '@/apis/services/menu';
+import ScrollToTopButton from './ScrollToTopButton';
 
 export default async function Footer({locale}: {locale: string}) {
   const t = await getTranslations();
@@ -42,7 +43,7 @@ export default async function Footer({locale}: {locale: string}) {
   };
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-gray-900 text-white relative">
       <div className="py-12">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pb-8">
@@ -69,6 +70,7 @@ export default async function Footer({locale}: {locale: string}) {
           </div>
         </div>
       </div>
+      <ScrollToTopButton />
     </footer>
   );
 }

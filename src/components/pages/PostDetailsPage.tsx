@@ -56,7 +56,7 @@ export default async function PostDetailsPage({ data }: { data: PostDetails }) {
                 >
                   <path d="M9 6l6 6l-6 6"></path>
                 </svg>
-                <Link href={categorySlug} className="text-blue-600 hover:underline transition-colors">
+                <Link href={`category${categorySlug}`} className="text-blue-600 hover:underline transition-colors">
                   {data.breadcrumb?.name || (data.categories && data.categories.length > 0 ? data.categories[0].name : "Category")}
                 </Link>
                 <svg
@@ -94,7 +94,7 @@ export default async function PostDetailsPage({ data }: { data: PostDetails }) {
               )}
 
               {/* Post Content */}
-              <div className="text-gray-800 prose prose-lg" dangerouslySetInnerHTML={{ __html: data.content || "No content available" }} />
+              <div className="content page text-[#323232]" dangerouslySetInnerHTML={{ __html: data.content }} />
 
               {/* Published Date */}
               <p className="text-gray-600 font-bold">

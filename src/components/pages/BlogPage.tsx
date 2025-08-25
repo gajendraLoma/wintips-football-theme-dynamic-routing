@@ -11,7 +11,7 @@ export default async function BlogPage({ data: initialData }: { data: any }) {
   // Fetch data using fetchPostByCat without slug
   const currentDateTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Bangkok", hour12: false });
   console.log(`Fetching posts for listing at ${currentDateTime}...`);
-  const blogData: PostByCatResponse = await fetchPostByCat("category", "", "post", 12, 1);
+  const blogData: PostByCatResponse = await fetchPostByCat("category", "", "post", 20, 1);
   console.log(`BlogPage data received at ${currentDateTime}:`, blogData);
 
   // Check if data is valid

@@ -600,9 +600,71 @@ figcaption, figure
 }
 
 
+/* top to back css */
+.scroll-to-top-button {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+    display: grid;
+    justify-items: center;
+    gap:10px;
+    color: #60a5fa;
+}
+
+/* Ensure the text is visible by default */
+.back-to-top-text {
+  display: block;
+}
+
+.scroll-to-top-button img{
+filter: invert(52%) sepia(98%) saturate(518%) hue-rotate(187deg) brightness(100%) contrast(97%);
+}
+
+.scroll-to-top-button:hover img {
+    transform: scale(1.1);
+    display: block;
+}
+
 
 @media (max-width: 768px) {
     .content figure, .content iframe {
         width: 100% !important;
     }
+
+.scroll-to-top-button {
+    position: fixed;
+    right: 10px !important;
+    bottom: 16px !important;
+    padding: 0px 0px !important;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+    display: grid;
+    justify-items: center;
+    gap:10px;
+    color: #60a5fa;;
 }
+
+.back-to-top-text {
+    display: none !important;
+  }
+
+}
+
+  .relatedPostSwiper .swiper-button-prev, .relatedPostSwiper .swiper-button-next {
+    background: #0165cb;
+    color: #fff;
+    border-radius: 50px;
+    height: 30px;
+    width: 30px;
+  }
+  .relatedPostSwiper .swiper-button-prev:after, .relatedPostSwiper .swiper-button-next:after {
+    font-size: 14px;
+    font-weight: 600;
+  }
