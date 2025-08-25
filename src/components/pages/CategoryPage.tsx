@@ -11,13 +11,10 @@ export default async function CategoryPage({ data: initialData, slug }: { data: 
 
   // Fetch data using fetchPostByCat with category slug
   const currentDateTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Bangkok", hour12: false });
-  console.log(`Fetching posts for category '${slug}' at ${currentDateTime}...`);
   const blogData: PostByCatResponse = await fetchPostByCat("category", slug, "post", 16, 1);
-  console.log(`CategoryPage data received at ${currentDateTime}:`, blogData);
 
   // Check if data is valid or contains an error
   if (!blogData || !blogData.posts || blogData.total_posts === 0 || 'error' in blogData) {
-    console.warn(`No posts found for category '${slug}' at ${currentDateTime}.`);
     return (
       <main className="min-h-screen bg-gray-50">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

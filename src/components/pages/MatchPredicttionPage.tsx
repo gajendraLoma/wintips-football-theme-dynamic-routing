@@ -52,7 +52,7 @@ export default async function MatchPredicttionPage({data}: {data: any}) {
 
   // Hardcoded filters as requested
   const leagues = [
-    'all',
+    'All',
     'english-premier-league',
     'uefa-champions-league',
     'uefa-europa-league',
@@ -102,7 +102,7 @@ export default async function MatchPredicttionPage({data}: {data: any}) {
                   <span
                     key={i}
                     className={`px-3 py-1 text-sm rounded-full border ${
-                      league === 'english-premier-league'
+                      league === 'All'
                         ? 'bg-blue-600 text-white border-blue-600'
                         : 'text-gray-600 border-gray-300'
                     } cursor-pointer hover:bg-blue-100 hover:text-black`}

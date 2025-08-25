@@ -43,7 +43,7 @@ const SectionHeader = ({title, href}: {title: string; href: string}) => (
 export default async function Home({data}: {data: any}) {
   const t = await getTranslations();
   const homeData = data;
-  const matchData: PostByCatResponse = await fetchPostByCat('league','','match_predict',4,1);
+  const matchData: PostByCatResponse = await fetchPostByCat('league','','match_predict',8,1);
 
   if (
     !matchData ||
