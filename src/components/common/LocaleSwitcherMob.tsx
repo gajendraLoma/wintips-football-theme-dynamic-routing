@@ -12,8 +12,6 @@ export default function LocaleSwitcherMob() {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  console.log("LocaleSwitcherMob rendered, isOpen:", isOpen, "locale:", locale); // Debug log
-
   const theme = "dark";
   const flagMap: Record<string, string> = {
     en: "/svg/eenFlag.svg",

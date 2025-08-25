@@ -1,40 +1,72 @@
-// components/pages/MatchPredicttionPage.tsx
-import Sidebar from "@/components/layout/Sidebar";
-import BigImageSection from "../../components/predection/BigImageSection";
-import PredectionList from "../../components/predection/PredectionList";
-import Link from "next/link";
-export default async function MatchPredicttionPage({ data }: { data: any }) {
-  
-  console.log('MatchPredicttionPage data:', data);
-  const filters = [
-    "All",
-    "English Premier League",
-    "UEFA Champions League",
-    "UEFA Europa League",
-    "Spanish La Liga",
-    "German Bundesliga",
-    "Italian Serie A",
-    "France Ligue 1",
-    "Liga Portugal 1",
-    "AFC Champions League",
-    "UEFA Nations League",
+import Sidebar from '@/components/layout/Sidebar';
+import BigImageSection from '../../components/predection/BigImageSection';
+import PredectionList from '../../components/predection/PredectionList';
+import Link from 'next/link';
+import {fetchPostByCat} from '@/apis/services/postByCat'; // Adjust import path as per your project
+import {PostByCatResponse, Post} from '../../types/postByCat';
+
+export default async function MatchPredicttionPage({data}: {data: any}) {
+  // Fetch data with league and match_predict post_type
+  const currentDateTime = new Date().toLocaleString('en-US', {
+    timeZone: 'Asia/Bangkok',
+    hour12: false
+  });
+  const matchData: PostByCatResponse = await fetchPostByCat(
+    'league',
+    '',
+    'match_predict',
+    16,
+    1
+  );
+ 
+  if (
+    !matchData ||
+    !matchData.posts ||
+    matchData.total_posts === 0 ||
+    'error' in matchData
+  ) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <p>No match predictions available for this league.</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Use the first post as mainMatch if available
+  const mainMatch: Post =
+    matchData.posts.length > 0
+      ? {...matchData.posts[0]}
+      : {
+          title: 'No Data',
+          featured_image: '',
+          slug: '',
+          published_date: '',
+          vn_date: ''
+        };
+
+  // Use remaining posts for sidebarMatches (up to 5 items)
+  const sidebarMatches: Post[] =
+    matchData.posts.length > 1 ? matchData.posts.slice(1, 6) : [];
+
+  // Hardcoded filters as requested
+  const leagues = [
+    'all',
+    'english-premier-league',
+    'uefa-champions-league',
+    'uefa-europa-league',
+    'spanish-la-liga',
+    'german-bundesliga',
+    'italian-serie-a',
+    'france-ligue-1',
+    'liga-portugal-1',
+    'afc-champions-league',
+    'uefa-nations-league'
   ];
 
-  const mainMatch = {
-    title: "Atalanta vs Parma, Prediction & Betting Tips",
-    banner:
-      "https://static.wintips.com/images/wintips-page/5-24-2025/atalanta-vs-parma-prediction.webp",
-  };
-
-  const sidebarMatches = [
-    "Empoli vs Verona",
-    "Torino vs AS Roma",
-    "Venezia vs Juventus",
-    "Lazio vs Lecce",
-    "Udinese vs Fiorentina",
-  ];
   return (
-   <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <div className="lg:col-span-3 space-y-8">
@@ -60,55 +92,39 @@ export default async function MatchPredicttionPage({ data }: { data: any }) {
                 </svg>
                 <span>{data.title}</span>
               </nav>
-
               {/* Title & Description */}
               <h1 className="text-2xl font-bold mb-2">
-             {data.title}
+                {data.title}
               </h1>
-              <h3 className="text-gray-700 mb-6">
-                <Link
-                  href="https://www.wintips.com"
-                  className="text-blue-600 hover:underline"
-                >
-                  Soccer Predictions
-                </Link>{" "}
-                (or Football Predictions) – Stay updated with the latest match
-                analysis, bookmaker reviews, and precise head-to-head
-                predictions for today and tomorrow! Curated by experts at
-                Wintips, we provide in-depth insights on national and
-                international tournaments, helping you track trends and make
-                smarter betting decisions. Explore high-quality football
-                predictions, optimize your betting strategy, and boost your
-                chances of winning today!
-              </h3>
-
               {/* Filters */}
               <div className="flex flex-wrap gap-2 mb-6">
-                {filters.map((tag, i) => (
+                {leagues.map((league, i) => (
                   <span
                     key={i}
                     className={`px-3 py-1 text-sm rounded-full border ${
-                      tag === "Italian Serie A"
-                        ? "bg-blue-600 text-white border-blue-600"
-                        : "text-gray-600 border-gray-300"
-                    } cursor-pointer hover:bg-blue-100`}
+                      league === 'english-premier-league'
+                        ? 'bg-blue-600 text-white border-blue-600'
+                        : 'text-gray-600 border-gray-300'
+                    } cursor-pointer hover:bg-blue-100 hover:text-black`}
                   >
-                    {tag}
+                    {league}
                   </span>
                 ))}
               </div>
-
               {/* Main Content Grid */}
               <BigImageSection
                 mainMatch={mainMatch}
                 sidebarMatches={sidebarMatches}
               />
-
-            <div className="border-b my-4 hidden sm:block" />
+              <div className="border-b my-4 hidden sm:block" />
               {/* Match Cards Grid */}
-              <PredectionList />
+              <PredectionList posts={matchData.posts.slice(6)} />{' '}
+              {/* Remaining posts after main and sidebar */}
             </div>
-         <p className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}} />
+            <p
+              className="content page text-[#323232]"
+              dangerouslySetInnerHTML={{__html: data.content || ''}}
+            />
           </div>
 
           {/* Sidebar (Right Column) */}
@@ -120,4 +136,3 @@ export default async function MatchPredicttionPage({ data }: { data: any }) {
     </div>
   );
 }
-

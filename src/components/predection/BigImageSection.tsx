@@ -3,21 +3,22 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-
-export default function BigImageSection({ mainMatch, sidebarMatches }) {
+import { Post } from "../../types/postByCat";
+import { getFullImageUrl } from "@/lib/utils";
+export default function BigImageSection({ mainMatch, sidebarMatches }: { mainMatch: Post; sidebarMatches: Post[] }) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6">
       {/* Left Content */}
       <div className="space-y-6">
         {/* Main Match Card */}
         <Link
-          href={`/matches/${mainMatch.slug || ""}`}
+          href={`/${mainMatch.slug || ""}`}
           className="block bg-white rounded-md overflow-hidden shadow border group cursor-pointer"
         >
           <div className="relative overflow-hidden">
-            {/* Main image  */}
+            {/* Main image */}
             <Image
-              src="/images/video-football-highlights.webp"
+              src={getFullImageUrl(mainMatch.featured_image) || "/images/video-football-highlights.webp"}
               alt={mainMatch.title}
               width={800}
               height={450}
@@ -46,17 +47,17 @@ export default function BigImageSection({ mainMatch, sidebarMatches }) {
 
       {/* Right Sidebar */}
       <div className="flex flex-col gap-3">
-        {sidebarMatches.map((title, i) => (
+        {sidebarMatches.map((match, i) => (
           <Link
             key={i}
-            href={`/matches/${title.slug || ""}`}
+            href={`/${match.slug || ""}`}
             className="bg-white rounded-md shadow p-2 flex gap-3 items-center group cursor-pointer"
           >
             {/* Thumbnail wrapper */}
             <div className="relative w-[117px] h-[57px] shrink-0 overflow-hidden rounded-md">
               <Image
-                src="/images/video-football-highlights.webp"
-                alt={title}
+                src={getFullImageUrl(match.featured_image) || "/images/video-football-highlights.webp"}
+                alt={match.title}
                 width={117}
                 height={60}
                 className="w-full h-full object-cover rounded-md"
@@ -76,7 +77,7 @@ export default function BigImageSection({ mainMatch, sidebarMatches }) {
 
             {/* Text */}
             <h3 className="text-sm font-medium text-gray-900 leading-tight transition-colors duration-300 group-hover:text-[#60a5fa]">
-              {title}, Prediction & Betting Tips
+              {match.title}, Prediction & Betting Tips
             </h3>
           </Link>
         ))}
