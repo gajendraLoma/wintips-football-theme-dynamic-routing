@@ -9,6 +9,8 @@ import BettingGENSection from '@/components/BettingGENSection';
 import {getTranslations} from 'next-intl/server';
 import {fetchTipsData} from '@/apis/services/tips';
 import {TipsResponse} from '@/types/tips';
+import {fetchPostByCat} from '@/apis/services/postByCat'; 
+import {PostByCatResponse, Post} from '../../types/postByCat';
 
 const SectionHeader = ({title, href}: {title: string; href: string}) => (
   <div className="flex items-center justify-between">
@@ -41,6 +43,37 @@ const SectionHeader = ({title, href}: {title: string; href: string}) => (
 export default async function Home({data}: {data: any}) {
   const t = await getTranslations();
   const homeData = data;
+  const matchData: PostByCatResponse = await fetchPostByCat('league','','match_predict',4,1);
+
+  if (
+    !matchData ||
+    !matchData.posts ||
+    matchData.total_posts === 0 ||
+    'error' in matchData
+  ) {
+    return (
+      <div className="min-h-screen bg-gray-50">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <p>No match predictions available for this league.</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Use the first post as mainMatch if available
+  const mainMatch: Post =
+    matchData.posts.length > 0
+      ? {...matchData.posts[0]}
+      : {
+          title: 'No Data',
+          featured_image: '',
+          slug: '',
+          published_date: '',
+          vn_date: ''
+        };
+
+
+
 
   const tipsResponse = await fetchTipsData(1, 10);
 
@@ -64,7 +97,7 @@ export default async function Home({data}: {data: any}) {
               title={t('predictionsTitle')}
               href="/soccer-predictions/"
             />
-            <PredectionList />
+           <PredectionList posts={matchData.posts} />
             <BettingGENSection data={homeData} />
           </div>
           <div className="lg:col-span-1">

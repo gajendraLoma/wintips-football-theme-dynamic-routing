@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { Post } from "../../types/postByCat";
 import Image from "next/image";
 import { getFullImageUrl } from "@/lib/utils";
-
+import Link from "next/link";
 export default function PredectionList({ posts }: { posts: Post[] }) {
   const pathname = usePathname();
 
@@ -16,23 +16,24 @@ export default function PredectionList({ posts }: { posts: Post[] }) {
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 cursor-pointer">
         {posts.map((post, i) => (
-          <div
+          <Link 
+            href={post.slug}
             key={i}
             className="bg-white rounded-md shadow hover:shadow-md p-3 flex gap-4 items-start"
           >
             <div className="w-[117px] h-[60px] sm:w-[180px] sm:h-[90px] relative shrink-0">
               <Image
-                src={getFullImageUrl(post.featured_image) || "https://static.wintips.com/images/wintips-page/5-24-2025/atalanta-vs-parma-prediction.webp"}
+                src={getFullImageUrl(post.featured_image)}
                 alt={post.title}
                 width={180}
                 height={90}
                 className="w-full h-full object-cover rounded-md"
               />
             </div>
-            <h3 className="text-sm sm:text-base font-medium text-gray-800 hover:text-[#60a5fa]">
-              {post.title}, Prediction & Betting Tips
+            <h3 className="text-sm sm:text-base font-medium text-gray-800 hover:text-[#60a5fa] line-clamp-2">
+              {post.title}
             </h3>
-          </div>
+          </Link>
         ))}
       </div>
 
