@@ -14,6 +14,8 @@ export default async function BookmakerDetailsPage({data}: Props) {
   const bookmaker = data.bookmaker;
   const t = await getTranslations();
 
+console.log("Bookmaker Details Data:", data)
+
   return (
     <>
       {/* 🔹 Banner Section */}
@@ -41,8 +43,8 @@ export default async function BookmakerDetailsPage({data}: Props) {
             >
               <path d="M9 6l6 6l-6 6"></path>
             </svg>
-            <Link href="/bookmakers" className="text-blue-600 hover:underline">
-              {t('bookmakers')}
+            <Link href={data.breadcrumb.slug} className="text-blue-600 hover:underline">
+              {data.breadcrumb.name}
             </Link>
             <svg
               xmlns="http://www.w3.org/2000/svg"
