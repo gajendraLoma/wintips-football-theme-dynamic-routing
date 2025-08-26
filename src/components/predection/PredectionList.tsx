@@ -19,7 +19,7 @@ export default function PredectionList({ posts }: { posts: Post[] }) {
           <Link 
             href={post.slug}
             key={i}
-            className="bg-white rounded-md shadow hover:shadow-md p-3 flex gap-4 items-start"
+            className="bg-white rounded shadow hover:shadow-md p-3 flex gap-4 items-start"
           >
             <div className="w-[117px] h-[60px] sm:w-[180px] sm:h-[90px] relative shrink-0">
               <Image

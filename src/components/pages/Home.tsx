@@ -88,14 +88,18 @@ export default async function Home({data}: {data: any}) {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <div className="lg:col-span-3 space-y-8">
             <Hero data={homeData} />
-            <h2 className="text-2xl font-bold text-gray-900">
+            {/* <h2 className="text-2xl font-bold text-gray-900">
               {t('freeTipsTitle')}
-            </h2>
+            </h2> */}
+             <SectionHeader
+              title={t('freeTipsTitle')}
+              href="/soccer-tips"
+            />
             <HomeFreeTips tips={tips} />
             <Aids data={homeData} />
             <SectionHeader
               title={t('predictionsTitle')}
-              href="/soccer-predictions/"
+              href="/match-predictions"
             />
            <PredectionList posts={matchData.posts} />
             <BettingGENSection data={homeData} />

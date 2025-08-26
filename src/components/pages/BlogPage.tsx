@@ -7,7 +7,7 @@ import Pagination from "@/components/videos/Pagination";
 import { fetchPostByCat } from "@/apis/services/postByCat";
 import { Post, PostByCatResponse } from "../../types/postByCat";
 
-export default async function BlogPage({ data: initialData }: { data: any }) {
+export default async function BlogPage({ data }: { data: any }) {
   // Fetch data using fetchPostByCat without slug
   const currentDateTime = new Date().toLocaleString("en-US", { timeZone: "Asia/Bangkok", hour12: false });
   console.log(`Fetching posts for listing at ${currentDateTime}...`);
@@ -80,7 +80,7 @@ export default async function BlogPage({ data: initialData }: { data: any }) {
               <ListViewSection listMatches={listMatches} />
               {/* <Pagination /> */}
             </div>
-            <p className="content page text-[#323232]" dangerouslySetInnerHTML={{ __html: initialData.content }} />
+           content: <p className="content page text-[#323232]" dangerouslySetInnerHTML={{ __html: data.content }} />
           </section>
           <aside className="lg:col-span-1">
             <Sidebar />
