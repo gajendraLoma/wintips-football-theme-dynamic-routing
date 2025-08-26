@@ -4,9 +4,10 @@ import PredectionList from '../../components/predection/PredectionList';
 import Link from 'next/link';
 import {fetchPostByCat} from '@/apis/services/postByCat'; // Adjust import path as per your project
 import {PostByCatResponse, Post} from '../../types/postByCat';
-
+import { getTranslations } from 'next-intl/server';
 export default async function MatchPredicttionPage({data}: {data: any}) {
   // Fetch data with league and match_predict post_type
+    const t = await getTranslations();
   const currentDateTime = new Date().toLocaleString('en-US', {
     timeZone: 'Asia/Bangkok',
     hour12: false
@@ -74,7 +75,7 @@ export default async function MatchPredicttionPage({data}: {data: any}) {
               {/* Breadcrumb */}
               <nav className="flex text-sm text-gray-500 mb-2">
                   <Link href="/" className="text-blue-600 hover:underline">
-                  Home
+                    {t('home')}
                 </Link>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

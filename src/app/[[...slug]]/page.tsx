@@ -1,4 +1,4 @@
-// app/[[...slug]]/page.tsx (Updated to handle nested paths for predictions/leagues without 404)
+// app/[[...slug]]/page.tsx
 import {notFound} from 'next/navigation';
 import {Metadata} from 'next';
 import {
@@ -18,6 +18,7 @@ import StandingsPage from '@/components/pages/StandingsPage';
 import SoccerTipsPage from '@/components/pages/SoccerTipsPage';
 import MatchPredicttionPage from '@/components/pages/MatchPredicttionPage';
 import PostDetailsPage from '@/components/pages/PostDetailsPage';
+import BookmakerDetailsPage from '@/components/pages/BookmakerDetailsPage';
 export const dynamic = 'force-dynamic';
 import { getFullImageUrl } from "@/lib/utils";
   export async function generateMetadata({
@@ -62,7 +63,7 @@ import { getFullImageUrl } from "@/lib/utils";
 
     const seoTitle = pageData.seo_title || pageData.title;
     const seoDescription = pageData.seo_description;
-    const imageUrl = getFullImageUrl(pageData.image);
+    const imageUrl = getFullImageUrl(pageData.image || pageData.post_image);
 
     return {
       title: seoTitle,
@@ -199,7 +200,7 @@ export default async function DynamicPage({
       return (
         <CategoryPage data={pageData} slug={path} sectionType="post" topLevelPath="/blogs" />
       );
-    case 'league': // Added: Render predictions list for league (flat or nested handled above)
+    case 'league':
       return (
         <CategoryPage data={pageData} slug={path} sectionType="match_predict" topLevelPath="/match-predictions" />
       );
@@ -215,8 +216,10 @@ export default async function DynamicPage({
       return <SoccerTipsPage data={pageData} />;
     case 'post':
       return <PostDetailsPage data={pageData} type="post" />;
-    case 'match_predict': // Added: Handle prediction details with same component, as structure is same
+    case 'match_predict': 
       return <PostDetailsPage data={pageData} type="match_predict" />;
+      case 'bookmaker':
+      return <BookmakerDetailsPage data={pageData} type="bookmaker" />;
     case 'default':
       console.log('Falling back to BlogPage for unhandled type:', finalType);
       return <BlogPage data={pageData} />;

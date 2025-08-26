@@ -668,3 +668,15 @@ filter: invert(52%) sepia(98%) saturate(518%) hue-rotate(187deg) brightness(100%
     font-size: 14px;
     font-weight: 600;
   }
+
+
+
+  .BookmakerDetails {
+  background: url(/images/banner-top-bookmaker.jpeg) bottom center / cover no-repeat;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  display: flex;
+  position: relative;
+  z-index: 1;
+}

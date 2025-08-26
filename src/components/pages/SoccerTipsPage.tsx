@@ -2,11 +2,11 @@ import Sidebar from '@/components/layout/Sidebar';
 import Link from 'next/link';
 import {fetchTipsData} from '../../apis/services/tips';
 import TipsComp from '../tips/TipsComp';
-
+import { getTranslations } from 'next-intl/server';
 export default async function SoccerTipsPage({data}: {data: any}) {
   const response = await fetchTipsData(1, 60);
   const initialTips = 'error' in response ? null : response;
-
+  const t = await getTranslations();
   console.log('SoccerTipsPage data:', data);
 
   return (
@@ -18,7 +18,7 @@ export default async function SoccerTipsPage({data}: {data: any}) {
               {/* Breadcrumb */}
               <nav className="flex text-sm text-gray-500 mb-2">
                 <Link href="/" className="text-blue-600 hover:underline">
-                  Home
+                {t('home')}
                 </Link>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

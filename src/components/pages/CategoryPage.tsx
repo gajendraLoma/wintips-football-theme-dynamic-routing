@@ -1,10 +1,10 @@
-// Updated components/pages/CategoryPage.tsx (Made generic to handle both post categories and prediction leagues; uses passed data; dynamic breadcrumb)
 import Link from "next/link";
 import Sidebar from "@/components/layout/Sidebar";
 import BigImageBlogSection from "@/components/blog/BigImageBlogSection";
 import GridViewSection from "@/components/blog/GridViewSection";
 import ListViewSection from "@/components/blog/ListViewSection";
 import { Post, PostByCatResponse } from "../../types/postByCat";
+import { getTranslations } from 'next-intl/server';
 
 interface CategoryPageProps {
   data: PostByCatResponse;
@@ -21,7 +21,7 @@ export default async function CategoryPage({
 }: CategoryPageProps) {
   console.log('Category Page Data:', data);
   console.log('Section Type:', sectionType, 'Top Level Path:', topLevelPath);
-
+const t = await getTranslations();
   // Use passed data; no re-fetch needed (avoids ignoring props)
   const blogData: PostByCatResponse = data;
 
@@ -65,7 +65,7 @@ export default async function CategoryPage({
               {/* Dynamic Breadcrumb: Home > [Blog/Predictions] > Slug */}
               <nav className="flex text-sm text-gray-500 mb-2">
                 <Link href="/" className="text-blue-600 hover:underline transition-colors">
-                  Home
+                     {t('home')}
                 </Link>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

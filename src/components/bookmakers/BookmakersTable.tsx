@@ -2,6 +2,7 @@ import Image from 'next/image';
 import {getTranslations} from 'next-intl/server';
 import {Bookmaker} from '../../types/bookmaker';
 import {getFullImageUrl} from '@/lib/utils';
+import Link from 'next/link';
 interface BookmakersTableProps {
   bookmakers: Bookmaker[];
 }
@@ -21,7 +22,8 @@ export default async function BookmakersTable({
     bonusValue: parseInt(bookmaker.bonus.match(/\d+/)?.[0] || '0'),
     playerChoice: index === 0,
     image: getFullImageUrl(bookmaker.image) || '/images/default.png',
-    play_now: bookmaker.play_now
+    play_now: bookmaker.play_now,
+    slug:bookmaker.slug
   }));
 
   return (
@@ -112,11 +114,11 @@ export default async function BookmakersTable({
                           .fill(0)
                           .map((_, i) => {
                             const barValue = (i + 1) * 2;
-                            let color = 'rgb(254, 135, 82)'; // Red
+                            let color = 'rgb(254, 135, 82)'; 
                             if (item.rating >= 8)
-                              color = 'rgb(113, 166, 93)'; // Green
+                              color = 'rgb(113, 166, 93)'; 
                             else if (item.rating >= 6)
-                              color = 'rgb(255, 214, 39)'; // Yellow
+                              color = 'rgb(255, 214, 39)';
                             return (
                               <div
                                 key={i}
@@ -152,18 +154,18 @@ export default async function BookmakersTable({
 
                   {/* Links */}
                   <td className="p-3 text-center">
-                    <a
-                      href={item.play_now || '#'} // Fallback to '#' if play_now is empty
+                    <Link
+                      href={item.play_now}
                       className="flex items-center text-sm justify-center rounded-full bg-[#eaf4ff] max-md:px-[10px] max-md:py-[5px] max-xl:px-[10px] max-lg:w-max py-[5px] text-[#1877f2] transition-all duration-300 hover:bg-[#1877f2] hover:text-white"
                     >
                       {t('visitSite')}
-                    </a>
-                    <a
-                      href="#"
+                    </Link>
+                    <Link
+                      href={item.slug}
                       className="transition-all text-sm duration-300 text-[#222222] hover:text-[#1877f2] no-underline"
                     >
                       {t('review')}
-                    </a>
+                    </Link>
                   </td>
                 </tr>
               ))}

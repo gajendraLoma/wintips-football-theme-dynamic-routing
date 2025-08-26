@@ -2,17 +2,17 @@ import BookmakersTable from '../bookmakers/BookmakersTable';
 import Link from 'next/link';
 import Sidebar from '@/components/layout/Sidebar';
 import { BookmakersPageData } from '../../types/bookmaker';
-
+import { getTranslations } from 'next-intl/server';
 export default async function BookmakersPage({ data }: { data: BookmakersPageData }) {
   console.log('BookmakersPage data:', data);
-
+  const t = await getTranslations();
   return (
     <div className="flex-1 bg-gray-100">
       <div className="max-w-8xl mx-auto px-4 py-6">
         {/* Breadcrumb */}
         <nav className="flex text-sm text-gray-500 mb-2">
           <Link href="/" className="text-blue-600 hover:underline">
-            Home
+              {t('home')}
           </Link>
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -9,10 +9,10 @@ import { PostDetails } from "../../types/postByCat"; // Assume this type works f
 
 interface Props {
   data: PostDetails;
-  type?: string; // 'post' or 'match_predict' passed from page.tsx for dynamic handling
+  type?: string;
 }
 
-export default async function PostDetailsPage({ data, type = 'post' }: Props) {
+export default async function PostDetailsPage({ data, type }: Props) {
   console.log('Post Details Data:', data);
   console.log('Details Type:', type);
 
