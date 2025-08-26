@@ -11,8 +11,8 @@ import {fetchTipsData} from '@/apis/services/tips';
 import {TipsResponse} from '@/types/tips';
 import {fetchPostByCat} from '@/apis/services/postByCat'; 
 import {PostByCatResponse, Post} from '../../types/postByCat';
-
-const SectionHeader = ({title, href}: {title: string; href: string}) => (
+const SectionHeader = ({title, t, href}: {title: string;  t: (key: string) => string;  href: string}) => (
+  
   <div className="flex items-center justify-between">
     <h2 className="text-2xl font-bold text-gray-900 hover:text-blue-hover transition-all">
       {title}
@@ -21,7 +21,7 @@ const SectionHeader = ({title, href}: {title: string; href: string}) => (
       href={href}
       className="text-sm text-[#666] hover:text-blue-hover flex items-center"
     >
-      <span>View All</span>
+      <span>{t("viewAll")}</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -94,12 +94,14 @@ export default async function Home({data}: {data: any}) {
              <SectionHeader
               title={t('freeTipsTitle')}
               href="/soccer-tips"
+              t={t}
             />
             <HomeFreeTips tips={tips} />
             <Aids data={homeData} />
             <SectionHeader
               title={t('predictionsTitle')}
               href="/match-predictions"
+               t={t}
             />
            <PredectionList posts={matchData.posts} />
             <BettingGENSection data={homeData} />
