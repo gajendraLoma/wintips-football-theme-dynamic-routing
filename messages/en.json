@@ -126,6 +126,9 @@
     "partners_and_sponsors": "Partners and Sponsors",
     "why_choose": "Why Choose",
     "register_now": "Register now",
-    "all":"All"
+    "all":"All",
+    "notFoundtitle": "404 - Page Not Found",
+    "notFounddescription": "The page you're looking for doesn't exist. Try going back to the",
+    "notFoundhomepageLink": "homepage"
 
 }

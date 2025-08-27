@@ -127,5 +127,8 @@
     "partners_and_sponsors": "Đối tác và nhà tài trợ",
     "why_choose": "Tại sao chọn",
     "register_now": "Đăng ký ngay",
-    "all":"Tất cả"
+    "all":"Tất cả",
+    "notFoundtitle": "404 - Không Tìm Thấy Trang",
+    "notFounddescription": "Trang bạn đang tìm kiếm không tồn tại. Vui lòng quay lại",
+    "notFoundhomepageLink": "trang chủ"
 }
