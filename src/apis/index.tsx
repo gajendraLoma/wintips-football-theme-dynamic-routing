@@ -9,3 +9,4 @@ export * from './services/getResults';
 export * from './services/getSchedule';
 export * from './services/getStandings';
 export * from './services/getDataByLeague';
+export * from './services/getSitemap';
