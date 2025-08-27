@@ -6,16 +6,21 @@ import {getTranslations} from 'next-intl/server';
 import Sidebar from '@/components/layout/Sidebar';
 import Link from 'next/link';
 import {getFullImageUrl} from '@/lib/utils';
-import {
-  TLeague,
-  TMatch,
-  TCompetition,
-  TMatchCompetition
-} from '../../types/schedule';
+import {  
+  TFLeague,
+  TFMatch,
+  TFCompetition,
+  TFMatchCompetition } from "@/types/interface/getScheduleTypo";
+// import {
+//   TFLeague,
+//   TFMatch,
+//   TFCompetition,
+//   TFMatchCompetition
+// } from '../../types/interface/getScheduleTypo';
 import {
   fetchMatchSchedule,
   fetchMatchScheduleByLeague
-} from '@/apis/services/schedule';
+} from '@/apis';
 interface SchedulePageProps {
   data: {
     title: string;
@@ -89,7 +94,7 @@ export default async function SchedulePage({data}: SchedulePageProps) {
                   {/* Render leagues data (date-based) */}
                   {leagues.length > 0 && (
                     <div className="w-full py-2">
-                      {leagues.map((league: TLeague, index: number) => (
+                      {leagues.map((league: TFLeague, index: number) => (
                         <div key={index} className="w-full">
                           <div className="group headerBg text-[#07302C] flex justify-between items-center py-2 px-4">
                             <div className="px-0 flex gap-4 items-center">
@@ -117,7 +122,7 @@ export default async function SchedulePage({data}: SchedulePageProps) {
                             <ul className="flex flex-col">
                               {league.fixtures?.length > 0 ? (
                                 league.fixtures.map(
-                                  (match: TMatch, index: number) => (
+                                  (match: TFMatch, index: number) => (
                                     <MatchScheduleScore
                                       key={index}
                                       match={match}
@@ -140,7 +145,7 @@ export default async function SchedulePage({data}: SchedulePageProps) {
                   {scheduleByLeagues.length > 0 && (
                     <div className="w-full py-2">
                       {scheduleByLeagues.map(
-                        (competition: TCompetition, index: number) => (
+                        (competition: TFCompetition, index: number) => (
                           <div key={index} className="w-full">
                             <div className="group headerBg text-[#07302C] flex justify-between items-center py-2 px-4">
                               <div className="px-0 flex gap-4 items-center">
@@ -171,7 +176,7 @@ export default async function SchedulePage({data}: SchedulePageProps) {
                                 {competition.matches?.length > 0 ? (
                                   competition.matches.map(
                                     (
-                                      match: TMatchCompetition,
+                                      match: TFMatchCompetition,
                                       index: number
                                     ) => (
                                       <LeagueScheduleMatch

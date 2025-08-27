@@ -5,7 +5,7 @@ import {getFullImageUrl} from '@/lib/utils';
 import Image from 'next/image';
 import {getTranslations} from 'next-intl/server';
 import RelatedPosts from '../blog/RelatedPosts';
-import {PostDetails} from '../../types/postByCat';
+import {PostDetails} from '../../types/interface/getPostByCatTypo';
 
 interface Props {
   data: PostDetails;

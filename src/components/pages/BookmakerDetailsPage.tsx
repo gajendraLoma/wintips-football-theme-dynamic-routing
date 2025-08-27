@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import {getFullImageUrl} from '@/lib/utils';
-import {BookPostDetails} from '../../types/bookmaker';
+import {BookPostDetails} from '../../types/interface/getBookmakerTypo';
 import Sidebar from '../layout/Sidebar';
 import {getTranslations} from 'next-intl/server';
 

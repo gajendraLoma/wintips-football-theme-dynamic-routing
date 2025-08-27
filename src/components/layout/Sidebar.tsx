@@ -2,8 +2,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import {getTranslations} from 'next-intl/server';
-import {fetchSidebarData} from '../../apis/services/sidebar';
-import {SidebarData, Bookmaker, Post, BettingTool} from '@/types/sidebar';
+import {fetchSidebarData} from '@/apis';
+import {SSidebarData, SBookmaker, SPost, SBettingTool} from "@/types/interface/getSidebarTypo";
 import {getFullImageUrl} from '@/lib/utils';
 
 export default async function Sidebar() {
@@ -14,7 +14,7 @@ export default async function Sidebar() {
     return null; 
   }
 
-  const sidebarData = data as SidebarData;
+  const sidebarData = data as SSidebarData;
   const isLoading = false;
 
   return (
@@ -51,7 +51,7 @@ export default async function Sidebar() {
                 </div>
               ))
             : sidebarData?.bookmakers.map(
-                (bookmaker: Bookmaker, index: number) => (
+                (bookmaker: SBookmaker, index: number) => (
                   <div
                     key={index}
                     className="flex items-center justify-between bg-[#eaf4ff] rounded-lg pr-1"
@@ -154,7 +154,7 @@ export default async function Sidebar() {
                   </div>
                 </div>
               ))
-            : sidebarData?.post.map((post: Post, index: number) => (
+            : sidebarData?.post.map((post: SPost, index: number) => (
                 <Link
                   href={post?.slug}
                   key={index}
@@ -205,7 +205,7 @@ export default async function Sidebar() {
                 </div>
               ))
             : sidebarData?.betting_tool.map(
-                (tool: BettingTool, index: number) => (
+                (tool: SBettingTool, index: number) => (
                   <Link
                     key={index}
                     href={tool.url}

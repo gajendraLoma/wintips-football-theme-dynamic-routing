@@ -1,7 +1,7 @@
 // components/common/Footer.tsx
 import Link from 'next/link';
 import {getTranslations} from 'next-intl/server';
-import {fetchAllFooters} from '@/apis/services/menu';
+import {fetchAllFooters} from '@/apis';
 import ScrollToTopButton from './ScrollToTopButton';
 
 export default async function Footer({locale}: {locale: string}) {

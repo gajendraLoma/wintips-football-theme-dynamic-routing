@@ -1,16 +1,15 @@
 // components/pages/Home.tsx
 import Link from 'next/link';
-import Hero from '@/components/Hero';
-import HomeFreeTips from '@/components/HomeFreeTips';
+import Hero from '@/components/home/Hero';
+import HomeFreeTips from '@/components/home/HomeFreeTips';
 import Sidebar from '@/components/layout/Sidebar';
 import Aids from '@/components/common/Aids';
 import PredectionList from '@/components/predection/PredectionList';
-import BettingGENSection from '@/components/BettingGENSection';
+import BettingGENSection from '@/components/home/BettingGENSection';
 import {getTranslations} from 'next-intl/server';
-import {fetchTipsData} from '@/apis/services/tips';
-import {TipsResponse} from '@/types/tips';
-import {fetchPostByCat} from '@/apis/services/postByCat'; 
-import {PostByCatResponse, Post} from '../../types/postByCat';
+import {fetchTipsData, fetchPostByCat} from '@/apis';
+import {TipsResponse} from '@/types/interface/getTipsTypo';
+import {PostByCatResponse, Post} from '../../types/interface/getPostByCatTypo';
 const SectionHeader = ({title, t, href}: {title: string;  t: (key: string) => string;  href: string}) => (
   
   <div className="flex items-center justify-between">
@@ -88,9 +87,6 @@ export default async function Home({data}: {data: any}) {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <div className="lg:col-span-3 space-y-8">
             <Hero data={homeData} />
-            {/* <h2 className="text-2xl font-bold text-gray-900">
-              {t('freeTipsTitle')}
-            </h2> */}
              <SectionHeader
               title={t('freeTipsTitle')}
               href="/soccer-tips"

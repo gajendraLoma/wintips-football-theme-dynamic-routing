@@ -3,8 +3,8 @@ import Image from "next/image";
 import {getTranslations} from 'next-intl/server';
 import Sidebar from "@/components/layout/Sidebar";
 import Link from "next/link";
-import { getFullImageUrl } from "@/lib/utils";
-import { fetchMatchStandings, fetchMatchStandingsByLeague } from "@/apis/services/standings";
+import { fetchMatchStandings, fetchMatchStandingsByLeague } from "@/apis";
+import { TSStandingTableRow ,TSLeagueRankingPromotion } from "@/types/interface/getStandingsTypo";
 interface StandingsPageProps {
   data: {
     title: string;
@@ -122,8 +122,8 @@ export default async function StandingsPage({ data }: StandingsPageProps) {
                               <td className="text-center py-2"></td>
                             </tr>
                             {standingTables.length > 0 ? (
-                              standingTables.map((row: TStandingTableRow, index: number) => {
-                                const promotion = promotions.find((promotion: TLeagueRankingPromotion) => promotion.id === row.promotion_id);
+                              standingTables.map((row: TSStandingTableRow, index: number) => {
+                                const promotion = promotions.find((promotion: TSLeagueRankingPromotion) => promotion.id === row.promotion_id);
 
                                 return (
                                   <tr key={index} className="border-b last:border-b-0 text-[11px] sm:text-sm border-[#ECEFF3] hover:bg-[#275fe2a3] transition ease-linear">
@@ -165,7 +165,7 @@ export default async function StandingsPage({ data }: StandingsPageProps) {
                         </table>
                         <div className="flex flex-wrap py-2 gap-2">
                           {promotions.length > 0 ? (
-                            promotions.map((promotion: TLeagueRankingPromotion, index: number) => (
+                            promotions.map((promotion: TSLeagueRankingPromotion, index: number) => (
                               <div key={index} className="flex items-center gap-2">
                                 <div
                                   className="w-3 h-3 rounded-full"

@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Post } from "../../types/postByCat";
+import { Post } from "../../types/interface/getPostByCatTypo";
 import { getFullImageUrl } from "@/lib/utils";
 export default function BigImageSection({ mainMatch, sidebarMatches }: { mainMatch: Post; sidebarMatches: Post[] }) {
   return (

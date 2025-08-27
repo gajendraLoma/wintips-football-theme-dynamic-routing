@@ -1,8 +1,8 @@
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { MenuItem, MenuData } from "@/types/menu";
-import { fetchMenuData } from "@/apis/services/menu";
+import { MenuItem, MenuData } from "@/types/interface/getMenuTypo";
+import { fetchMenuData } from "@/apis";
 import MobileNavigation from "./MobileNavigation";
 import LocaleSwitcherPc from "./LocaleSwitcherPc";
 import LocaleSwitcherMob from "./LocaleSwitcherMob";

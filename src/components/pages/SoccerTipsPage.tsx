@@ -1,6 +1,6 @@
 import Sidebar from '@/components/layout/Sidebar';
 import Link from 'next/link';
-import {fetchTipsData} from '../../apis/services/tips';
+import {fetchTipsData} from '@/apis';
 import TipsComp from '../tips/TipsComp';
 import { getTranslations } from 'next-intl/server';
 export default async function SoccerTipsPage({data}: {data: any}) {

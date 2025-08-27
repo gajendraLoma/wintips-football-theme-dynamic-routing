@@ -6,16 +6,15 @@ import {getTranslations} from 'next-intl/server';
 import Sidebar from '@/components/layout/Sidebar';
 import Link from 'next/link';
 import {getFullImageUrl} from '@/lib/utils';
-import {
-  TLeague,
-  TMatch,
-  TMatchCompetition,
-  TCompetition
-} from '../../types/results';
+import { TRLeague,
+  TRMatch,
+  TRMatchCompetition,
+  TRCompetition } from "@/types/interface/getResultsTypo";
+
 import {
   fetchMatchResult,
   fetchMatchResultByLeague
-} from '@/apis/services/results';
+} from '@/apis';
 interface ResultPageProps {
   data: {
     title: string;
@@ -88,7 +87,7 @@ export default async function ResultPage({data}: ResultPageProps) {
                   {/* Render leagues data (date-based) */}
                   {leagues.length > 0 && (
                     <div className="w-full py-2">
-                      {leagues.map((league: TLeague, index: number) => (
+                      {leagues.map((league: TRLeague, index: number) => (
                         <div key={index} className="w-full">
                           <div className="group headerBg text-[#07302C] flex justify-between items-center py-2 px-4">
                             <div className="px-0 flex gap-4 items-center">
@@ -117,7 +116,7 @@ export default async function ResultPage({data}: ResultPageProps) {
                             <ul className="flex flex-col">
                               {league.fixtures?.length > 0 ? (
                                 league.fixtures.map(
-                                  (match: TMatch, index: number) => (
+                                  (match: TRMatch, index: number) => (
                                     <MatchResultScore
                                       key={index}
                                       match={match}
@@ -140,7 +139,7 @@ export default async function ResultPage({data}: ResultPageProps) {
                   {resultByLeagues.length > 0 && (
                     <div className="w-full py-2">
                       {resultByLeagues.map(
-                        (league: TCompetition, index: number) => (
+                        (league: TRCompetition, index: number) => (
                           <div key={index} className="w-full">
                             <div className="group headerBg text-[#07302C] flex justify-between items-center py-2 px-4">
                               <div className="px-0 flex gap-4 items-center">
@@ -165,7 +164,7 @@ export default async function ResultPage({data}: ResultPageProps) {
                                 {league.matches?.length > 0 ? (
                                   league.matches.map(
                                     (
-                                      match: TMatchCompetition,
+                                      match: TRMatchCompetition,
                                       index: number
                                     ) => (
                                       <LeagueMatch key={index} match={match} />

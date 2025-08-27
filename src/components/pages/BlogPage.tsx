@@ -3,9 +3,8 @@ import Sidebar from "@/components/layout/Sidebar";
 import BigImageBlogSection from "@/components/blog/BigImageBlogSection";
 import GridViewSection from "@/components/blog/GridViewSection";
 import ListViewSection from "@/components/blog/ListViewSection";
-import Pagination from "@/components/videos/Pagination";
-import { fetchPostByCat } from "@/apis/services/postByCat";
-import { Post, PostByCatResponse } from "../../types/postByCat";
+import { fetchPostByCat } from "@/apis";
+import { Post, PostByCatResponse } from "../../types/interface/getPostByCatTypo";
 
 export default async function BlogPage({ data }: { data: any }) {
   // Fetch data using fetchPostByCat without slug
@@ -78,7 +77,7 @@ export default async function BlogPage({ data }: { data: any }) {
               <div className="my-4" />
               <GridViewSection gridMatches={gridMatches} />
               <ListViewSection listMatches={listMatches} />
-              {/* <Pagination /> */}
+      
             </div>
            content: <p className="content page text-[#323232]" dangerouslySetInnerHTML={{ __html: data.content }} />
           </section>

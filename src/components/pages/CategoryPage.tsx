@@ -3,7 +3,7 @@ import Sidebar from "@/components/layout/Sidebar";
 import BigImageBlogSection from "@/components/blog/BigImageBlogSection";
 import GridViewSection from "@/components/blog/GridViewSection";
 import ListViewSection from "@/components/blog/ListViewSection";
-import { Post, PostByCatResponse } from "../../types/postByCat";
+import { Post, PostByCatResponse } from "../../types/interface/getPostByCatTypo";
 import { getTranslations } from 'next-intl/server';
 
 interface CategoryPageProps {

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { RelatedPost } from "../../types/postByCat";
+import { RelatedPost } from "../../types/interface/getPostByCatTypo";
 import { getFullImageUrl } from "@/lib/utils";
 import "swiper/css";
 import "swiper/css/navigation";

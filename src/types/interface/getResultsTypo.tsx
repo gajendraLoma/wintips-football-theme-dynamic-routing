@@ -1,9 +1,9 @@
-export interface ApiResponse<T> {
+export interface ApiRResponse<T> {
     total_matches: number;
     result: T;
 }
 
-export interface TMatch {
+export interface TRMatch {
     match_id: string;
     competition_id: string;
     league_name: string;
@@ -34,7 +34,7 @@ export interface TMatch {
     score_ht_away: number;
 }
 
-export interface TLeague {
+export interface TRLeague {
     league_id: string;
     league_name: string;
     stage_name: string;
@@ -42,20 +42,20 @@ export interface TLeague {
     league_country: string;
     league_logo: string;
     league_slug: string;
-    fixtures: TMatch[];
+    fixtures: TRMatch[];
 }
 
-export interface TCompetition {
+export interface TRCompetition {
     competition_id: string;
     competition_name: string;
     competition_logo: string;
     type: number;
     round_num: number;
     group_num: number;
-    matches: TMatchCompetition[];
+    matches: TRMatchCompetition[];
 }
 
-export interface TMatchCompetition {
+export interface TRMatchCompetition {
     match_id: string;
     stage_name: string;
     home_team_id: string;
@@ -73,13 +73,13 @@ export interface TMatchCompetition {
 }
 
 
-export type TLeagueRankingPromotion = {
+export type TRLeagueRankingPromotion = {
     id: string;
     name: string;
     color: string;
 } 
 
-export interface TStandingTableRow {
+export interface TRStandingTableRow {
     team_id: string;
     promotion_id: string;
     points: number;
@@ -116,23 +116,23 @@ export interface TStandingTableRow {
     logo: string;
 }
 
-export interface TStandingTable {
+export interface TRStandingTable {
     id: string;
     conference: string;
     group: number;
     stage_id: string;
-    rows: TStandingTableRow[];
+    rows: TRStandingTableRow[];
 }
 
-export interface TLeagueRanking {
+export interface TRLeagueRanking {
     competition_id: string;
     competition_name: string;
     competition_logo: string;
     season_id: string;
     year: string;
     standing: {
-        promotions: TLeagueRankingPromotion[];
-        tables: TStandingTable[];
+        promotions: TRLeagueRankingPromotion[];
+        tables: TRStandingTable[];
     };
 
 }

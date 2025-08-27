@@ -1,6 +1,4 @@
-// apis/services/Standings.ts
-
-
+// apis/services/getStandings.ts
 export const fetchMatchStandings = async ( page: number = 1, per_page: number = 10) => {
   try {
     const response = await fetch(`https://api.5goall.com/ranking_top_list_league?page=${page}&per_page=${per_page}`, {

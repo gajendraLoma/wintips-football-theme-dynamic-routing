@@ -1,3 +1,4 @@
+// apis/services/getResults.ts
 export const fetchMatchResult = async (date: string = '') => {
     try {
         const response = await fetch('https://api.5goall.com/results', {
@@ -22,7 +23,7 @@ export const fetchMatchResult = async (date: string = '') => {
 }
 
 
-// apis/services/results.ts
+
 export const fetchMatchResultByLeague = async (leagueId: string) => {
     try {
         const response = await fetch(`https://api.5goall.com/resultsByLeague`, {

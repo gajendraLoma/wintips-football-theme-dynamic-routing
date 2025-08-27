@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import {getTranslations} from 'next-intl/server';
-import {Bookmaker} from '../../types/bookmaker';
+import {Bookmaker} from '../../types/interface/getBookmakerTypo';
 import {getFullImageUrl} from '@/lib/utils';
 import Link from 'next/link';
 interface BookmakersTableProps {

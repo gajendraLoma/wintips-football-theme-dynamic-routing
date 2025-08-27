@@ -1,14 +1,14 @@
 // lib/types/sidebar.ts
 
-export interface SidebarData {
+export interface SSidebarData {
   banner: string;
   banner_url: string;
-  bookmakers: Bookmaker[];
-  post: Post[];
-  betting_tool: BettingTool[];
+  bookmakers: SBookmaker[];
+  post: SPost[];
+  betting_tool: SBettingTool[];
 }
 
-export interface Bookmaker {
+export interface SBookmaker {
   name: string;
   bonus: string;
   slug: string;
@@ -16,13 +16,13 @@ export interface Bookmaker {
   play_now: string;
 }
 
-export interface Post {
+export interface SPost {
   title: string;
   slug: string;
   image: string;
 }
 
-export interface BettingTool {
+export interface SBettingTool {
   icon: string;
   name: string;
   url: string;

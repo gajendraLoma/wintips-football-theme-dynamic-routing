@@ -1,5 +1,5 @@
-// apis/services/tips.ts
-import { TipsResponse } from '@/types/tips';
+// apis/services/getTips.ts
+import { TipsResponse } from '@/types/interface/getTipsTypo';
 const winTipBaseUrl = process.env.WINTIPS_DOMAIN;
 export async function fetchTipsData(page: number = 1, limit: number = 60): Promise<TipsResponse | { data: null; error: string }> {
   try {

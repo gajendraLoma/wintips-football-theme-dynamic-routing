@@ -1,5 +1,4 @@
-// apis/services/Schedule.ts
-
+// apis/services/getSchedule.ts
 export const fetchMatchSchedule = async (date: string = '') => {
     try {
         const response = await fetch('https://api.5goall.com/schedules', {

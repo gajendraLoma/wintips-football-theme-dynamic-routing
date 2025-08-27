@@ -2,14 +2,13 @@
 
 import React from "react";
 import { usePathname } from "next/navigation";
-import { Post } from "../../types/postByCat";
+import { Post } from "../../types/interface/getPostByCatTypo";
 import Image from "next/image";
 import { getFullImageUrl } from "@/lib/utils";
 import Link from "next/link";
 export default function PredectionList({ posts }: { posts: Post[] }) {
   const pathname = usePathname();
 
-  // Show pagination if route contains "/soccer-predictions"
   const isSoccerPredictionsPage = pathname?.includes("/soccer-predictions");
 
   return (

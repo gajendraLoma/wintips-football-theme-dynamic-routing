@@ -1,8 +1,7 @@
 // app/sitemap.ts
 import { MetadataRoute } from 'next';
-
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = '"https://theme.168dev.com'; // You can move this to env if needed (e.g., process.env.NEXT_PUBLIC_SITE_URL)
+  const baseUrl = process.env.API_DOMAIN;
 
   return [
     {

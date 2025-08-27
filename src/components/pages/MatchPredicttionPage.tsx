@@ -2,8 +2,8 @@ import Sidebar from '@/components/layout/Sidebar';
 import BigImageSection from '../../components/predection/BigImageSection';
 import PredectionList from '../../components/predection/PredectionList';
 import Link from 'next/link';
-import {fetchPostByCat} from '@/apis/services/postByCat'; // Adjust import path as per your project
-import {PostByCatResponse, Post} from '../../types/postByCat';
+import {fetchPostByCat} from '@/apis'; 
+import {PostByCatResponse, Post} from '../../types/interface/getPostByCatTypo';
 import { getTranslations } from 'next-intl/server';
 export default async function MatchPredicttionPage({data}: {data: any}) {
   // Fetch data with league and match_predict post_type

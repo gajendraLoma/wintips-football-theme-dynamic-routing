@@ -1,5 +1,5 @@
 
-interface TLeague {
+export interface TSLeague {
   league_id: string;
   league_name: string;
   stage_name: string;
@@ -12,13 +12,13 @@ interface TLeague {
   fixtures?: any[];
 }
 
-interface TLeagueRankingPromotion {
+export interface TSLeagueRankingPromotion {
   id: string;
   name: string;
   color: string;
 }
 
-interface TStandingTableRow {
+export interface TSStandingTableRow {
   team_id: string;
   promotion_id: string;
   points: number;
@@ -55,26 +55,26 @@ interface TStandingTableRow {
   logo: string;
 }
 
-interface TStandingTable {
+export interface TSStandingTable {
   id: string;
   conference: string;
   group: number;
   stage_id: string;
-  rows: TStandingTableRow[];
+  rows: TSStandingTableRow[];
 }
 
-interface TLeagueRanking {
+export interface TSLeagueRanking {
   competition_id: string;
   competition_name: string;
   competition_logo: string;
   season_id: string;
   year: string;
   standing: {
-    promotions: TLeagueRankingPromotion[];
-    tables: TStandingTable[];
+    promotions: TSLeagueRankingPromotion[];
+    tables: TSStandingTable[];
   };
 }
 
-interface TLeagueRankingResponse {
-  result?: TLeagueRanking[];
+export interface TSLeagueRankingResponse {
+  result?: TSLeagueRanking[];
 }

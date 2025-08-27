@@ -1,7 +1,7 @@
 
 import Image from "next/image";
 import {getTranslations} from 'next-intl/server';
-import { TipsResponse, Tip } from "../../types/tips";
+import { TipsResponse, Tip } from "../../types/interface/getTipsTypo";
 
 interface FreeTipsProps {
   initialTips: TipsResponse | null;
@@ -60,6 +60,7 @@ export default async function TipsComp({ initialTips }: FreeTipsProps) {
                 </td>
                 <td className="px-4 py-4">
                   <div className="flex items-center space-x-2">
+                     {tip.homeLogo && (
                     <Image
                       src={tip.homeLogo}
                       alt={`${tip.home} logo`}
@@ -67,9 +68,12 @@ export default async function TipsComp({ initialTips }: FreeTipsProps) {
                       height={24}
                       className="rounded-full"
                     />
+                     )}
                     <span className="text-sm font-medium">{tip.home}</span>
                   </div>
                   <div className="flex items-center space-x-2 mt-1">
+                   
+                 {tip.awayLogo && (
                     <Image
                       src={tip.awayLogo}
                       alt={`${tip.away} logo`}
@@ -77,6 +81,9 @@ export default async function TipsComp({ initialTips }: FreeTipsProps) {
                       height={24}
                       className="rounded-full"
                     />
+                  )}
+
+
                     <span className="text-sm font-medium">{tip.away}</span>
                   </div>
                 </td>

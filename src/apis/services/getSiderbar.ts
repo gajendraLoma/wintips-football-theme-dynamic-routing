@@ -1,9 +1,9 @@
-// apis/services/sidebar.ts
-import { SidebarData } from '@/types/sidebar';
+// apis/services/getSidebar.ts
+import { SSidebarData } from '@/types/interface/getSidebarTypo';
 
 const apiBaseUrl = process.env.API_DOMAIN;
 
-export async function fetchSidebarData(): Promise<SidebarData | { error: string }> {
+export async function fetchSidebarData(): Promise<SSidebarData | { error: string }> {
   try {
     const res = await fetch(`${apiBaseUrl}/wp-json/get/siderbar`, {
       method: 'GET',
@@ -16,7 +16,7 @@ export async function fetchSidebarData(): Promise<SidebarData | { error: string 
       return { error: `API request failed with status ${res.status}` };
     }
 
-    const data: SidebarData = await res.json();
+    const data: SSidebarData = await res.json();
     return data;
   } catch (error: unknown) {
     console.error('Error fetching sidebar data:', error);

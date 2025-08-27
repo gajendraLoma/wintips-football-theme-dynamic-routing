@@ -1,8 +1,6 @@
-// apis/servicesmenu.ts
-import { MenuData } from '@/types/menu';
-
+// apis/services/getMenuByLocal.ts
+import { MenuData } from '@/types/interface/getMenuTypo';
 const apiBaseUrl = process.env.API_DOMAIN;
-
 export async function fetchMenuData(location: string = 'menu-1'): Promise<MenuData | { error: string }> {
   try {
     const res = await fetch(`${apiBaseUrl}/wp-json/getdata/menu?location=${location}`, {

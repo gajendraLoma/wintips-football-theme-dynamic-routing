@@ -90,7 +90,7 @@ import { getFullImageUrl } from "@/lib/utils";
 export default async function DynamicPage({
   params: paramsPromise
 }: {
-  params: Promise<{slug?: string[]}>; // Added searchParams if needed for pagination later
+  params: Promise<{slug?: string[]}>;
 }) {
   const params = await paramsPromise;
   const path = params.slug ? params.slug.join('/') : '';

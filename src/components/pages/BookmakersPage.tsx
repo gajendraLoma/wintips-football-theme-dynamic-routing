@@ -1,7 +1,7 @@
 import BookmakersTable from '../bookmakers/BookmakersTable';
 import Link from 'next/link';
 import Sidebar from '@/components/layout/Sidebar';
-import { BookmakersPageData } from '../../types/bookmaker';
+import { BookmakersPageData } from '../../types/interface/getBookmakerTypo';
 import { getTranslations } from 'next-intl/server';
 export default async function BookmakersPage({ data }: { data: BookmakersPageData }) {
   console.log('BookmakersPage data:', data);

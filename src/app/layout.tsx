@@ -23,7 +23,7 @@ export default async function LocaleLayout({children}: Props) {
         )}
       >
         <NextIntlClientProvider>
-          <Navigation locale={locale} />
+        <Navigation locale={locale} />
            <main>{children}</main>
         <Footer locale={locale} />
         </NextIntlClientProvider>

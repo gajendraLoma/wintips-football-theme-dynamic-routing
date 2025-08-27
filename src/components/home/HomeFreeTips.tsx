@@ -2,9 +2,8 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import {useTranslations} from 'next-intl';
-import {TipsResponse} from '@/types/tips';
+import {TipsResponse} from '@/types/interface/getTipsTypo';
 
 interface FreeTipsProps {
   tips: TipsResponse | null;
@@ -12,7 +11,7 @@ interface FreeTipsProps {
 
 export default function HomeFreeTips({tips}: FreeTipsProps) {
   const t = useTranslations();
-  console.log('Home Free Tips:', tips);
+  // console.log('Home Free Tips:', tips);
 
   if (!tips || !tips.items || tips.items.length === 0) {
     return (
@@ -133,6 +132,7 @@ export default function HomeFreeTips({tips}: FreeTipsProps) {
                 </td>
                 <td className="px-4 py-4">
                   <div className="flex items-center space-x-2">
+                   {tip.homeLogo && (
                     <Image
                       src={tip.homeLogo}
                       alt={`${tip.home} logo`}
@@ -140,9 +140,12 @@ export default function HomeFreeTips({tips}: FreeTipsProps) {
                       height={24}
                       className="rounded-full"
                     />
+                   )}
+
                     <span className="text-sm font-medium">{tip.home}</span>
                   </div>
                   <div className="flex items-center space-x-2 mt-1">
+                  {tip.awayLogo && (
                     <Image
                       src={tip.awayLogo}
                       alt={`${tip.away} logo`}
@@ -150,6 +153,7 @@ export default function HomeFreeTips({tips}: FreeTipsProps) {
                       height={24}
                       className="rounded-full"
                     />
+                  )}
                     <span className="text-sm font-medium">{tip.away}</span>
                   </div>
                 </td>

@@ -1,5 +1,5 @@
 import { formatDate } from "../../lib/date-helper";
-import { TMatchCompetition } from "../../types/results";
+import { TRMatchCompetition } from "@/types/interface/getResultsTypo";
 
 
 import Image from "next/image";
@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const imageBaseUrl = 'https://5goal.vip';
 interface Props {
-    match: TMatchCompetition;
+    match: TRMatchCompetition;
 }
 
 const LeagueMatch = ({match}: Props) => {
