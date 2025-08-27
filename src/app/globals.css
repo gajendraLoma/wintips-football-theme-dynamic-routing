@@ -680,3 +680,20 @@ filter: invert(52%) sepia(98%) saturate(518%) hue-rotate(187deg) brightness(100%
   position: relative;
   z-index: 1;
 }
+
+
+ p.font-semibold{
+    background: linear-gradient(237.8deg, rgba(72, 145, 255, 0) -6.39%, rgba(72, 145, 255, .3) 107.88%);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    width: max-content;
+    padding: 5px;
+    margin: auto;
+    line-height: 1;
+    cursor: pointer;
+    color: #000000;
+}
