@@ -29,7 +29,7 @@ const ScrollToTopButton = () => {
   return (
     isVisible && (
       <div className="scroll-to-top-button text-center" onClick={scrollToTop}>
-          <Image src="/images/up-arrow.png" alt="arrow" width={30} height={30} />
+          <Image src="/images/up-arrow.png" alt="arrow" width={30} height={30} className='back-to-top-text' />
         <div className="back-to-top-text" style={{fontSize: "13px", lineHeight: "1"}}> {t("back-to-top")} </div> 
       </div>
     )

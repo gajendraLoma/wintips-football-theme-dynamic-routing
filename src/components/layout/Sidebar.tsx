@@ -158,7 +158,7 @@ export default async function Sidebar() {
                 <Link
                   href={post?.slug}
                   key={index}
-                  className="flex space-x-3 group"
+                  className="flex space-x-3 group hover:bg-[#f2f9ff] items-center rounded"
                 >
                   <div className="relative flex-shrink-0">
                     <Image
