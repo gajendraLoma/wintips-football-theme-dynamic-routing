@@ -60,7 +60,7 @@ export default function BigImageSection({ mainMatch, sidebarMatches }: { mainMat
                 alt={match.title}
                 width={117}
                 height={60}
-                className="w-full h-full object-cover rounded-md"
+                className="w-full h-full object-cover rounded"
               />
 
               {/* Player icon wrapper (hover zoom) */}
@@ -76,8 +76,8 @@ export default function BigImageSection({ mainMatch, sidebarMatches }: { mainMat
             </div>
 
             {/* Text */}
-            <h3 className="text-sm font-medium text-gray-900 leading-tight transition-colors duration-300 group-hover:text-[#60a5fa]">
-              {match.title}, Prediction & Betting Tips
+            <h3 className="line-clamp-2 text-sm font-medium text-gray-900 leading-tight transition-colors duration-300 group-hover:text-[#60a5fa]">
+              {match.title},
             </h3>
           </Link>
         ))}

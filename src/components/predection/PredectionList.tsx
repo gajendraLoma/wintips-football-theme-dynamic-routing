@@ -26,7 +26,7 @@ export default function PredectionList({ posts }: { posts: Post[] }) {
                 alt={post.title}
                 width={180}
                 height={90}
-                className="w-full h-full object-cover rounded-md"
+                className="w-full h-full object-cover rounded"
               />
             </div>
             <h3 className="text-sm sm:text-base font-medium text-gray-800 hover:text-[#60a5fa] line-clamp-2">
