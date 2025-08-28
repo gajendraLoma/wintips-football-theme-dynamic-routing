@@ -4,7 +4,6 @@ import Sidebar from '@/components/layout/Sidebar';
 import { BookmakersPageData } from '../../types/interface/getBookmakerTypo';
 import { getTranslations } from 'next-intl/server';
 export default async function BookmakersPage({ data }: { data: BookmakersPageData }) {
-  console.log('BookmakersPage data:', data);
   const t = await getTranslations();
   return (
     <div className="flex-1 bg-gray-100">

@@ -7,9 +7,7 @@ export default async function SoccerTipsPage({data}: {data: any}) {
   const response = await fetchTipsData(1, 40);
   const initialTips = 'error' in response ? null : response;
   const t = await getTranslations();
-  console.log('SoccerTipsPage data:', data);
-
-  return (
+   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">

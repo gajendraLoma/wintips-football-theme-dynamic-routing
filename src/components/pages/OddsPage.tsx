@@ -53,8 +53,6 @@ interface OddsData {
 }
 
 export default function OddsPage({data}: {data: any}) {
-
-  console.log('OddsPage data:', data);
   const [oddsPreMatch, setOddsPreMatch] = useState<OddsData | null>(null);
   const [oddsLive, setOddsLive] = useState<OddsData | null>(null);
   const [loadingFirst, setLoadingFirst] = useState(true);

@@ -9,18 +9,12 @@ import {getTranslations} from 'next-intl/server';
 interface CategoryPageProps {
   data: PostByCatResponse;
   slug: string;
-  sectionType?: 'post' | 'bookmaker' | 'match_predict';
-  topLevelPath?: string;
 }
 
 export default async function CategoryPage({
   data,
   slug,
-  sectionType = 'post',
-  topLevelPath = '/blogs'
 }: CategoryPageProps) {
-  console.log('Category Page Data:', data);
-  console.log('Section Type:', sectionType, 'Top Level Path:', topLevelPath);
   const t = await getTranslations();
   const blogData: PostByCatResponse = data;
   if (
@@ -38,8 +32,8 @@ export default async function CategoryPage({
               <div className="bg-white px-4 md:px-8 py-4 max-w-[1280px] mx-auto">
                 <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
                   <p>
-                    No posts available for this{' '}
-                    {sectionType === 'post' ? 'category' : 'league'}.
+                    No posts available for this
+             
                   </p>
                 </div>
               </div>
@@ -82,7 +76,6 @@ export default async function CategoryPage({
 
   const listMatches: Post[] =
     blogData.posts.length > 2 ? blogData.posts.slice(2) : [];
-  const sectionName = sectionType === 'post' ? 'Blog' : 'Predictions';
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -97,26 +90,6 @@ export default async function CategoryPage({
                   className="text-blue-600 hover:underline transition-colors"
                 >
                   {t('home')}
-                </Link>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="tabler-icon tabler-icon-chevron-right mx-1 relative bottom-[-3px]"
-                >
-                  <path d="M9 6l6 6l-6 6"></path>
-                </svg>
-                <Link
-                  href={topLevelPath}
-                  className="text-blue-600 hover:underline transition-colors"
-                >
-                  {sectionName}
                 </Link>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

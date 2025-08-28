@@ -39,7 +39,7 @@ export const fetchMatchScheduleByLeague = async (leagueId: string) => {
         const result = await response.json();
         return result;
     } catch (error) {
-        console.log('fetchMatchResultByLeague error:', error);
+        console.log('error:', error);
         throw error;
     }
 };

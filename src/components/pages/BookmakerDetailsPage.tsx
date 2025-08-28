@@ -13,9 +13,6 @@ interface Props {
 export default async function BookmakerDetailsPage({data}: Props) {
   const bookmaker = data.bookmaker;
   const t = await getTranslations();
-
-  console.log('Bookmaker Details Data:', data);
-
   return (
     <>
       {/* 🔹 Banner Section */}

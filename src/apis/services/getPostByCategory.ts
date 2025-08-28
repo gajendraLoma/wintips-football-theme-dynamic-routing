@@ -13,7 +13,7 @@ export async function fetchPostByCat(type: string, slug: string, post_type: stri
       throw new Error(`HTTP error! status: ${res.status}`);
     }
     const data = await res.json();
-    console.log("data post",data)
+  
     return data;
   } catch (error) {
     console.error('Failed to fetch post by category:', error);

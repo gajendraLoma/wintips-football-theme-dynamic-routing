@@ -1,7 +1,12 @@
 // app/[[...slug]]/page.tsx
 import {notFound} from 'next/navigation';
 import {Metadata} from 'next';
-import {fetchPageData, fetchSlugType, fetchPostBySlug, fetchPostByCat} from '@/apis';
+import {
+  fetchPageData,
+  fetchSlugType,
+  fetchPostBySlug,
+  fetchPostByCat
+} from '@/apis';
 import Home from '@/components/pages/Home';
 import BlogPage from '@/components/pages/BlogPage';
 import BookmakersPage from '@/components/pages/BookmakersPage';
@@ -15,211 +20,213 @@ import MatchPredicttionPage from '@/components/pages/MatchPredicttionPage';
 import PostDetailsPage from '@/components/pages/PostDetailsPage';
 import BookmakerDetailsPage from '@/components/pages/BookmakerDetailsPage';
 export const dynamic = 'force-dynamic';
-import { getFullImageUrl } from "@/lib/utils";
-  export async function generateMetadata({
-    params: paramsPromise,
-  }: {
-    params: Promise<{ slug?: string[] }>;
-  }): Promise<Metadata> {
-    const params = await paramsPromise;
-    const path = params.slug ? params.slug.join("/") : "";
-    const domain = process.env.NEXT_PUBLIC_API_BASE_URL;
-    const SITENAME = process.env.SITE_NAME;
-    const slugType = await fetchSlugType(path);
+import {getFullImageUrl} from '@/lib/utils';
 
-    if ("error" in slugType || !slugType.type) return { title: "Not Found" };
+// ---------------- Helper to fetch list data ----------------
+async function fetchListData(
+  type: 'category' | 'league',
+  slug: string,
+  options?: {perPage?: number; paged?: number}
+) {
+  const perPage = options?.perPage ?? 16;
+  const paged = options?.paged ?? 1;
+  return fetchPostByCat(
+    type,
+    slug,
+    type === 'league' ? 'match_predict' : 'post',
+    perPage,
+    paged
+  );
+}
 
-    let pageData: any;
-    if (["page", "category", "league"].includes(slugType.type)) {
-    // For category and league lists, we might need postByCat, but for metadata, try pageData first
-    // If it's a list, adjust based on type
-    if (slugType.type === 'category') {
-      pageData = await fetchPostByCat('category', path, 'post', 1, 1); // Fetch first post for SEO
-      if ('error' in pageData || !pageData || !pageData.posts || pageData.posts.length === 0) {
-        pageData = await fetchPageData(path); // Fallback
-      } else {
-        pageData = pageData.posts[0]; // Use first post for title/desc
-      }
-    } else if (slugType.type === 'league') {
-      pageData = await fetchPostByCat('league', path, 'match_predict', 1, 1); // For league predictions
-      if ('error' in pageData || !pageData || !pageData.posts || pageData.posts.length === 0) {
-        pageData = await fetchPageData(path); // Fallback
-      } else {
-        pageData = pageData.posts[0];
-      }
-    } else {
-      pageData = await fetchPageData(path);
-    }
-    } else {
-      pageData = await fetchPostBySlug(slugType.type, path);
-    }
-
-    if ("error" in pageData || !pageData) return { title: "Not Found" };
-
-    const seoTitle = pageData.seo_title || pageData.title;
-    const seoDescription = pageData.seo_description;
-    const imageUrl = getFullImageUrl(pageData.image || pageData.post_image);
-
+// ---------------- Main Resolver ----------------
+async function resolveDataBySlug(
+  slug: string,
+  options?: {perPage?: number; paged?: number}
+): Promise<{ok: true; type: string; data: any} | {ok: false; reason: string}> {
+  // 1. Home Page
+  if (!slug) {
+    const pageData = await fetchPageData('');
+    if (!pageData || 'error' in pageData)
+      return {ok: false, reason: 'home not found'};
     return {
+      ok: true,
+      type: (pageData.type || 'home').toLowerCase(),
+      data: pageData
+    };
+  }
+
+  // 2. Slug Type API
+  const slugType = await fetchSlugType(slug);
+
+  if (!('error' in slugType) && slugType.type) {
+    const type = slugType.type;
+
+    if (type === 'page') {
+      const pageData = await fetchPageData(slug);
+      return pageData && !('error' in pageData)
+        ? {
+            ok: true,
+            type: (pageData.type || 'default').toLowerCase(),
+            data: pageData
+          }
+        : {ok: false, reason: 'page fetch failed'};
+    }
+
+    if (type === 'category' || type === 'league') {
+      const listData = await fetchListData(type, slug, options);
+      return listData && !('error' in listData)
+        ? {ok: true, type, data: listData}
+        : {ok: false, reason: `${type} fetch failed`};
+    }
+
+    if (['post', 'match_predict', 'bookmaker'].includes(type)) {
+      const postData = await fetchPostBySlug(type as any, slug);
+      return postData && !('error' in postData)
+        ? {ok: true, type, data: postData}
+        : {ok: false, reason: 'post fetch failed'};
+    }
+
+    return {ok: false, reason: `unhandled slugtype: ${type}`};
+  }
+
+  // 3. Fallback Probes
+  const pageProbe = await fetchPageData(slug);
+  if (pageProbe && !('error' in pageProbe) && pageProbe.title) {
+    return {
+      ok: true,
+      type: (pageProbe.type || 'default').toLowerCase(),
+      data: pageProbe
+    };
+  }
+
+  for (const type of ['category', 'league'] as const) {
+    const listProbe = await fetchListData(type, slug, options);
+    if (
+      listProbe &&
+      !('error' in listProbe) &&
+      Array.isArray(listProbe.posts)
+    ) {
+      return {ok: true, type, data: listProbe};
+    }
+  }
+
+  for (const detailType of ['post', 'match_predict', 'bookmaker'] as const) {
+    const detailProbe = await fetchPostBySlug(detailType, slug);
+    if (detailProbe && !('error' in detailProbe) && detailProbe.title) {
+      return {ok: true, type: detailType, data: detailProbe};
+    }
+  }
+
+  return {ok: false, reason: 'no API resolved this slug'};
+}
+
+// ---------------- SEO Builder ----------------
+function buildSeo(metaSource: any, fallbackPath: string) {
+  const domain = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const SITENAME = process.env.SITE_NAME;
+  const seoTitle = metaSource?.seo_title || metaSource?.title;
+  const seoDescription = metaSource?.seo_description;
+  const imageUrl = getFullImageUrl(metaSource?.image || metaSource?.post_image);
+  return {
+    title: seoTitle,
+    description: seoDescription,
+    alternates: {canonical: `${domain}/${fallbackPath}`},
+    openGraph: {
       title: seoTitle,
       description: seoDescription,
-      alternates: {
-        canonical: `${domain}/${path}`,
-      },
-      openGraph: {
-        title: seoTitle,
-        description: seoDescription,
-        url: `${domain}/${path}`,
-        images: [
-          {
-            width: 800,
-            height: 600,
-            url: imageUrl,
-          },
-        ],
-        siteName: SITENAME,
-      },
-    };
-  };
+      url: `${domain}/${fallbackPath}`,
+      images: [{width: 800, height: 600, url: imageUrl}],
+      siteName: SITENAME
+    }
+  } satisfies Metadata;
+}
 
-export default async function DynamicPage({
+// ---------------- Metadata ----------------
+export async function generateMetadata({
   params: paramsPromise
 }: {
   params: Promise<{slug?: string[]}>;
-}) {
+}): Promise<Metadata> {
   const params = await paramsPromise;
   const path = params.slug ? params.slug.join('/') : '';
-  console.log('Path:', path);
-  const slugType = await fetchSlugType(path);
-  console.log('Slug Type:', slugType);
 
-  if ('error' in slugType || !slugType.type) {
-    // Handle category slugs manually if type is null (flat for posts)
-    if (path.startsWith('category/')) {
-      const categorySlug = path.replace('category/', '');
-      const categoryData = await fetchPostByCat(
-        'category',
-        categorySlug,
-        'post',
-        16,
-        1
-      );
-      if ('error' in categoryData || !categoryData) {
-        console.log('Category Data Error:', categoryData);
-        notFound();
-      }
-      return <CategoryPage data={categoryData} slug={categorySlug} sectionType="post" topLevelPath="/blogs" />;
-    }
-    // Handle prediction/league slugs manually if type is null (nested for predictions: match-predictions/league-slug)
-    if (path.startsWith('match-predictions/')) {
-      const leagueSlug = path.replace('match-predictions/', '');
-      const leagueData = await fetchPostByCat(
-        'league',
-        leagueSlug,
-        'match_predict',
-        16,
-        1
-      );
-      if ('error' in leagueData || !leagueData) {
-        console.log('League/Prediction Data Error:', leagueData);
-        notFound();
-      }
-      return <CategoryPage data={leagueData} slug={leagueSlug} sectionType="match_predict" topLevelPath="/match-predictions" />;
-    }
-    // Fallback for flat league if needed (e.g., if some leagues are flat)
-    if (path.startsWith('league/')) {
-      const leagueSlug = path.replace('league/', '');
-      const leagueData = await fetchPostByCat(
-        'league',
-        leagueSlug,
-        'match_predict',
-        16,
-        1
-      );
-      if ('error' in leagueData || !leagueData) {
-        console.log('League Data Error:', leagueData);
-        notFound();
-      }
-      return <CategoryPage data={leagueData} slug={leagueSlug} sectionType="match_predict" topLevelPath="/match-predictions" />;
-    }
-    console.log('Not Found due to slug type:', slugType);
-    notFound();
+  const resolved = await resolveDataBySlug(path, {perPage: 1, paged: 1});
+  if (!resolved.ok) return {title: 'Not Found'};
+
+  if (resolved.type === 'category' || resolved.type === 'league') {
+    const list = resolved.data;
+  
+    return buildSeo( list, path);
   }
 
-  const type = slugType.type;
-  let pageData: any = null;
+  return buildSeo(resolved.data, path || '');
+}
 
-  switch (type) {
-    case 'page':
-      pageData = await fetchPageData(path);
-      break;
-    case 'league':
-      // Updated: For league, fetch postByCat for predictions list per your description
-      // But since nested handling is above, this is for flat leagues if slugType returns 'league'
-      pageData = await fetchPostByCat('league', path, 'match_predict', 16, 1);
-      break;
-    case 'category':
-      // Fixed: Use fetchPostByCat for category lists per docs
-      pageData = await fetchPostByCat('category', path, 'post', 16, 1);
-      break;
-    case 'post':
-    case 'match_predict': // Fixed: Added/updated to match docs 'match_predict' for predictions
-    case 'bookmaker':
-      pageData = await fetchPostBySlug(type, path);
-      break;
-    default:
-      console.log('Unhandled fetch type:', type);
-      notFound();
-  }
+// ---------------- Page ----------------
+export default async function DynamicPage({
+  params: paramsPromise,
+  searchParams: searchParamsPromise
+}: {
+  params: Promise<{slug?: string[]}>;
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+}) {
+  const params = await paramsPromise;
+  const searchParams = (await searchParamsPromise) || {};
+  const path = params.slug ? params.slug.join('/') : '';
+  const perPageParam =
+    Number(
+      Array.isArray(searchParams.per_page)
+        ? searchParams.per_page[0]
+        : searchParams.per_page
+    ) || 16;
+  const pagedParam =
+    Number(
+      Array.isArray(searchParams.paged)
+        ? searchParams.paged[0]
+        : searchParams.paged
+    ) || 1;
 
-  if (!pageData || 'error' in pageData) {
-    console.log('Page Data Error:', pageData);
-    notFound();
-  }
+  const resolved = await resolveDataBySlug(path, {
+    perPage: perPageParam,
+    paged: pagedParam
+  });
+  if (!resolved.ok) notFound();
 
-  console.log('Page Data:', pageData);
-
-  const finalType = (pageData.type || type || '').toLowerCase();
-  console.log('Rendering component for type:', finalType);
+  const {type, data} = resolved as {ok: true; type: string; data: any};
+  const finalType = (data.type || type || '').toLowerCase();
+console.log("Data 1111",data)
 
   switch (finalType) {
     case 'home':
-      return <Home data={pageData} />;
+      return <Home data={data} />;
     case 'predicts':
-      return <MatchPredicttionPage data={pageData} />;
+      return <MatchPredicttionPage data={data} />;
     case 'blogs':
-      return <BlogPage data={pageData} />;
+      return <BlogPage data={data} />;
     case 'bookmakers':
-      return <BookmakersPage data={pageData} />;
+      return <BookmakersPage data={data} />;
     case 'category':
-      return (
-        <CategoryPage data={pageData} slug={path} sectionType="post" topLevelPath="/blogs" />
-      );
+      return <CategoryPage data={data} slug={path} />;
     case 'league':
-      return (
-        <CategoryPage data={pageData} slug={path} sectionType="match_predict" topLevelPath="/match-predictions" />
-      );
+      return <CategoryPage data={data} slug={path} />;
     case 'odds':
-      return <OddsPage data={pageData} />;
+      return <OddsPage data={data} />;
     case 'results':
-      return <ResultPage data={pageData} />;
+      return <ResultPage data={data} />;
     case 'fixture':
-      return <SchedulePage data={pageData} />;
+      return <SchedulePage data={data} />;
     case 'standings':
-      return <StandingsPage data={pageData} />;
+      return <StandingsPage data={data} />;
     case 'tips':
-      return <SoccerTipsPage data={pageData} />;
+      return <SoccerTipsPage data={data} />;
     case 'post':
-      return <PostDetailsPage data={pageData} type="post" />;
-    case 'match_predict': 
-      return <PostDetailsPage data={pageData} type="match_predict" />;
-      case 'bookmaker':
-      return <BookmakerDetailsPage data={pageData} type="bookmaker" />;
-    case 'default':
-      console.log('Falling back to BlogPage for unhandled type:', finalType);
-      return <BlogPage data={pageData} />;
+      return <PostDetailsPage data={data} type="post" />;
+    case 'match_predict':
+      return <PostDetailsPage data={data} type="match_predict" />;
+    case 'bookmaker':
+      return <BookmakerDetailsPage data={data} type="bookmaker" />;
     default:
-      console.log('Unhandled render type:', finalType);
-      notFound();
+      return <BlogPage data={data} />;
   }
 }

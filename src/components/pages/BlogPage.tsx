@@ -11,7 +11,6 @@ export default async function BlogPage({data}: {data: any}) {
     timeZone: 'Asia/Bangkok',
     hour12: false
   });
-  console.log(`Fetching posts for listing at ${currentDateTime}...`);
   const blogData: PostByCatResponse = await fetchPostByCat(
     'category',
     '',
@@ -19,7 +18,6 @@ export default async function BlogPage({data}: {data: any}) {
     20,
     1
   );
-  console.log(`BlogPage data received at ${currentDateTime}:`, blogData);
   const t = await getTranslations();
   if (!blogData || !blogData.posts || blogData.total_posts === 0) {
     console.warn(`No posts found at ${currentDateTime}.`);
