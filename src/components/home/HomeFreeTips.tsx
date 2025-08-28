@@ -101,7 +101,7 @@ export default function HomeFreeTips({tips}: FreeTipsProps) {
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
                 {t('match')}
               </th>
-              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
+              <th className="hidden lg:block px-4 py-3 text-left text-sm font-semibold text-gray-700">
                 {t('tips')}
               </th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
@@ -119,10 +119,10 @@ export default function HomeFreeTips({tips}: FreeTipsProps) {
             {displayedItems.map((tip: any) => (
               <tr key={tip.id} className="hover:bg-gray-50 transition-colors">
                 <td className="px-4 py-4">
-                  <div className="text-sm font-medium text-gray-900">
+                  <div className="text-xs sm:text-sm font-medium text-gray-900">
                     {formatMatchTime(tip.matchTime)}
                   </div>
-                  <div className="text-sm text-gray-500">{tip.league}</div>
+                  <div className="text-xs sm:text-sm text-gray-500">{tip.league}</div>
                 </td>
                 <td className="px-4 py-4">
                   <div className="flex items-center space-x-2">
@@ -136,7 +136,7 @@ export default function HomeFreeTips({tips}: FreeTipsProps) {
                       />
                     )}
 
-                    <span className="text-sm font-medium">{tip.home}</span>
+                    <span className="text-xs sm:text-sm font-medium">{tip.home}</span>
                   </div>
                   <div className="flex items-center space-x-2 mt-1">
                     {tip.awayLogo && (
@@ -148,21 +148,21 @@ export default function HomeFreeTips({tips}: FreeTipsProps) {
                         className="rounded-full"
                       />
                     )}
-                    <span className="text-sm font-medium">{tip.away}</span>
+                    <span className="text-xs sm:text-sm font-medium">{tip.away}</span>
                   </div>
                 </td>
-                <td className="px-4 py-4">
-                  <span className="text-sm font-medium text-[#227ad3]">
+                <td className="px-4 py-4 hidden lg:block">
+                  <span className="text-xs sm:text-sm font-medium text-[#227ad3]">
                     {getTipDisplay(tip.tipType, tip.tipValue, tip.fixedOdd)}
                   </span>
                 </td>
                 <td className="px-4 py-4">
-                  <span className="text-sm font-medium text-gray-900">
+                  <span className="text-xs sm:text-sm font-medium text-gray-900">
                     {tip.odd}
                   </span>
                 </td>
                 <td className="px-4 py-4">
-                  <span className="md:text-sm font-semibold text-[#227ad3] max-md:text-[12px]">
+                  <span className="text-xs sm:text-sm font-semibold text-[#227ad3] max-md:text-[12px]">
                     {tip.source.title}
                   </span>
                   <div className="flex items-center text-[#227ad3] text-sm ml-1">

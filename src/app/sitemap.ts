@@ -4,7 +4,7 @@ import { MetadataRoute } from 'next';
 import { fetchSitemapData } from '@/apis'; 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.API_DOMAIN; 
-  const data = await fetchSitemapData();
+  const data = await fetchSitemapData("league");
   const sitemap: MetadataRoute.Sitemap = [];
 
   sitemap.push({

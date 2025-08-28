@@ -6,21 +6,14 @@ import {getTranslations} from 'next-intl/server';
 import Sidebar from '@/components/layout/Sidebar';
 import Link from 'next/link';
 import {getFullImageUrl} from '@/lib/utils';
-import {  
+import {
   TFLeague,
   TFMatch,
   TFCompetition,
-  TFMatchCompetition } from "@/types/interface/getScheduleTypo";
-// import {
-//   TFLeague,
-//   TFMatch,
-//   TFCompetition,
-//   TFMatchCompetition
-// } from '../../types/interface/getScheduleTypo';
-import {
-  fetchMatchSchedule,
-  fetchMatchScheduleByLeague
-} from '@/apis';
+  TFMatchCompetition
+} from '@/types/interface/getScheduleTypo';
+
+import {fetchMatchSchedule, fetchMatchScheduleByLeague} from '@/apis';
 interface SchedulePageProps {
   data: {
     title: string;
@@ -32,7 +25,6 @@ interface SchedulePageProps {
 export default async function SchedulePage({data}: SchedulePageProps) {
   const t = await getTranslations();
 
-  // Fetch data based on league_id or date
   let scheduleData;
   if (data.league_id) {
     scheduleData = await fetchMatchScheduleByLeague(data.league_id);
@@ -41,7 +33,6 @@ export default async function SchedulePage({data}: SchedulePageProps) {
     scheduleData = await fetchMatchSchedule(activeDay);
   }
 
-  // Handle error or no data
   if (!scheduleData || 'error' in scheduleData) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -50,7 +41,6 @@ export default async function SchedulePage({data}: SchedulePageProps) {
     );
   }
 
-  // Derive leagues and scheduleByLeagues based on API response
   const leagues = Array.isArray(scheduleData.result) ? scheduleData.result : [];
   const scheduleByLeagues = data.league_id
     ? Array.isArray(scheduleData)
@@ -60,14 +50,14 @@ export default async function SchedulePage({data}: SchedulePageProps) {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <div className="lg:col-span-3 space-y-8">
-            <div className="bg-white px-4 md:px-8 py-6 max-w-[1280px] mx-auto">
+            <div className="bg-white px-4 md:px-8 py-4 max-w-[1280px] mx-auto">
               {/* Breadcrumb */}
               <nav className="flex text-sm text-gray-500 mb-2">
                 <Link href="/" className="text-blue-600 hover:underline">
-                 {t('home')}
+                  {t('home')}
                 </Link>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -86,12 +76,10 @@ export default async function SchedulePage({data}: SchedulePageProps) {
                 <span>{data.title}</span>
               </nav>
 
-              {/* Title & Description */}
               <h1 className="text-2xl font-bold mb-2">{data.title}</h1>
 
               <div className="bg-white rounded-2xl">
                 <>
-                  {/* Render leagues data (date-based) */}
                   {leagues.length > 0 && (
                     <div className="w-full py-2">
                       {leagues.map((league: TFLeague, index: number) => (
@@ -141,7 +129,6 @@ export default async function SchedulePage({data}: SchedulePageProps) {
                     </div>
                   )}
 
-                  {/* Render scheduleByLeagues data (league-based) */}
                   {scheduleByLeagues.length > 0 && (
                     <div className="w-full py-2">
                       {scheduleByLeagues.map(
@@ -198,7 +185,6 @@ export default async function SchedulePage({data}: SchedulePageProps) {
                     </div>
                   )}
 
-                  {/* Show message when no data is available */}
                   {leagues.length === 0 && scheduleByLeagues.length === 0 && (
                     <div className="w-full py-4">
                       <div className="text-center text-xl font-bold">
@@ -209,7 +195,6 @@ export default async function SchedulePage({data}: SchedulePageProps) {
                 </>
               </div>
             </div>
-            {/* Content */}
             content:{' '}
             <p
               className="content page text-[#323232]"
@@ -217,8 +202,7 @@ export default async function SchedulePage({data}: SchedulePageProps) {
             />
           </div>
 
-          {/* Sidebar (Right Column) */}
-          <div className="lg:col-span-1">
+          <div className="hidden col-span-1 lg:block lg:col-span-1">
             <Sidebar />
           </div>
         </div>

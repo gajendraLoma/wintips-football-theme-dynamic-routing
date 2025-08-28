@@ -237,7 +237,7 @@ export default function OddsPage({data}: {data: any}) {
 
   return (
     <div className="flex-1 bg-gray-100">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         {/* Breadcrumb */}
         <nav className="flex text-sm text-gray-500 mb-2">
           <Link href="/" className="text-blue-600 hover:underline">
@@ -320,7 +320,7 @@ export default function OddsPage({data}: {data: any}) {
                               className="px-2 py-1"
                               style={{
                                 background:
-                                  'linear-gradient(to right, #3a654efc 0%, rgba(26, 34, 45, 0) 100%)',
+                                  'linear-gradient(to right, rgba(39, 95, 226, .64) 0%, rgba(26, 34, 45, 0) 100%)',
                                 color: '#fff',
                                 fontSize: '14px',
                                 fontWeight: '600',
@@ -813,7 +813,7 @@ export default function OddsPage({data}: {data: any}) {
                           className="px-2 py-1"
                           style={{
                             background:
-                              'linear-gradient(to right, #3a654efc 0%, rgba(26, 34, 45, 0) 100%)',
+                              'linear-gradient(to right, rgba(39, 95, 226, .64) 0%, rgba(26, 34, 45, 0) 100%)',
                             color: '#fff',
                             fontSize: '14px',
                             fontWeight: '600',

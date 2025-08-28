@@ -2,20 +2,16 @@
 import Image from "next/image";
 import {getTranslations} from 'next-intl/server';
 import { TipsResponse, Tip } from "../../types/interface/getTipsTypo";
-
 interface FreeTipsProps {
   initialTips: TipsResponse | null;
 }
 
 export default async function TipsComp({ initialTips }: FreeTipsProps) {
   const t = await getTranslations();
-
-
   const formatMatchTime = (matchTime: string) => {
     const date = new Date(matchTime);
     return `${date.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' })} ${date.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true })}`;
   };
-
   const getTipDisplay = (tipType: string, tipValue: string, fixedOdd: number) => {
     if (tipType === "OverUnder") {
       return `${tipValue} ${fixedOdd}`;
@@ -29,13 +25,13 @@ export default async function TipsComp({ initialTips }: FreeTipsProps) {
         <table className="w-full">
           <thead className="bg-gray-100">
             <tr>
-              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
+               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
                 {t("timeLeague")}
               </th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
                 {t("match")}
               </th>
-              <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
+              <th className="hidden lg:block px-4 py-3 text-left text-sm font-semibold text-gray-700">
                 {t("tips")}
               </th>
               <th className="px-4 py-3 text-left text-sm font-semibold text-gray-700">
@@ -53,10 +49,10 @@ export default async function TipsComp({ initialTips }: FreeTipsProps) {
             {initialTips && initialTips.items.map((tip: Tip) => (
               <tr key={tip.id} className="hover:bg-gray-50 transition-colors">
                 <td className="px-4 py-4">
-                  <div className="text-sm font-medium text-gray-900">
+                  <div className="text-xs sm:text-sm font-medium text-gray-900">
                     {formatMatchTime(tip.matchTime)}
                   </div>
-                  <div className="text-sm text-gray-500">{tip.league}</div>
+                  <div className="text-xs sm:text-sm text-gray-500">{tip.league}</div>
                 </td>
                 <td className="px-4 py-4">
                   <div className="flex items-center space-x-2">
@@ -69,7 +65,7 @@ export default async function TipsComp({ initialTips }: FreeTipsProps) {
                       className="rounded-full"
                     />
                      )}
-                    <span className="text-sm font-medium">{tip.home}</span>
+                    <span className="text-xs sm:text-sm font-medium">{tip.home}</span>
                   </div>
                   <div className="flex items-center space-x-2 mt-1">
                    
@@ -84,21 +80,21 @@ export default async function TipsComp({ initialTips }: FreeTipsProps) {
                   )}
 
 
-                    <span className="text-sm font-medium">{tip.away}</span>
+                    <span className="text-xs sm:text-sm font-medium">{tip.away}</span>
                   </div>
                 </td>
-                <td className="px-4 py-4">
-                  <span className="text-sm font-medium text-[#227ad3]">
+                <td className="px-4 py-4 hidden lg:block">
+                  <span className="text-xs sm:text-sm font-medium text-[#227ad3]">
                     {getTipDisplay(tip.tipType, tip.tipValue, tip.fixedOdd)}
                   </span>
                 </td>
                 <td className="px-4 py-4">
-                  <span className="text-sm font-medium text-gray-900">
+                  <span className="text-xs sm:text-sm font-medium text-gray-900">
                     {tip.odd}
                   </span>
                 </td>
                 <td className="px-4 py-4">
-                  <span className="md:text-sm font-semibold text-[#227ad3] max-md:text-[12px]">
+                  <span className="text-xs sm:text-sm font-semibold text-[#227ad3] max-md:text-[12px]">
                     {tip.source.title}
                   </span>
                   <div className="flex items-center text-[#227ad3] text-sm ml-1">

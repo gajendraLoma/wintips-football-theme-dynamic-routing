@@ -31,10 +31,6 @@ export interface BookmakersResponse {
   };
 }
 
-
-
-
-
 // types/Details.ts
 
 export interface InfoDet {

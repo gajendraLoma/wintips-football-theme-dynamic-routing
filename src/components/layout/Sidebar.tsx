@@ -3,7 +3,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {getTranslations} from 'next-intl/server';
 import {fetchSidebarData} from '@/apis';
-import {SSidebarData, SBookmaker, SPost, SBettingTool} from "@/types/interface/getSidebarTypo";
+import {
+  SSidebarData,
+  SBookmaker,
+  SPost,
+  SBettingTool
+} from '@/types/interface/getSidebarTypo';
 import {getFullImageUrl} from '@/lib/utils';
 
 export default async function Sidebar() {
@@ -11,7 +16,7 @@ export default async function Sidebar() {
   const data = await fetchSidebarData();
   if ('error' in data) {
     console.error(data.error);
-    return null; 
+    return null;
   }
 
   const sidebarData = data as SSidebarData;
@@ -19,7 +24,6 @@ export default async function Sidebar() {
 
   return (
     <div className="space-y-6">
-      {/* Top Bookmakers */}
       <div className="bg-white rounded-lg shadow-sm overflow-hidden bookMakersSidebar">
         <div className="bg-white py-2 border-b">
           <h3 className="font-bold text-gray-900 flex items-center">
@@ -106,7 +110,6 @@ export default async function Sidebar() {
         </div>
       </div>
 
-      {/* Join Now Banner */}
       <div className="grid grid-cols-1 w-full py-1">
         {isLoading ? (
           <div className="relative w-full overflow-hidden rounded-md aspect-[4/3] sm:aspect-[16/19] bg-gray-300 animate-pulse" />
@@ -130,7 +133,6 @@ export default async function Sidebar() {
         )}
       </div>
 
-      {/* Sports News */}
       <div className="bg-white rounded-lg shadow-sm overflow-hidden">
         <div className="bg-white py-2 border-b">
           <h3 className="font-bold text-gray-900 flex items-center">
@@ -179,7 +181,6 @@ export default async function Sidebar() {
         </div>
       </div>
 
-      {/* Betting Tool */}
       <div className="bg-white rounded-lg shadow-sm overflow-hidden">
         <div className="bg-white py-2 border-b">
           <h3 className="font-bold text-gray-900 flex items-center">

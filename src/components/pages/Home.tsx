@@ -9,11 +9,11 @@ import BettingGENSection from '@/components/home/BettingGENSection';
 import {getTranslations} from 'next-intl/server';
 import {fetchTipsData, fetchPostByCat} from '@/apis';
 import {TipsResponse} from '@/types/interface/getTipsTypo';
-import {PostByCatResponse, Post} from '../../types/interface/getPostByCatTypo';
+import {PostByCatResponse} from '../../types/interface/getPostByCatTypo';
 const SectionHeader = ({title, t, href}: {title: string;  t: (key: string) => string;  href: string}) => (
   
   <div className="flex items-center justify-between">
-    <h2 className="text-2xl font-bold text-gray-900 hover:text-blue-hover transition-all">
+    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 hover:text-blue-hover transition-all">
       {title}
     </h2>
     <Link
@@ -52,27 +52,12 @@ export default async function Home({data}: {data: any}) {
   ) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
           <p>No match predictions available for this league.</p>
         </div>
       </div>
     );
   }
-
-  // Use the first post as mainMatch if available
-  const mainMatch: Post =
-    matchData.posts.length > 0
-      ? {...matchData.posts[0]}
-      : {
-          title: 'No Data',
-          featured_image: '',
-          slug: '',
-          published_date: '',
-          vn_date: ''
-        };
-
-
-
 
   const tipsResponse = await fetchTipsData(1, 10);
 
@@ -83,9 +68,9 @@ export default async function Home({data}: {data: any}) {
       : (tipsResponse as TipsResponse);
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          <div className="lg:col-span-3 space-y-8">
+          <div className="col-span-1 space-y-4 lg:col-span-3">
             <Hero data={homeData} />
              <SectionHeader
               title={t('freeTipsTitle')}
@@ -106,7 +91,7 @@ export default async function Home({data}: {data: any}) {
               dangerouslySetInnerHTML={{__html: data.content || ''}}
             />
           </div>
-          <div className="lg:col-span-1">
+          <div className="hidden col-span-1 lg:block lg:col-span-1">
             <Sidebar />
           </div>
         </div>

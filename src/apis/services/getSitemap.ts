@@ -5,7 +5,7 @@ interface SitemapItem {
   slug: string;
   date?: string; 
 }
-export async function fetchSitemapData(): Promise<{
+export async function fetchSitemapData(type: string): Promise<{
   leagues: SitemapItem[];
   pages: SitemapItem[];
   posts: SitemapItem[];
@@ -28,7 +28,8 @@ export async function fetchSitemapData(): Promise<{
   };
 
   // Fetch leagues
-  const leagues = (await safeFetch(`${apiBase}/wp-json/get/taxonomy/type-league`)) as SitemapItem[];
+  const params = new URLSearchParams({ type });
+  const leagues = (await safeFetch(`${apiBase}/wp-json/get/taxonomy?${params}`)) as SitemapItem[];
 
   // General fetcher for allpost types
   const fetchAllPost = async (type: string): Promise<SitemapItem[]> => {

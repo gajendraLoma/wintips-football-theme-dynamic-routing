@@ -25,6 +25,7 @@ const {title, description, image, link} = banner_top;
     <section className="relative overflow-hidden">
       <div className="relative w-full overflow-hidden rounded-[5px] h-[280px] md:p-[35px] md:h-[280px]">
         <Image src={image} alt={title} fill />
+        
         <div className="absolute md:relative top-0 z-20 max-w-[550px] p-[10px] md:p-0 text-white">
           <h1 className="text-[19px] font-semibold uppercase leading-[25px]">
             {title}

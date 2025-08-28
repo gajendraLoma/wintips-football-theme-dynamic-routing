@@ -632,28 +632,38 @@ filter: invert(52%) sepia(98%) saturate(518%) hue-rotate(187deg) brightness(100%
 
 
 @media (max-width: 768px) {
-    .content figure, .content iframe {
-        width: 100% !important;
+  .content figure, .content iframe {
+      width: 100% !important;
+  }
+
+  .scroll-to-top-button {
+      position: fixed;
+      right: 10px !important;
+      bottom: 16px !important;
+      padding: 0px 0px !important;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+      display: grid;
+      justify-items: center;
+      gap:10px;
+      color: #60a5fa;;
+  }
+
+  .back-to-top-text {
+      display: none !important;
     }
 
-.scroll-to-top-button {
-    position: fixed;
-    right: 10px !important;
-    bottom: 16px !important;
-    padding: 0px 0px !important;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1000;
-    display: grid;
-    justify-items: center;
-    gap:10px;
-    color: #60a5fa;;
+h1{
+  font-size: 20px !important;
+  line-height: normal !important;
+}
+h2{
+  font-size: 18px !important;
+  line-height: normal !important;
 }
 
-.back-to-top-text {
-    display: none !important;
-  }
 
 }
 
@@ -692,7 +702,7 @@ filter: invert(52%) sepia(98%) saturate(518%) hue-rotate(187deg) brightness(100%
     font-weight: 500;
     width: max-content;
     padding: 5px;
-    margin: auto;
+    margin: auto 6px;
     line-height: 1;
     cursor: pointer;
     color: #000000;

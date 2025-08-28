@@ -11,7 +11,6 @@ export default async function BookmakersTable({
 }: BookmakersTableProps) {
   const t = await getTranslations();
 
-  // Map data without sorting or filtering
   const mappedData = bookmakers.map((bookmaker, index) => ({
     rank: index + 1,
     name: bookmaker.name,
@@ -23,20 +22,19 @@ export default async function BookmakersTable({
     playerChoice: index === 0,
     image: getFullImageUrl(bookmaker.image) || '/images/default.png',
     play_now: bookmaker.play_now,
-    slug:bookmaker.slug
+    slug: bookmaker.slug
   }));
 
   return (
     <section className="rounded-lg overflow-hidden">
       <div className="bg-white">
-        {/* Table */}
         <div className="overflow-x-auto">
           <table className="w-full border-collapse">
             <thead>
               <tr className="bg-gray-50 text-left text-xs font-semibold text-gray-500 border-b">
                 <th className="p-3 w-[60px]">{t('top')}</th>
                 <th className="p-3">{t('bookmaker')}</th>
-                <th className="p-3">{t('bonus')}</th>
+                <th className="p-3 hidden lg:block">{t('bonus')}</th>
                 <th className="p-3">{t('rating')}</th>
                 <th className="p-3">{t('links')}</th>
               </tr>
@@ -44,7 +42,6 @@ export default async function BookmakersTable({
             <tbody>
               {mappedData.map((item) => (
                 <tr key={item.rank} className="border-b hover:bg-gray-50">
-                  {/* Rank Image */}
                   <td className="p-3 text-center">
                     {item.rank <= 3 ? (
                       <Image
@@ -60,7 +57,6 @@ export default async function BookmakersTable({
                     )}
                   </td>
 
-                  {/* Bookmaker Logo */}
                   <td className="p-3">
                     <div className="flex space-x-3 group items-center">
                       <div className="relative flex-shrink-0">
@@ -72,7 +68,7 @@ export default async function BookmakersTable({
                           className="w-16 h-10 object-cover rounded"
                         />
                       </div>
-                      <div className="flex-1">
+                      <div className="flex-1 hidden lg:block">
                         <h3 className="text-sm line-clamp-2 font-bold text-[#0066cc]">
                           {item.name}
                         </h3>
@@ -87,8 +83,7 @@ export default async function BookmakersTable({
                     </div>
                   </td>
 
-                  {/* Bonus */}
-                  <td className="p-3 text-sm">
+                  <td className="p-3 text-sm hidden lg:block">
                     <div className="font-semibold">
                       <p
                         className="text-[#323232]"
@@ -97,10 +92,8 @@ export default async function BookmakersTable({
                     </div>
                   </td>
 
-                  {/* Rating */}
                   <td className="p-3">
                     <div className="flex w-full flex-col gap-1">
-                      {/* Rating Number */}
                       <div className="font-semibold">
                         <span className="text-xl md:text-[22px] font-bold">
                           {item.rating}
@@ -108,15 +101,13 @@ export default async function BookmakersTable({
                         <span className="text-[#7f7f7f] md:text-base">/10</span>
                       </div>
 
-                      {/* Rating Bars */}
                       <div className="flex gap-1 relative">
                         {Array(5)
                           .fill(0)
                           .map((_, i) => {
                             const barValue = (i + 1) * 2;
-                            let color = 'rgb(254, 135, 82)'; 
-                            if (item.rating >= 8)
-                              color = 'rgb(113, 166, 93)'; 
+                            let color = 'rgb(254, 135, 82)';
+                            if (item.rating >= 8) color = 'rgb(113, 166, 93)';
                             else if (item.rating >= 6)
                               color = 'rgb(255, 214, 39)';
                             return (
@@ -142,17 +133,15 @@ export default async function BookmakersTable({
                           })}
                       </div>
 
-                      {/* Votes */}
                       <div>
                         <span className="mr-1 text-sm font-bold">
                           {item.votes.toLocaleString()}
                         </span>
-                        {t("votes")}
+                        {t('votes')}
                       </div>
                     </div>
                   </td>
 
-                  {/* Links */}
                   <td className="p-3 text-center">
                     <Link
                       href={item.play_now}

@@ -14,13 +14,13 @@ export default async function BookmakerDetailsPage({data}: Props) {
   const bookmaker = data.bookmaker;
   const t = await getTranslations();
 
-console.log("Bookmaker Details Data:", data)
+  console.log('Bookmaker Details Data:', data);
 
   return (
     <>
       {/* 🔹 Banner Section */}
       <div
-        className="w-full bg-cover bg-center bg-no-repeat relative"
+        className="w-full bg-cover bg-center bg-no-repeat relative hidden lg:block"
         style={{backgroundImage: "url('/images/banner-top-bookmaker.jpeg')"}}
       >
         <div className="max-w-8xl mx-auto lg:px-8 py-10">
@@ -43,7 +43,10 @@ console.log("Bookmaker Details Data:", data)
             >
               <path d="M9 6l6 6l-6 6"></path>
             </svg>
-            <Link href={data.breadcrumb.slug} className="text-blue-600 hover:underline">
+            <Link
+              href={data.breadcrumb.slug}
+              className="text-blue-600 hover:underline"
+            >
               {data.breadcrumb.name}
             </Link>
             <svg
@@ -112,8 +115,94 @@ console.log("Bookmaker Details Data:", data)
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <div className="lg:col-span-3 space-y-8">
-            <div className="bg-white px-4 md:px-8 py-6 max-w-[1280px] mx-auto">
-              <div className="flex flex-col sm:flex-row gap-4 sm:gap-12 px-4 sm:px-0">
+            <div className="bg-white px-4 md:px-8 py-4 max-w-[1280px] mx-auto">
+              <div className="block lg:hidden">
+                {/* Breadcrumb */}
+                <nav className="flex text-sm text-gray-500 mb-2">
+                  <Link href="/" className="text-blue-600 hover:underline">
+                    {t('home')}
+                  </Link>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="tabler-icon tabler-icon-chevron-right mx-1 relative bottom-[-3px]"
+                  >
+                    <path d="M9 6l6 6l-6 6"></path>
+                  </svg>
+                  <Link
+                    href={data.breadcrumb.slug}
+                    className="text-blue-600 hover:underline"
+                  >
+                    {data.breadcrumb.name}
+                  </Link>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="tabler-icon tabler-icon-chevron-right mx-1 relative bottom-[-3px]"
+                  >
+                    <path d="M9 6l6 6l-6 6"></path>
+                  </svg>
+                  <span>{data.title}</span>
+                </nav>
+                <div className="flex flex-col lg:flex-row items-center lg:items-stretch justify-between gap-3 pt-2">
+                  <div className=" flex flex-col items-center justify-center">
+                    <img
+                      src={getFullImageUrl(data.post_image)}
+                      alt={data.title}
+                      className="object-contain rounded w-full"
+                    />
+                  </div>
+
+                  <div className="">
+                    <div className="heading">
+                      <h3 className="text-lg font-semibold">{data.title}</h3>
+                      <p>{bookmaker.short_description}</p>
+                    </div>
+                    <button
+                      className="mt-4 mb-4 rounded-3xl bg-[#1877f2] px-8 py-2"
+                      style={{
+                        backgroundImage:
+                          'linear-gradient(81deg, rgb(23, 167, 241) 0%, rgb(0, 101, 203) 100%)'
+                      }}
+                    >
+                      <Link
+                        href={bookmaker.play_now}
+                        target="_blank"
+                        className="flex items-center gap-1 no-underline"
+                      >
+                        <span className="text-sm font-bold text-white">
+                          {t('get_it_now')} &nbsp;
+                        </span>
+                        <img
+                          alt="icon"
+                          loading="lazy"
+                          width="20"
+                          height="12"
+                          decoding="async"
+                          data-nimg="1"
+                          src="https://static.wintips.com/images/wintips-page/poi.png"
+                        />
+                      </Link>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 sm:gap-12">
                 {/* Left Section: Profiles */}
                 <div className="flex-1 flex flex-col">
                   <div className="">
@@ -130,7 +219,7 @@ console.log("Bookmaker Details Data:", data)
                     </h2>
                   </div>
 
-                  <div className="flex flex-col md:flex-row gap-4 justify-between pl-4">
+                  <div className="flex  gap-4 justify-between pl-4">
                     {/* Left Column */}
                     <div className="flex flex-col gap-4 md:w-1/2">
                       <div className="flex flex-col gap-2">
@@ -192,7 +281,7 @@ console.log("Bookmaker Details Data:", data)
 
                 {/* Right Section: Why Choose */}
                 <div
-                  className="flex-1 flex flex-col bg-cover bg-no-repeat rounded-md sm:mx-0 mx-[-10px] p-6"
+                  className="flex-1 flex flex-col bg-cover bg-no-repeat rounded-md sm:mx-0 mx-[-10px] p-2"
                   style={{
                     backgroundImage: `url('https://static.wintips.com/images/wintips-page/why-choose.png')`
                   }}
@@ -200,13 +289,13 @@ console.log("Bookmaker Details Data:", data)
                   <h2 className="text-xl font-bold mb-4 sm:ml-2 ml-0 sm:pl-0 pl-2">
                     {t('why_choose')}
                   </h2>
-                  <div className="flex flex-col gap-3 pl-6 sm:pl-6 md:pl-4">
+                  <div className="flex flex-col gap-3 pl-2">
                     <p
                       className="content page text-[#323232]"
                       dangerouslySetInnerHTML={{__html: bookmaker.why_choice}}
                     />
                   </div>
-                  <div className="mt-8 sm:mt-12 md:mt-16 pl-7">
+                  <div className="mt-4 mb-4 pl-2">
                     <button className="rounded-full bg-blue-600 px-8 py-2.5 focus:outline-none opacity-[.3] cursor-not-allowed">
                       <Link
                         href="#"
@@ -232,7 +321,7 @@ console.log("Bookmaker Details Data:", data)
                 </div>
               </div>
 
-              <div className="">
+              <div className="pt-2">
                 <h2 className="flex items-center text-xl font-bold mb-4">
                   <img
                     alt="chevron alt"
@@ -255,7 +344,7 @@ console.log("Bookmaker Details Data:", data)
           </div>
 
           {/* Sidebar (Right Column) */}
-          <div className="lg:col-span-1">
+          <div className="hidden col-span-1 lg:block lg:col-span-1">
             <Sidebar />
           </div>
         </div>

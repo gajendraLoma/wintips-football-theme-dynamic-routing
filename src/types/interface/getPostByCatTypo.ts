@@ -18,7 +18,7 @@ export interface PostByCatResponse {
 }
 
 
-export interface Category {
+export interface PCategory {
   name: string;
   slug: string;
 }
@@ -42,7 +42,7 @@ export interface PostDetails {
   published_date: string;
   seo_title: string;
   seo_description: string;
-  categories: Category[];
+  categories: PCategory[];
   breadcrumb: Breadcrumb;
   related_posts: RelatedPost[];
 }

@@ -52,7 +52,7 @@ export default function BettingThreeInOneSection({
 
   return (
     <div className="py-8">
-      <div className="grid gap-10 md:grid-cols-3">
+      <div className="grid gap-2 sm:gap-10 md:grid-cols-3">
         {sections.map((section, index) => {
           const featuredImage = getFullImageUrl(
             section.items[0].featured_image
