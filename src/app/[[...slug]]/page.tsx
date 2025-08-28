@@ -195,8 +195,6 @@ export default async function DynamicPage({
 
   const {type, data} = resolved as {ok: true; type: string; data: any};
   const finalType = (data.type || type || '').toLowerCase();
-console.log("Data 1111",data)
-
   switch (finalType) {
     case 'home':
       return <Home data={data} />;
