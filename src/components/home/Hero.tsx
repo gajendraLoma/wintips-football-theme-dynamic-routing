@@ -3,35 +3,23 @@
 import {useTranslations} from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
-
+import {HomepageData} from '@/types/interface/getHomepageTypo';
 interface HeroProps {
-  data?: {
-    title?: string;
-    content?: string;
-    image?: string;
-    banner_top?: {
-      title: string;
-      description: string;
-      image: string;
-      link: string;
-    };
-  };
+  data?: HomepageData;
 }
-
 export default function Hero({data}: HeroProps) {
   const t = useTranslations();
-
-  if (
-    !data?.banner_top ||
-    !data.banner_top.title ||
-    !data.banner_top.description ||
-    !data.banner_top.image ||
-    !data.banner_top.link
+const banner_top = data?.banner_top;
+ if (
+    !banner_top ||
+    !banner_top.title ||
+    !banner_top.description ||
+    !banner_top.image ||
+    !banner_top.link
   ) {
     return null;
   }
-
-  const {title, description, image, link} = data.banner_top;
+const {title, description, image, link} = banner_top;
 
   return (
     <section className="relative overflow-hidden">

@@ -27,16 +27,16 @@ export default async function Footer({locale}: {locale: string}) {
           {data.title ? getLabel(data.title, locale) : ''}
         </h3>
         <ul className="space-y-2 text-sm text-gray-400">
-          {data.result?.map((item: any, index: number) =>  (
-              <li key={index}>
-                <Link
-                  href={item.url}
-                  className="hover:text-white transition-colors"
-                >
-                  {getLabel(item.lang, locale)}
-                </Link>
-              </li>
-            ))}
+          {data.result?.map((item: any, index: number) => (
+            <li key={index}>
+              <Link
+                href={item.url}
+                className="hover:text-white transition-colors"
+              >
+                {getLabel(item.lang, locale)}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     );

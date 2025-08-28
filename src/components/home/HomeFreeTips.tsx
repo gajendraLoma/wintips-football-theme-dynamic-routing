@@ -1,18 +1,13 @@
-// components/HomeFreeTips.tsx
 'use client';
 
 import Image from 'next/image';
 import {useTranslations} from 'next-intl';
 import {TipsResponse} from '@/types/interface/getTipsTypo';
-
 interface FreeTipsProps {
   tips: TipsResponse | null;
 }
-
 export default function HomeFreeTips({tips}: FreeTipsProps) {
   const t = useTranslations();
-  // console.log('Home Free Tips:', tips);
-
   if (!tips || !tips.items || tips.items.length === 0) {
     return (
       <section className="bg-white rounded-lg shadow-sm overflow-hidden">
@@ -92,7 +87,6 @@ export default function HomeFreeTips({tips}: FreeTipsProps) {
     return `${tipValue} ${fixedOdd >= 0 ? `+${fixedOdd}` : fixedOdd}`;
   };
 
-  // Limit to first 10 items (already handled by fetchTipsData limit)
   const displayedItems = tips.items;
 
   return (
@@ -132,28 +126,28 @@ export default function HomeFreeTips({tips}: FreeTipsProps) {
                 </td>
                 <td className="px-4 py-4">
                   <div className="flex items-center space-x-2">
-                   {tip.homeLogo && (
-                    <Image
-                      src={tip.homeLogo}
-                      alt={`${tip.home} logo`}
-                      width={24}
-                      height={24}
-                      className="rounded-full"
-                    />
-                   )}
+                    {tip.homeLogo && (
+                      <Image
+                        src={tip.homeLogo}
+                        alt={`${tip.home} logo`}
+                        width={24}
+                        height={24}
+                        className="rounded-full"
+                      />
+                    )}
 
                     <span className="text-sm font-medium">{tip.home}</span>
                   </div>
                   <div className="flex items-center space-x-2 mt-1">
-                  {tip.awayLogo && (
-                    <Image
-                      src={tip.awayLogo}
-                      alt={`${tip.away} logo`}
-                      width={24}
-                      height={24}
-                      className="rounded-full"
-                    />
-                  )}
+                    {tip.awayLogo && (
+                      <Image
+                        src={tip.awayLogo}
+                        alt={`${tip.away} logo`}
+                        width={24}
+                        height={24}
+                        className="rounded-full"
+                      />
+                    )}
                     <span className="text-sm font-medium">{tip.away}</span>
                   </div>
                 </td>
@@ -193,15 +187,6 @@ export default function HomeFreeTips({tips}: FreeTipsProps) {
           </tbody>
         </table>
       </div>
-
-      {/* <div className="px-6 py-4 bg-gray-50 text-center">
-        <Link
-          href={'/soccer-tips'}
-          className="text-[#227ad3] hover:text-blue-800 font-medium"
-        >
-          {t('viewMore')}
-        </Link>
-      </div> */}
     </section>
   );
 }

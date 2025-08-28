@@ -7,7 +7,6 @@ import './globals.css';
 import Navigation from '@/components/common/Navigation';
 import Footer from '@/components/common/Footer';
 const inter = Inter({subsets: ['latin']});
-
 type Props = {
   children: ReactNode;
 };

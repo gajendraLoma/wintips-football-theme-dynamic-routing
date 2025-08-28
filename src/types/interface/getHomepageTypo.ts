@@ -5,12 +5,25 @@ export interface CategoryItem {
   published_date: string;
 }
 
+export interface Category {
+  name: string;
+  post: CategoryItem[];
+}
+
+export interface BettingThreeInOneSectionProps {
+  data?: {
+    category_left: Category;
+    category_middle: Category;
+    category_right: Category;
+  };
+}
+
 export interface HomepageData {
   title: string;
   seo_title: string;
-  description: string;
-  image: string;
+  seo_description: string;
   post_date: string;
+  image: string;
   content: string;
   type: string;
   banner_top: {
@@ -25,7 +38,7 @@ export interface HomepageData {
     right_url: string;
     right_image: string;
   };
-  category_left: { name: string; post: CategoryItem[] };
-  category_middle: { name: string; post: CategoryItem[] }; 
-  category_right: { name: string; post: CategoryItem[] };
+  category_left: Category;
+  category_middle: Category;
+  category_right: Category;
 }
