@@ -61,19 +61,17 @@ export default async function Sidebar() {
                     className="flex items-center justify-between bg-[#eaf4ff] rounded-lg pr-1"
                   >
                     <div className="flex items-center space-x-3 rounded-[5px]">
-                      <div className="inline-block h-[80px] w-[80px] shrink-0 bg-blue-500 rounded flex items-center justify-center text-white text-xs font-bold">
+                      <div className="inline-block h-[75px] w-[75px] shrink-0 bg-blue-500 rounded flex items-center justify-center text-white text-xs font-bold">
                         <Image
                           src={getFullImageUrl(bookmaker.image)}
                           alt={bookmaker.name}
-                          width={80}
-                          height={80}
+                          width={75}
+                          height={75}
                           className="rounded"
                         />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="text-sm text-gray-600">
-                          {t('bonusUpTo')}
-                        </div>
+                       
                         <div
                           className="line-clamp-2 overflow-hidden animate-zoom-pulse contentDiv"
                           dangerouslySetInnerHTML={{__html: bookmaker.bonus}}
@@ -87,7 +85,7 @@ export default async function Sidebar() {
                       rel="noopener noreferrer"
                     >
                       <span className="flex items-center">
-                        <span className="text-blue-500">{t('playNow')}</span>
+                        <span className="text-blue-500 text-[10px]">{t('playNow')}</span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="13"

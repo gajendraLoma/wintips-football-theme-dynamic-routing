@@ -531,28 +531,28 @@
 }
 
 .bookMakersSidebar .contentDiv p {
-   font-weight: 400;
+   font-weight: 700;
 }
 
 .bookMakersSidebar .contentDiv strong {
-   font-weight: 400;
-   font-size: 10px;
+   font-weight: 500;
+   font-size: 12px;
 }
 
 .bookMakersSidebar .contentDiv .text-base {
     line-height: normal;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .bookMakersSidebar .contentDiv .font-bold {
-    font-weight: 400;
-    font-size: 10px;
+    font-weight: 700;
+    font-size: 12px;
     line-height: normal;
 }
 
 .bookMakersSidebar .contentDiv span {
     font-weight: 400;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 

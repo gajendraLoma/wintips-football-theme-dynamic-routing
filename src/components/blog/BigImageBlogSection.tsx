@@ -65,12 +65,7 @@ export default async function BigImageBlogSection({
           >
             <h3>{sidebarMatches.title || 'No Data'}</h3>
           </Link>
-          <Link
-            href={`/${sidebarMatches.slug || ''}`}
-            className="block my-2 max-md:line-clamp-4 text-base line-clamp-5"
-          >
-            {t('publish_date')} {sidebarMatches.vn_date}
-          </Link>
+       
         </div>
       </div>
     </div>

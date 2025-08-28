@@ -83,7 +83,7 @@ export default async function TipsComp({ initialTips }: FreeTipsProps) {
                     <span className="text-xs sm:text-sm font-medium">{tip.away}</span>
                   </div>
                 </td>
-                <td className="px-4 py-4 hidden lg:block">
+                <td className="px-4 py-4 hidden lg:table-cell">
                   <span className="text-xs sm:text-sm font-medium text-[#227ad3]">
                     {getTipDisplay(tip.tipType, tip.tipValue, tip.fixedOdd)}
                   </span>
@@ -94,26 +94,65 @@ export default async function TipsComp({ initialTips }: FreeTipsProps) {
                   </span>
                 </td>
                 <td className="px-4 py-4">
-                  <span className="text-xs sm:text-sm font-semibold text-[#227ad3] max-md:text-[12px]">
-                    {tip.source.title}
-                  </span>
-                  <div className="flex items-center text-[#227ad3] text-sm ml-1">
-                    {[...Array(tip.rate)].map((_, starIdx) => (
-                      <span key={starIdx}>★</span>
-                    ))}
-                  </div>
-                </td>
+                    <span className="text-xs sm:text-sm font-semibold text-[#227ad3] max-md:text-[12px]">
+                      {tip.source.title}
+                    </span>
+                    <div className="flex items-center text-[#227ad3] text-sm ml-1">
+
+                      {[...Array(tip.rate)].map((_, starIdx) => (
+                        <svg
+                          key={`filled-${starIdx}`}
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="12"
+                          height="12"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          stroke="none"
+                          className="fill-[#227ad3] text-[#227ad3] mr-0.5"
+                        >
+                          <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"></path>
+                        </svg>
+                      ))}
+
+                    
+                      {[...Array(5 - tip.rate)].map((_, starIdx) => (
+                        <svg
+                          key={`empty-${starIdx}`}
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="12"
+                          height="12"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          stroke="none"
+                          className="fill-[#ddd] text-[#ddd] mr-0.5"
+                        >
+                          <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"></path>
+                        </svg>
+                      ))}
+                    </div>
+                  </td>
+
+             
                 <td className="px-4 py-4">
-                  <div className="relative mx-auto flex h-[30px] w-[30px] max-md:w-[25px] max-md:h-[25px] items-center justify-center rounded-full border border-solid border-[#ddd]">
-                    <Image
-                      alt="loading"
-                      loading="lazy"
-                      width={19}
-                      height={18}
-                      src="/images/loading-icon-new.gif"
-                    />
-                  </div>
+                  {tip.result ? (
+                    <div className="flex flex-col items-center text-xs font-medium text-gray-700 leading-tight gap-2">
+                      {tip.result.split("-").map((score, i) => (
+                        <span key={i}>{score.trim()}</span>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="relative mx-auto flex h-[30px] w-[30px] max-md:w-[25px] max-md:h-[25px] items-center justify-center rounded-full border border-solid border-[#ddd]">
+                      <Image
+                        alt="loading"
+                        loading="lazy"
+                        width={19}
+                        height={18}
+                        src="/images/loading-icon-new.gif"
+                      />
+                    </div>
+                  )}
                 </td>
+
               </tr>
             ))}
           </tbody>

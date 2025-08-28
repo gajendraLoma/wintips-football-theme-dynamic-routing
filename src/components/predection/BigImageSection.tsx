@@ -17,7 +17,7 @@ export default function BigImageSection({
       <div className="space-y-6">
         <Link
           href={`/${mainMatch.slug || ''}`}
-          className="block bg-white rounded-md overflow-hidden shadow border group cursor-pointer"
+          className="block bg-white rounded overflow-hidden border group cursor-pointer"
         >
           <div className="relative overflow-hidden">
             <Image
@@ -54,7 +54,7 @@ export default function BigImageSection({
           <Link
             key={i}
             href={`/${match.slug || ''}`}
-            className="bg-white rounded-md shadow p-2 flex gap-3 items-center group cursor-pointer"
+            className="bg-white rounded border p-2 flex gap-3 items-center group cursor-pointer"
           >
             <div className="relative w-[117px] h-[57px] shrink-0 overflow-hidden rounded-md">
               <Image

@@ -293,10 +293,13 @@ export default async function BookmakerDetailsPage({data}: Props) {
                     />
                   </div>
                   <div className="mt-4 mb-4 pl-2">
-                    <button className="rounded-full bg-blue-600 px-8 py-2.5 focus:outline-none opacity-[.3] cursor-not-allowed">
+                    <button className="rounded-full bg-[#1877f2] px-8 py-2.5 focus:outline-none"  style={{
+                        backgroundImage:
+                          'linear-gradient(81deg, rgb(23, 167, 241) 0%, rgb(0, 101, 203) 100%)'
+                      }}>
                       <Link
-                        href="#"
-                        className="flex items-center gap-1 no-underline text-white text-sm"
+                      href={bookmaker.play_now}
+                      className="flex items-center gap-1 no-underline text-white text-sm" 
                       >
                         <span>{t('register_now')}</span>
                         <svg

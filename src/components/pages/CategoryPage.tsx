@@ -17,12 +17,7 @@ export default async function CategoryPage({
 }: CategoryPageProps) {
   const t = await getTranslations();
   const blogData: PostByCatResponse = data;
-  if (
-    !blogData ||
-    !blogData.posts ||
-    blogData.total_posts === 0 ||
-    'error' in blogData
-  ) {
+  if ( !blogData || !blogData.posts || blogData.total_posts === 0 || 'error' in blogData ) {
     return (
       <main className="min-h-screen bg-gray-50">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">

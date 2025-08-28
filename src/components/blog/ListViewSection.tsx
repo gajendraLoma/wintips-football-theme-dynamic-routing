@@ -2,14 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {Post} from '../../types/interface/getPostByCatTypo';
 import {getFullImageUrl} from '@/lib/utils';
-import {getTranslations} from 'next-intl/server';
 
 export default async function ListViewSection({
   listMatches
 }: {
   listMatches: Post[];
 }) {
-  const t = await getTranslations();
   return (
     <div>
       <div className="flex flex-col lg:flex-row gap-6">
@@ -44,9 +42,7 @@ export default async function ListViewSection({
                   >
                     <h3>{match.title}</h3>
                   </Link>
-                  <p className="text-xs sm:text-sm font-medium text-gray-800 mt-1 line-clamp-2">
-                    {t('publish_date')} {match.vn_date}
-                  </p>
+                
                 </div>
               </div>
             ))}
