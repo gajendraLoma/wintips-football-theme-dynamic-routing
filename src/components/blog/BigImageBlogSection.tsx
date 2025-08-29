@@ -2,19 +2,23 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {Post} from '../../types/interface/getPostByCatTypo';
 import {getFullImageUrl} from '@/lib/utils';
+
+
 export default function BigImageBlogSection({mainMatch, sidebarMatches}: { mainMatch: Post; sidebarMatches: Post;}) {
+  if (!mainMatch && !sidebarMatches) return null;
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6">
       <div className="space-y-6">
         <div className="block bg-white rounded overflow-hidden border group cursor-pointer">
           <div className="relative overflow-hidden">
             <Link
-              href={`/${mainMatch.slug || ''}`}
+              href={`/${mainMatch?.slug}`}
               className="block w-full h-full"
             >
               <Image
-                src={getFullImageUrl(mainMatch.featured_image)}
-                alt={mainMatch.title || 'Default Image'}
+                src={getFullImageUrl(mainMatch?.featured_image)}
+                alt={mainMatch?.title || "featured image"}
                 width={800}
                 height={450}
                 className="w-full h-full object-cover"
@@ -25,24 +29,25 @@ export default function BigImageBlogSection({mainMatch, sidebarMatches}: { mainM
           </div>
 
           <Link
-            href={`/${mainMatch.slug || ''}`}
+            href={`/${mainMatch?.slug}`}
             className="block px-4 py-3 text-lg font-semibold text-gray-900 transition-colors duration-300 group-hover:text-[#60a5fa]"
           >
-            <h3>{mainMatch.title || 'No Data'}</h3>
+            <h3>{mainMatch?.title}</h3>
           </Link>
         </div>
       </div>
+      {sidebarMatches && (
 
       <div className="flex flex-col gap-3">
         <div className="block bg-white rounded-md overflow-hidden group cursor-pointer pb-3">
           <div className="relative overflow-hidden">
             <Link
-              href={`/${sidebarMatches.slug || ''}`}
+              href={`/${sidebarMatches?.slug}`}
               className="block w-full h-64"
             >
               <Image
-                src={getFullImageUrl(sidebarMatches.featured_image)}
-                alt={sidebarMatches.title || 'Default Image'}
+                src={getFullImageUrl(sidebarMatches?.featured_image)}
+                alt={sidebarMatches?.title || "featured image"}
                 width={800}
                 height={450}
                 className="w-full h-full object-cover"
@@ -52,14 +57,16 @@ export default function BigImageBlogSection({mainMatch, sidebarMatches}: { mainM
           </div>
 
           <Link
-            href={`/${sidebarMatches.slug || ''}`}
+            href={`/${sidebarMatches?.slug}`}
             className="block my-2 line-clamp-2 text-lg font-bold text-gray-900 transition-colors duration-300 group-hover:text-[#60a5fa]"
           >
-            <h3>{sidebarMatches.title || 'No Data'}</h3>
+            <h3>{sidebarMatches?.title}</h3>
           </Link>
        
         </div>
       </div>
+      )}
+
     </div>
   );
 }

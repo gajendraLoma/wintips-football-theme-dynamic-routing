@@ -10,7 +10,7 @@ interface CategoryPageProps {
 
 export default async function CategoryPage({data, slug}: CategoryPageProps) {
   const t = await getTranslations();
-  const perPage = 4; 
+  const perPage = 16; 
   if (!data || !data.posts || data.total_posts === 0 || 'error' in data) {
     return (
       <main className="min-h-screen bg-gray-50">

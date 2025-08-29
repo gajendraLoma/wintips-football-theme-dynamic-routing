@@ -103,7 +103,7 @@ export default function LeagueFilter({
           <div className="border-b my-4 hidden sm:block" />
           <PredectionList posts={rest} />
 
-          {totalPage > 1 && (
+          {/* {totalPage > 1 && ( */}
             <div className="mt-6">
               <Pagination
                 totalPage={totalPage}
@@ -111,7 +111,7 @@ export default function LeagueFilter({
                 onPageChange={handlePageChange}
               />
             </div>
-          )}
+          {/* )} */}
     </div>
   );
 }
