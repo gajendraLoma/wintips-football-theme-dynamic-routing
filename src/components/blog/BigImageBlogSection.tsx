@@ -2,15 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {Post} from '../../types/interface/getPostByCatTypo';
 import {getFullImageUrl} from '@/lib/utils';
-import {getTranslations} from 'next-intl/server';
-export default async function BigImageBlogSection({
-  mainMatch,
-  sidebarMatches
-}: {
-  mainMatch: Post;
-  sidebarMatches: Post;
-}) {
-  const t = await getTranslations();
+export default function BigImageBlogSection({mainMatch, sidebarMatches}: { mainMatch: Post; sidebarMatches: Post;}) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6">
       <div className="space-y-6">

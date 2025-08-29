@@ -207,7 +207,7 @@ export default function HomeFreeTips({tips}: FreeTipsProps) {
                 <td className="px-4 py-4">
                   {tip.result ? (
                     <div className="flex flex-col items-center text-xs font-medium text-gray-700 leading-tight gap-2">
-                      {tip.result.split('-').map((score, i) => (
+                      {tip.result.split('-').map((score:any, i:number) => (
                         <span key={i}>{score.trim()}</span>
                       ))}
                     </div>

@@ -3,11 +3,7 @@ import Link from 'next/link';
 import {Post} from '../../types/interface/getPostByCatTypo';
 import {getFullImageUrl} from '@/lib/utils';
 
-export default async function ListViewSection({
-  listMatches
-}: {
-  listMatches: Post[];
-}) {
+export default function ListViewSection({listMatches}: {listMatches: Post[]}) {
   return (
     <div>
       <div className="flex flex-col lg:flex-row gap-6">

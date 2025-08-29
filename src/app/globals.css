@@ -707,3 +707,40 @@ h2{
     cursor: pointer;
     color: #000000;
 }
+
+
+/* pagination css */
+
+.paginations, .paginations li a {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.paginations {
+    gap: 10px;
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.paginations li a {
+    cursor: pointer;
+    background-color: rgb(238 238 238);
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 8px 12px;
+    font-size: 18px;
+}
+.paginations, .paginations li a {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.paginations li.active a, .paginations li:hover a {
+    color: #fff;
+    background-color: #0065cb;
+    font-weight: 600;
+}
