@@ -70,7 +70,7 @@ async function resolveDataBySlug(
 
     if (type === 'category' || type === 'league') {
       const listData = await fetchListData(type, slug, options);
-      return listData && !('error' in listData)
+      return listData && !('error' in listData) && Array.isArray(listData.posts) && listData.posts.length > 0
         ? {ok: true, type, data: listData}
         : {ok: false, reason: `${type} fetch failed`};
     }
@@ -100,7 +100,8 @@ async function resolveDataBySlug(
     if (
       listProbe &&
       !('error' in listProbe) &&
-      Array.isArray(listProbe.posts)
+      Array.isArray(listProbe.posts) &&
+      listProbe.posts.length > 0  // NEW: Ensure non-empty to validate existence
     ) {
       return {ok: true, type, data: listProbe};
     }
