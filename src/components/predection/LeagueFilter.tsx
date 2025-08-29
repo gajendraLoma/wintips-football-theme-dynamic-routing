@@ -1,76 +1,93 @@
-'use client';
+"use client";
 
-import {useState, useEffect} from 'react';
-import {fetchPostByCat} from '@/apis';
-import {PostByCatResponse} from '@/types/interface/getPostByCatTypo';
-import BigImageSection from '@/components/predection/BigImageSection';
-import PredectionList from '@/components/predection/PredectionList';
-import {TaxonomyItem} from '@/apis/services/getDataByLeague';
-import {useTranslations} from 'next-intl';
+import { useEffect, useMemo, useState } from "react";
+import { fetchPostByCat } from "@/apis";
+import { PostByCatResponse } from "@/types/interface/getPostByCatTypo";
+import BigImageSection from "@/components/predection/BigImageSection";
+import PredectionList from "@/components/predection/PredectionList";
+import { TaxonomyItem } from "@/apis/services/getDataByLeague";
+import { useTranslations } from "next-intl";
+import Pagination from "@/components/common/Pagination";
 interface LeagueFilterProps {
   leagues: TaxonomyItem[];
   initialMatches: PostByCatResponse;
 }
-
+const PER_PAGE = 16;
 export default function LeagueFilter({
   leagues,
-  initialMatches
+  initialMatches,
 }: LeagueFilterProps) {
-  const [activeLeague, setActiveLeague] = useState<string>('');
-  const [matchData, setMatchData] = useState<PostByCatResponse>(initialMatches);
   const t = useTranslations();
-  useEffect(() => {
-    if (activeLeague === '') {
-      setMatchData(initialMatches);
-      return;
-    }
 
-    const getMatches = async () => {
+  const [activeLeague, setActiveLeague] = useState<string>("");
+  const [matchData, setMatchData] = useState<PostByCatResponse>(initialMatches);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+
+  const totalPage = useMemo(
+    () => Math.ceil((matchData?.total_posts || 0) / PER_PAGE),
+    [matchData?.total_posts]
+  );
+
+  useEffect(() => {
+    const load = async () => {
       try {
-        const matches = await fetchPostByCat(
-          'league',
-          activeLeague,
-          'match_predict',
-          16,
-          1
+        const res = await fetchPostByCat(
+          "league",
+          activeLeague, // "" means all
+          "match_predict",
+          PER_PAGE,
+          currentPage
         );
-        setMatchData(matches);
+        setMatchData(res);
       } catch (err) {
-        console.error('Error fetching matches:', err);
+        console.error("Error fetching matches:", err);
       } finally {
-        console.log('error');
+     console.log("finally")
       }
     };
-    getMatches();
-  }, [activeLeague, initialMatches]);
+    load();
+  }, [activeLeague, currentPage]);
 
-  if (!matchData || !matchData.posts) {
-    return <></>;
-  }
-  const mainMatch = matchData.posts[0];
-  const sidebarMatches = matchData.posts.slice(1, 6);
+  // Handlers
+  const handleLeagueClick = (slug: string) => {
+    setActiveLeague(slug);
+    setCurrentPage(1);
+  };
+
+  const handlePageChange = (event: { selected: number }) => {
+    setCurrentPage(event.selected + 1);
+  };
+
+  // Safe-guards
+  if (!matchData || !Array.isArray(matchData.posts)) return null;
+  const posts = matchData.posts;
+  const mainMatch = posts[0];
+  const sidebarMatches = posts?.slice(1, 6);
+  const rest = posts?.slice(6);
+
   return (
     <div>
+      {/* League Filter chips */}
       <div className="flex flex-wrap gap-2 mb-6">
         <span
-          onClick={() => setActiveLeague('')}
+          onClick={() => handleLeagueClick("")}
           className={`px-3 py-1 text-sm rounded-full border cursor-pointer ${
-            activeLeague === ''
-              ? 'bg-blue-600 text-white border-blue-600'
-              : 'text-gray-600 border-gray-300 hover:bg-blue-100'
+            activeLeague === ""
+              ? "bg-blue-600 text-white border-blue-600"
+              : "text-gray-600 border-gray-300 hover:bg-blue-100"
           }`}
         >
-          {t('all')}
+          {t("all")}
         </span>
 
         {leagues.map((league) => (
           <span
             key={league.slug}
-            onClick={() => setActiveLeague(league.slug)}
+            onClick={() => handleLeagueClick(league.slug)}
             className={`px-3 py-1 text-sm rounded-full border cursor-pointer ${
               activeLeague === league.slug
-                ? 'bg-blue-600 text-white border-blue-600'
-                : 'text-gray-600 border-gray-300 hover:bg-blue-100'
+                ? "bg-blue-600 text-white border-blue-600"
+                : "text-gray-600 border-gray-300 hover:bg-blue-100"
             }`}
           >
             {league.title}
@@ -78,9 +95,23 @@ export default function LeagueFilter({
         ))}
       </div>
 
-      <BigImageSection mainMatch={mainMatch} sidebarMatches={sidebarMatches} />
-      <div className="border-b my-4 hidden sm:block" />
-      <PredectionList posts={matchData.posts.slice(6)} />
+      {/* Data blocks */}
+      <BigImageSection
+            mainMatch={mainMatch}
+            sidebarMatches={sidebarMatches}
+          />
+          <div className="border-b my-4 hidden sm:block" />
+          <PredectionList posts={rest} />
+
+          {totalPage > 1 && (
+            <div className="mt-6">
+              <Pagination
+                totalPage={totalPage}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+              />
+            </div>
+          )}
     </div>
   );
 }
