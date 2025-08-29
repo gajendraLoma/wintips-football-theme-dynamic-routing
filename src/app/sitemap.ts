@@ -10,7 +10,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   sitemap.push({
     url: `${baseUrl}`,
     lastModified: new Date(),
-    changeFrequency: 'daily',
+    changeFrequency: 'yearly',
     priority: 1.0,
   });
 
@@ -20,7 +20,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/${item.slug}`,
       lastModified: item.date ? new Date(item.date) : new Date(),
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.5,
     });
   });
 
@@ -30,16 +30,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       url: `${baseUrl}/${item.slug}`, 
       lastModified: item.date ? new Date(item.date) : new Date(),
       changeFrequency: 'weekly',
-      priority: 0.7,
+      priority: 0.5,
     });
   });
 
 
   data.bookmakers.forEach((item) => {
     sitemap.push({
-      url: `${baseUrl}/bookmakers/${item.slug}`,
+      url: `${baseUrl}/${item.slug}`,
       lastModified: item.date ? new Date(item.date) : new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: 'monthly',
       priority: 0.8,
     });
   });
@@ -49,17 +49,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     sitemap.push({
       url: `${baseUrl}/${item.slug}`,
       lastModified: new Date(), 
-      changeFrequency: 'daily',
-      priority: 0.9,
+      changeFrequency: 'monthly',
+      priority: 0.8,
     });
   });
 
   data.predicts.forEach((item) => {
     sitemap.push({
-      url: `${baseUrl}/predict/${item.slug}`,
+      url: `${baseUrl}/${item.slug}`,
       lastModified: item.date ? new Date(item.date) : new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
+      changeFrequency: 'monthly',
+      priority: 0.8,
     });
   });
 

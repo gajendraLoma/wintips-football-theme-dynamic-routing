@@ -14,7 +14,7 @@ export default async function BigImageBlogSection({
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6">
       <div className="space-y-6">
-        <div className="block bg-white rounded-md overflow-hidden shadow group cursor-pointer">
+        <div className="block bg-white rounded overflow-hidden border group cursor-pointer">
           <div className="relative overflow-hidden">
             <Link
               href={`/${mainMatch.slug || ''}`}

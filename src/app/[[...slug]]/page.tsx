@@ -1,12 +1,7 @@
 // app/[[...slug]]/page.tsx
 import {notFound} from 'next/navigation';
 import {Metadata} from 'next';
-import {
-  fetchPageData,
-  fetchSlugType,
-  fetchPostBySlug,
-  fetchPostByCat
-} from '@/apis';
+import {fetchPageData,fetchSlugType,fetchPostBySlug,fetchPostByCat} from '@/apis';
 import Home from '@/components/pages/Home';
 import BlogPage from '@/components/pages/BlogPage';
 import BookmakersPage from '@/components/pages/BookmakersPage';

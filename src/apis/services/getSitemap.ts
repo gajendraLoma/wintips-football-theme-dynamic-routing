@@ -38,7 +38,7 @@ export async function fetchSitemapData(type: string): Promise<{
 
   const pages = await fetchAllPost('page');
   const posts = await fetchAllPost('post');
-  const predicts = await fetchAllPost('predict');
+  const predicts = await fetchAllPost('match_predict');
   const bookmakers = await fetchAllPost('bookmaker');
 
   return { leagues, pages, posts, predicts, bookmakers };
