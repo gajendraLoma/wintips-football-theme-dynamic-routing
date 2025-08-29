@@ -1,41 +1,27 @@
 import Link from 'next/link';
 import Sidebar from '@/components/layout/Sidebar';
-import BigImageBlogSection from '@/components/blog/BigImageBlogSection';
-import GridViewSection from '@/components/blog/GridViewSection';
-import ListViewSection from '@/components/blog/ListViewSection';
-import {Post, PostByCatResponse} from '../../types/interface/getPostByCatTypo';
+import {PostByCatResponse} from '../../types/interface/getPostByCatTypo';
 import {getTranslations} from 'next-intl/server';
-
+import ClientCategoryBlog from '../blog/ClientCategoryBlog';
 interface CategoryPageProps {
   data: PostByCatResponse;
   slug: string;
 }
 
-export default async function CategoryPage({
-  data,
-  slug,
-}: CategoryPageProps) {
+export default async function CategoryPage({data, slug}: CategoryPageProps) {
   const t = await getTranslations();
-  const blogData: PostByCatResponse = data;
-  if ( !blogData || !blogData.posts || blogData.total_posts === 0 || 'error' in blogData ) {
+  const perPage = 4; 
+  if (!data || !data.posts || data.total_posts === 0 || 'error' in data) {
     return (
       <main className="min-h-screen bg-gray-50">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            {/* Main Content */}
             <section className="lg:col-span-3 space-y-8">
               <div className="bg-white px-4 md:px-8 py-4 max-w-[1280px] mx-auto">
-                <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
-                  <p>
-                    No posts available for this
-             
-                  </p>
-                </div>
+                <p>No posts available for this category</p>
               </div>
             </section>
-
-            {/* Sidebar */}
-            <aside className="hidden col-span-1 lg:block lg:col-span-1">
+            <aside className="hidden lg:block lg:col-span-1">
               <Sidebar />
             </aside>
           </div>
@@ -43,34 +29,6 @@ export default async function CategoryPage({
       </main>
     );
   }
-
-  const mainMatch: Post =
-    blogData.posts.length > 0
-      ? {...blogData.posts[0]}
-      : {
-          title: 'No Data',
-          featured_image: '',
-          slug: '',
-          published_date: '',
-          vn_date: ''
-        };
-
-  const sidebarMatches: Post =
-    blogData.posts.length > 1
-      ? {...blogData.posts[1]}
-      : {
-          title: 'No Data',
-          featured_image: '',
-          slug: '',
-          published_date: '',
-          vn_date: ''
-        };
-
-  const gridMatches: Post[] =
-    blogData.posts.length > 2 ? blogData.posts.slice(2, 5) : [];
-
-  const listMatches: Post[] =
-    blogData.posts.length > 2 ? blogData.posts.slice(2) : [];
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -103,13 +61,7 @@ export default async function CategoryPage({
                 <span>{slug}</span>
               </nav>
               <h1 className="text-2xl font-bold mb-2">{slug}</h1>
-              <BigImageBlogSection
-                mainMatch={mainMatch}
-                sidebarMatches={sidebarMatches}
-              />
-              <div className="my-4" />
-              <GridViewSection gridMatches={gridMatches} />
-              <ListViewSection listMatches={listMatches} />
+                <ClientCategoryBlog initialData={data} perPage={perPage} slug={slug} />
             </div>
           </section>
 
