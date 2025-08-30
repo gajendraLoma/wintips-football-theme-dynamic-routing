@@ -1,10 +1,10 @@
 // app/sitemap.ts
-
 import { MetadataRoute } from 'next';
-import { fetchSitemapData } from '@/apis'; 
+import { fetchSitemapData } from '@/apis';
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.API_DOMAIN; 
-  const data = await fetchSitemapData("league");
+  const baseUrl = process.env.API_DOMAIN;
+  const data = await fetchSitemapData();
   const sitemap: MetadataRoute.Sitemap = [];
 
   sitemap.push({
@@ -19,17 +19,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     sitemap.push({
       url: `${baseUrl}/${item.slug}`,
       lastModified: item.date ? new Date(item.date) : new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: 'daily',
       priority: 0.5,
     });
   });
 
-  
+
   data.posts.forEach((item) => {
     sitemap.push({
-      url: `${baseUrl}/${item.slug}`, 
+      url: `${baseUrl}/${item.slug}`,
       lastModified: item.date ? new Date(item.date) : new Date(),
-      changeFrequency: 'weekly',
+      changeFrequency: 'daily',
       priority: 0.5,
     });
   });
@@ -39,8 +39,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     sitemap.push({
       url: `${baseUrl}/${item.slug}`,
       lastModified: item.date ? new Date(item.date) : new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
+      changeFrequency: 'daily',
+      priority: 0.5,
     });
   });
 
@@ -48,11 +48,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   data.leagues.forEach((item) => {
     sitemap.push({
       url: `${baseUrl}/${item.slug}`,
-      lastModified: new Date(), 
+      lastModified: item.date ? new Date(item.date) : new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     });
   });
+
+
+  data.categories.forEach((item) => {
+    sitemap.push({
+      url: `${baseUrl}/${item.slug}`,
+      lastModified: item.date ? new Date(item.date) : new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    });
+  });
+
 
   data.predicts.forEach((item) => {
     sitemap.push({
