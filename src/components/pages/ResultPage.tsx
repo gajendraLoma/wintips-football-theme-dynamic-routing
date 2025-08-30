@@ -92,7 +92,7 @@ export default async function ResultPage({data}: ResultPageProps) {
                                     alt="league logo"
                                     height={24}
                                     width={24}
-                                    objectFit="contain"
+                               
                                   />
                                 </div>
                               )}
@@ -143,7 +143,7 @@ export default async function ResultPage({data}: ResultPageProps) {
                                       alt="league logo"
                                       height={24}
                                       width={24}
-                                      objectFit="contain"
+                                
                                     />
                                   </div>
                                 )}

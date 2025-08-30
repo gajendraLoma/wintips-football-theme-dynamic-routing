@@ -14,9 +14,9 @@ import SoccerTipsPage from '@/components/pages/SoccerTipsPage';
 import MatchPredicttionPage from '@/components/pages/MatchPredicttionPage';
 import PostDetailsPage from '@/components/pages/PostDetailsPage';
 import BookmakerDetailsPage from '@/components/pages/BookmakerDetailsPage';
-export const dynamic = 'force-dynamic';
 import {getFullImageUrl} from '@/lib/utils';
-
+export const dynamic = 'auto';  
+export const revalidate = 60;
 // ---------------- Helper to fetch list data ----------------
 async function fetchListData(
   type: 'category' | 'league',
@@ -53,7 +53,7 @@ async function resolveDataBySlug(
 
   // 2. Slug Type API
   const slugType = await fetchSlugType(slug);
-
+console.log("slugType",slugType)
   if (!('error' in slugType) && slugType.type) {
     const type = slugType.type;
 
@@ -191,6 +191,7 @@ export default async function DynamicPage({
 
   const {type, data} = resolved as {ok: true; type: string; data: any};
   const finalType = (data.type || type || '').toLowerCase();
+
   switch (finalType) {
     case 'home':
       return <Home data={data} />;
