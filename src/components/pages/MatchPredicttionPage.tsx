@@ -7,8 +7,7 @@ import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 export default async function MatchPredicttionPage({ data }: { data: any }) {
   const leagueData: TaxonomyItem[] = await fetchTaxonomy("league");
-  const PER_PAGE = 16;
-  const matchData: PostByCatResponse = await fetchPostByCat("league", "", "match_predict", PER_PAGE, 1);
+  const matchData: PostByCatResponse = await fetchPostByCat("league", "", "match_predict", 16, 1);
   const t = await getTranslations()
   return (
     <div className="min-h-screen bg-gray-50">

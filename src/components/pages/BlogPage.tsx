@@ -8,8 +8,6 @@ import {getTranslations} from 'next-intl/server';
 import ClientBlog from '../blog/ClientBlog';
 
 export default async function BlogPage({data}: {data: any}) {
-
-  console.log("Blog data",data)
   const perPage = 16;
   const initialData: PostByCatResponse = await fetchPostByCat('category', '', 'post', perPage, 1);
   const t = await getTranslations();

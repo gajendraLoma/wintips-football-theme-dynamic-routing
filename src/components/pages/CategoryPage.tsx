@@ -29,7 +29,6 @@ export default async function CategoryPage({data, slug}: CategoryPageProps) {
       </main>
     );
   }
-
   return (
     <main className="min-h-screen bg-gray-50">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
@@ -58,9 +57,9 @@ export default async function CategoryPage({data, slug}: CategoryPageProps) {
                 >
                   <path d="M9 6l6 6l-6 6"></path>
                 </svg>
-                <span>{slug}</span>
+                <span>{data.title}</span>
               </nav>
-              <h1 className="text-2xl font-bold mb-2">{slug}</h1>
+              <h1 className="text-2xl font-bold mb-2">{data.title}</h1>
                 <ClientCategoryBlog initialData={data} perPage={perPage} slug={slug} />
             </div>
           </section>
