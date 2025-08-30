@@ -78,10 +78,12 @@ export default function BigImageSection({
                 />
               </div>
             </div>
-
+          <div className="">
             <h3 className="line-clamp-2 text-sm font-medium text-gray-900 leading-tight transition-colors duration-300 group-hover:text-[#60a5fa]">
               {match.title}
             </h3>
+            
+          </div>
           </Link>
         ))}
       </div>

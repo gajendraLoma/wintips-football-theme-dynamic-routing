@@ -5,6 +5,7 @@ export interface Post {
   slug: string;
   published_date: string;
   vn_date: string;
+  des:string
  
 }
 

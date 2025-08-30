@@ -1,16 +1,16 @@
-"use client";
+'use client';
 
-import React from "react";
-import { Post } from "../../types/interface/getPostByCatTypo";
-import Image from "next/image";
-import { getFullImageUrl } from "@/lib/utils";
-import Link from "next/link";
-export default function PredectionList({ posts }: { posts: Post[] }) {
+import React from 'react';
+import {Post} from '../../types/interface/getPostByCatTypo';
+import Image from 'next/image';
+import {getFullImageUrl} from '@/lib/utils';
+import Link from 'next/link';
+export default function PredectionList({posts}: {posts: Post[]}) {
   return (
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 cursor-pointer">
         {posts.map((post, i) => (
-          <Link 
+          <Link
             href={post.slug}
             key={i}
             className="bg-white rounded border p-3 flex gap-4 items-start"
@@ -24,14 +24,17 @@ export default function PredectionList({ posts }: { posts: Post[] }) {
                 className="w-full h-full object-cover rounded"
               />
             </div>
-            <h3 className="text-sm sm:text-base font-medium text-gray-800 hover:text-[#60a5fa] line-clamp-2">
-              {post.title}
-            </h3>
+            <div className="">
+              <h3 className="text-sm sm:text-base font-medium text-gray-800 hover:text-[#60a5fa] line-clamp-2">
+                {post.title}
+              </h3>
+              <p className="text-xs font-medium text-gray-800 transition-colors duration-300 group-hover:text-[#60a5fa] line-clamp-2">
+                {post.des}
+              </p>
+            </div>
           </Link>
         ))}
       </div>
-
-     
     </>
   );
 }

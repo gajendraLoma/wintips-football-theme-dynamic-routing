@@ -10,13 +10,10 @@ import {Swiper, SwiperSlide} from 'swiper/react';
 import {Navigation, Pagination} from 'swiper/modules';
 import {useTranslations} from 'next-intl';
 
-export default function RelatedPosts({
-  RelatedPostData
-}: {
-  RelatedPostData: RelatedPost[];
-}) {
+export default function RelatedPosts({RelatedPostData}: {RelatedPostData: RelatedPost[];}) {
   const t = useTranslations();
 
+  if (!RelatedPostData || RelatedPostData.length === 0) return null;
   return (
     <div className="mt-10 relatedPostSwiper">
       <h2 className="text-2xl font-semibold mb-4">{t('related_posts')}</h2>
@@ -46,7 +43,6 @@ export default function RelatedPosts({
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
-
                 <h3 className="text-sm sm:text-base font-medium text-gray-800 transition-colors duration-300 group-hover:text-[#60a5fa]">
                   {post.title},
                 </h3>

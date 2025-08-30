@@ -5,6 +5,7 @@ import Image from 'next/image';
 import {getTranslations} from 'next-intl/server';
 import RelatedPosts from '../blog/RelatedPosts';
 import {PostDetails} from '../../types/interface/getPostByCatTypo';
+import { ISOformatDate } from "../../lib/date-helper";
 interface Props {
   data: PostDetails;
   type?: string;
@@ -35,7 +36,6 @@ export default async function PostDetailsPage({data, type}: Props) {
                 >
                   {t('home')}
                 </Link>
-
                 {breadcrumbName && breadcrumbSlug && (
                   <>
                     <ChevronIcon />
@@ -47,13 +47,10 @@ export default async function PostDetailsPage({data, type}: Props) {
                     </Link>
                   </>
                 )}
-
                 <ChevronIcon />
                 <span className="text-gray-600">{data.title}</span>
               </nav>
-
               <h1 className="text-3xl font-bold mb-4">{data.title}</h1>
-
               {data.post_image && (
                 <div className="mb-6">
                   <Image
@@ -71,15 +68,13 @@ export default async function PostDetailsPage({data, type}: Props) {
                 className="content page text-[#323232]"
                 dangerouslySetInnerHTML={{__html: data.content}}
               />
-
-              <p className="text-gray-600 font-bold mt-4">
-                {t('publish_date')}: {data.published_date}
+              <p className="text-gray-600 font-bold">
+               
+                {t('publish_date')}:  {ISOformatDate(data?.published_date)}  
               </p>
-
               <RelatedPosts RelatedPostData={data.related_posts || []} />
             </div>
           </section>
-
           <aside className="hidden col-span-1 lg:block lg:col-span-1">
             <Sidebar />
           </aside>
