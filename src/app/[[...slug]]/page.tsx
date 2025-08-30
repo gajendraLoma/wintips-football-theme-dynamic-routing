@@ -53,7 +53,7 @@ async function resolveDataBySlug(
 
   // 2. Slug Type API
   const slugType = await fetchSlugType(slug);
-console.log("slugType",slugType)
+
   if (!('error' in slugType) && slugType.type) {
     const type = slugType.type;
 
