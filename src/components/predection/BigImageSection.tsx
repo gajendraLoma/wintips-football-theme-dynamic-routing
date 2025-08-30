@@ -54,7 +54,7 @@ export default function BigImageSection({
           <Link
             key={i}
             href={`/${match.slug || ''}`}
-            className="bg-white rounded border p-2 flex gap-3 items-center group cursor-pointer"
+            className="bg-white rounded border p-2 flex gap-3 items-center group"
           >
             <div className="relative w-[117px] h-[57px] shrink-0 overflow-hidden rounded-md">
               <Image
@@ -79,10 +79,12 @@ export default function BigImageSection({
               </div>
             </div>
           <div className="">
-            <h3 className="line-clamp-2 text-sm font-medium text-gray-900 leading-tight transition-colors duration-300 group-hover:text-[#60a5fa]">
-              {match.title}
+            <h3 className="line-clamp-1 text-sm font-medium text-gray-900 leading-tight transition-colors duration-300 hover:text-[#60a5fa]">
+               {match.title}
             </h3>
-            
+              <p className="text-xs font-medium text-gray-800 transition-colors duration-300 line-clamp-2">
+                {match.des}
+              </p>
           </div>
           </Link>
         ))}

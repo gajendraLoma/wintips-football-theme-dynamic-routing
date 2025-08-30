@@ -34,11 +34,11 @@ export default function ListViewSection({listMatches}: {listMatches: Post[]}) {
                 <div className="flex flex-col justify-center">
                   <Link
                     href={`${match?.slug || ''}`}
-                    className="block pb-0 text-lg font-semibold text-gray-900 transition-colors duration-300 hover:text-[#60a5fa] line-clamp-1"
+                    className=" pb-0 text-sm lg:text-lg font-bold text-gray-900 transition-colors duration-300 hover:text-[#60a5fa] line-clamp-2"
                   >
                     <h3>{match?.title}</h3>
                   </Link>
-                  <p className="text-sm font-medium text-gray-800 transition-colors duration-300 line-clamp-3">
+                  <p className="lg:text-sm text-xs font-medium text-gray-800 transition-colors duration-300 line-clamp-2 lg:line-clamp-3">
                     {match?.des}
                   </p>
                 </div>

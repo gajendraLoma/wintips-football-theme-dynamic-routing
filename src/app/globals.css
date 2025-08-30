@@ -664,7 +664,6 @@ h2{
   line-height: normal !important;
 }
 
-
 }
 
   .relatedPostSwiper .swiper-button-prev, .relatedPostSwiper .swiper-button-next {
@@ -744,3 +743,16 @@ h2{
     background-color: #0065cb;
     font-weight: 600;
 }
+
+@media (max-width: 768px) {
+.paginations li a {
+    cursor: pointer;
+    background-color: #eee;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    padding: 8px 12px;
+    font-size: 11px;
+}
+}
+
