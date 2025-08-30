@@ -1,93 +1,67 @@
 // app/sitemap.ts
+
 import { MetadataRoute } from 'next';
+import { fetchSitemapData } from '@/apis'; 
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = process.env.API_DOMAIN; 
+  const data = await fetchSitemapData("league");
+  const sitemap: MetadataRoute.Sitemap = [];
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = '"https://theme.168dev.com'; // You can move this to env if needed (e.g., process.env.NEXT_PUBLIC_SITE_URL)
+  sitemap.push({
+    url: `${baseUrl}`,
+    lastModified: new Date(),
+    changeFrequency: 'yearly',
+    priority: 1.0,
+  });
 
-  return [
-    {
-      url: `${baseUrl}/`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/soccer-tips/`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/free-soccer-tips/`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/soccer-tips-1x2/`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/premium-soccer-tips/`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/statistics/`,
-      lastModified: new Date(),
+
+  data.pages.forEach((item) => {
+    sitemap.push({
+      url: `${baseUrl}/${item.slug}`,
+      lastModified: item.date ? new Date(item.date) : new Date(),
       changeFrequency: 'weekly',
+      priority: 0.5,
+    });
+  });
+
+  
+  data.posts.forEach((item) => {
+    sitemap.push({
+      url: `${baseUrl}/${item.slug}`, 
+      lastModified: item.date ? new Date(item.date) : new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.5,
+    });
+  });
+
+
+  data.bookmakers.forEach((item) => {
+    sitemap.push({
+      url: `${baseUrl}/${item.slug}`,
+      lastModified: item.date ? new Date(item.date) : new Date(),
+      changeFrequency: 'monthly',
       priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/soccer-predictions/`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/odds/`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
+    });
+  });
+
+ 
+  data.leagues.forEach((item) => {
+    sitemap.push({
+      url: `${baseUrl}/${item.slug}`,
+      lastModified: new Date(), 
+      changeFrequency: 'monthly',
       priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/bookmakers/`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
+    });
+  });
+
+  data.predicts.forEach((item) => {
+    sitemap.push({
+      url: `${baseUrl}/${item.slug}`,
+      lastModified: item.date ? new Date(item.date) : new Date(),
+      changeFrequency: 'monthly',
       priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/betting-bonus/`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/blog/`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/betting-experience/`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/betting-guide/`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/blog/betting-news/`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    },
-  ];
+    });
+  });
+
+  return sitemap;
 }

@@ -1,18 +1,18 @@
+// components/pages/BookmakersPage.tsx
 import BookmakersTable from '../bookmakers/BookmakersTable';
 import Link from 'next/link';
 import Sidebar from '@/components/layout/Sidebar';
-import { BookmakersPageData } from '../../types/bookmaker';
-
+import { BookmakersPageData } from '../../types/interface/getBookmakerTypo';
+import { getTranslations } from 'next-intl/server';
 export default async function BookmakersPage({ data }: { data: BookmakersPageData }) {
-  console.log('BookmakersPage data:', data);
-
+  const t = await getTranslations();
   return (
     <div className="flex-1 bg-gray-100">
-      <div className="max-w-8xl mx-auto px-4 py-6">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         {/* Breadcrumb */}
-        <nav className="flex text-sm text-gray-500 mb-2">
+        <nav className="flex items-center text-sm text-gray-500 mb-2">
           <Link href="/" className="text-blue-600 hover:underline">
-            Home
+              {t('home')}
           </Link>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@ export default async function BookmakersPage({ data }: { data: BookmakersPageDat
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="tabler-icon tabler-icon-chevron-right mx-1 relative bottom-[-3px]"
+            className="tabler-icon tabler-icon-chevron-right mx-1 relative"
           >
             <path d="M9 6l6 6l-6 6"></path>
           </svg>
@@ -45,7 +45,7 @@ export default async function BookmakersPage({ data }: { data: BookmakersPageDat
               </div>
 
               {/* Sidebar (Right Column) */}
-              <div className="lg:col-span-1">
+              <div className="hidden col-span-1 lg:block lg:col-span-1">
                 <Sidebar />
               </div>
             </div>

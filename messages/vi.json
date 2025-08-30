@@ -116,5 +116,19 @@
     "votes":"phiếu bầu",
     "related_posts":"bài viết liên quan",
     "publish_date":"Xuất bản trên",
-    "back-to-top":"Về đầu trang"
+    "back-to-top":"Về đầu trang",
+    "get_it_now":"Nhận ngay bây giờ",
+    "profiles_of": "Hồ sơ của",
+    "website": "Trang web",
+    "owner": "Chủ sở hữu",
+    "head_office": "Trụ sở chính",
+    "year_established": "Năm thành lập",
+    "licences": "Giấy phép",
+    "partners_and_sponsors": "Đối tác và nhà tài trợ",
+    "why_choose": "Tại sao chọn",
+    "register_now": "Đăng ký ngay",
+    "all":"Tất cả",
+    "notFoundtitle": "404 - Không Tìm Thấy Trang",
+    "notFounddescription": "Trang bạn đang tìm kiếm không tồn tại. Vui lòng quay lại",
+    "notFoundhomepageLink": "trang chủ"
 }

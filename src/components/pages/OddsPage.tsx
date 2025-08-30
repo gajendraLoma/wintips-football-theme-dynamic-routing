@@ -53,8 +53,6 @@ interface OddsData {
 }
 
 export default function OddsPage({data}: {data: any}) {
-
-  console.log('OddsPage data:', data);
   const [oddsPreMatch, setOddsPreMatch] = useState<OddsData | null>(null);
   const [oddsLive, setOddsLive] = useState<OddsData | null>(null);
   const [loadingFirst, setLoadingFirst] = useState(true);
@@ -237,11 +235,11 @@ export default function OddsPage({data}: {data: any}) {
 
   return (
     <div className="flex-1 bg-gray-100">
-      <div className="max-w-8xl mx-auto px-4 py-6">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         {/* Breadcrumb */}
-        <nav className="flex text-sm text-gray-500 mb-2">
+        <nav className="flex items-center text-sm text-gray-500 mb-2">
           <Link href="/" className="text-blue-600 hover:underline">
-            Home
+               {t('home')}
           </Link>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -253,7 +251,7 @@ export default function OddsPage({data}: {data: any}) {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="tabler-icon tabler-icon-chevron-right mx-1 relative bottom-[-3px]"
+            className="tabler-icon tabler-icon-chevron-right mx-1 relative"
           >
             <path d="M9 6l6 6l-6 6"></path>
           </svg>
@@ -320,7 +318,7 @@ export default function OddsPage({data}: {data: any}) {
                               className="px-2 py-1"
                               style={{
                                 background:
-                                  'linear-gradient(to right, #3a654efc 0%, rgba(26, 34, 45, 0) 100%)',
+                                  'linear-gradient(to right, rgba(39, 95, 226, .64) 0%, rgba(26, 34, 45, 0) 100%)',
                                 color: '#fff',
                                 fontSize: '14px',
                                 fontWeight: '600',
@@ -813,7 +811,7 @@ export default function OddsPage({data}: {data: any}) {
                           className="px-2 py-1"
                           style={{
                             background:
-                              'linear-gradient(to right, #3a654efc 0%, rgba(26, 34, 45, 0) 100%)',
+                              'linear-gradient(to right, rgba(39, 95, 226, .64) 0%, rgba(26, 34, 45, 0) 100%)',
                             color: '#fff',
                             fontSize: '14px',
                             fontWeight: '600',
@@ -2713,7 +2711,7 @@ export default function OddsPage({data}: {data: any}) {
 
         {/* Content */}
             
-   <p className="content page text-[#323232]"
+  content: <p className="content page text-[#323232]"
           dangerouslySetInnerHTML={{ __html: data.content }}
         />
 

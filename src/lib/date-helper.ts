@@ -29,6 +29,23 @@ export const formatDate = (timeStamp: number) => {
     return `${day}-${month} - ${hours}:${minutes}`;
 }
 
+
+export const ISOformatDate = (dateString: string) => {
+  const date = new Date(dateString);
+
+  if (isNaN(date.getTime())) return ""; // invalid date guard
+
+  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const year = date.getFullYear();
+
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+
+  return `${day}-${month}-${year} ${hours}:${minutes}`;
+};
+
+
 export const calcucateTime = (statusId: number, matchTimestamp: number) => {
 
     const matchTime = new Date(matchTimestamp * 1000); // Convert to milliseconds

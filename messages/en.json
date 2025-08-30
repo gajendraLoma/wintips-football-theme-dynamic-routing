@@ -115,5 +115,20 @@
     "votes":"votes",
     "related_posts":"Related Posts",
     "publish_date":"Published on",
-    "back-to-top":"Back To Top"
+    "back-to-top":"Back To Top",
+    "get_it_now":"Get it now",
+    "profiles_of": "Profiles of",
+    "website": "Website",
+    "owner": "Owner",
+    "head_office": "Head Office",
+    "year_established": "Year Established",
+    "licences": "Licences",
+    "partners_and_sponsors": "Partners and Sponsors",
+    "why_choose": "Why Choose",
+    "register_now": "Register now",
+    "all":"All",
+    "notFoundtitle": "404 - Page Not Found",
+    "notFounddescription": "The page you're looking for doesn't exist. Try going back to the",
+    "notFoundhomepageLink": "homepage"
+
 }

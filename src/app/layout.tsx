@@ -7,7 +7,6 @@ import './globals.css';
 import Navigation from '@/components/common/Navigation';
 import Footer from '@/components/common/Footer';
 const inter = Inter({subsets: ['latin']});
-
 type Props = {
   children: ReactNode;
 };
@@ -23,7 +22,7 @@ export default async function LocaleLayout({children}: Props) {
         )}
       >
         <NextIntlClientProvider>
-          <Navigation locale={locale} />
+        <Navigation locale={locale} />
            <main>{children}</main>
         <Footer locale={locale} />
         </NextIntlClientProvider>

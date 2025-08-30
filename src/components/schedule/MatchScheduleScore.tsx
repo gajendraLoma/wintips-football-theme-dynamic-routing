@@ -1,13 +1,10 @@
 import { formatDate } from "../../lib/date-helper";
-import { TMatch } from "../../types/results";
+import { TFMatch } from "@/types/interface/getScheduleTypo";
 import Image from "next/image";
-
 interface Props {
-    match: TMatch;
+    match: TFMatch;
 }
-
 const MatchScheduleScore = ({match}: Props) => {
-
     return (
         <li className="flex gap-2 py-2 items-center border-b border-gray-300 last:border-none">
             <div className="w-full">

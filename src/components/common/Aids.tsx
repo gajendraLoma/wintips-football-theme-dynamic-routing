@@ -32,7 +32,6 @@ export default function Aids({data}: AidsProps) {
 
   const {left_url, left_image, right_url, right_image} = data?.banner_middle;
 
-  // Normalize the image URLs
   const fullLeftImage = getFullImageUrl(left_image);
   const fullRightImage = getFullImageUrl(right_image);
 

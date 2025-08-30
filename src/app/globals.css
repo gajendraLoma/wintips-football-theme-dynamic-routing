@@ -531,28 +531,28 @@
 }
 
 .bookMakersSidebar .contentDiv p {
-   font-weight: 400;
+   font-weight: 700;
 }
 
 .bookMakersSidebar .contentDiv strong {
-   font-weight: 400;
-   font-size: 10px;
+   font-weight: 500;
+   font-size: 12px;
 }
 
 .bookMakersSidebar .contentDiv .text-base {
     line-height: normal;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .bookMakersSidebar .contentDiv .font-bold {
-    font-weight: 400;
-    font-size: 10px;
+    font-weight: 700;
+    font-size: 12px;
     line-height: normal;
 }
 
 .bookMakersSidebar .contentDiv span {
     font-weight: 400;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 
@@ -632,28 +632,37 @@ filter: invert(52%) sepia(98%) saturate(518%) hue-rotate(187deg) brightness(100%
 
 
 @media (max-width: 768px) {
-    .content figure, .content iframe {
-        width: 100% !important;
+  .content figure, .content iframe {
+      width: 100% !important;
+  }
+
+  .scroll-to-top-button {
+      position: fixed;
+      right: 10px !important;
+      bottom: 16px !important;
+      padding: 0px 0px !important;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+      display: grid;
+      justify-items: center;
+      gap:10px;
+      color: #60a5fa;;
+  }
+
+  .back-to-top-text {
+      display: none !important;
     }
 
-.scroll-to-top-button {
-    position: fixed;
-    right: 10px !important;
-    bottom: 16px !important;
-    padding: 0px 0px !important;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1000;
-    display: grid;
-    justify-items: center;
-    gap:10px;
-    color: #60a5fa;;
+h1{
+  font-size: 20px !important;
+  line-height: normal !important;
 }
-
-.back-to-top-text {
-    display: none !important;
-  }
+h2{
+  font-size: 18px !important;
+  line-height: normal !important;
+}
 
 }
 
@@ -668,3 +677,82 @@ filter: invert(52%) sepia(98%) saturate(518%) hue-rotate(187deg) brightness(100%
     font-size: 14px;
     font-weight: 600;
   }
+
+
+
+  .BookmakerDetails {
+  background: url(/images/banner-top-bookmaker.jpeg) bottom center / cover no-repeat;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  display: flex;
+  position: relative;
+  z-index: 1;
+}
+
+
+ p.font-semibold{
+    background: linear-gradient(237.8deg, rgba(72, 145, 255, 0) -6.39%, rgba(72, 145, 255, .3) 107.88%);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    width: max-content;
+    padding: 5px;
+    margin: auto 6px;
+    line-height: 1;
+    cursor: pointer;
+    color: #000000;
+}
+
+
+/* pagination css */
+
+.paginations, .paginations li a {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.paginations {
+    gap: 10px;
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.paginations li a {
+    cursor: pointer;
+    background-color: rgb(238 238 238);
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 8px 12px;
+    font-size: 18px;
+}
+.paginations, .paginations li a {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.paginations li.active a, .paginations li:hover a {
+    color: #fff;
+    background-color: #0065cb;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+.paginations li a {
+    cursor: pointer;
+    background-color: #eee;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    padding: 8px 12px;
+    font-size: 11px;
+}
+}
+

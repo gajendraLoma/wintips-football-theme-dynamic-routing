@@ -1,17 +1,11 @@
 import { formatDate } from "../../lib/date-helper";
-import { TMatchCompetition } from "../../types/results";
-
-
+import { TRMatchCompetition } from "@/types/interface/getResultsTypo";
 import Image from "next/image";
-
-
 const imageBaseUrl = 'https://5goal.vip';
 interface Props {
-    match: TMatchCompetition;
+    match: TRMatchCompetition;
 }
-
 const LeagueMatch = ({match}: Props) => {
-
     return (
         <li className="flex gap-2 py-2 items-center border-b border-gray-300 last:border-none">
             <div className="w-full">

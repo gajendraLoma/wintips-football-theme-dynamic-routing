@@ -1,27 +1,26 @@
 // components/pages/Home.tsx
 import Link from 'next/link';
-import Hero from '@/components/Hero';
-import HomeFreeTips from '@/components/HomeFreeTips';
+import Hero from '@/components/home/Hero';
+import HomeFreeTips from '@/components/home/HomeFreeTips';
 import Sidebar from '@/components/layout/Sidebar';
 import Aids from '@/components/common/Aids';
 import PredectionList from '@/components/predection/PredectionList';
-import BettingGENSection from '@/components/BettingGENSection';
+import BettingGENSection from '@/components/home/BettingGENSection';
 import {getTranslations} from 'next-intl/server';
-import {fetchTipsData} from '@/apis/services/tips';
-import {TipsResponse} from '@/types/tips';
-import {fetchPostByCat} from '@/apis/services/postByCat'; 
-import {PostByCatResponse, Post} from '../../types/postByCat';
-
-const SectionHeader = ({title, href}: {title: string; href: string}) => (
+import {fetchTipsData, fetchPostByCat} from '@/apis';
+import {TipsResponse} from '@/types/interface/getTipsTypo';
+import {PostByCatResponse} from '../../types/interface/getPostByCatTypo';
+const SectionHeader = ({title, t, href}: {title: string;  t: (key: string) => string;  href: string}) => (
+  
   <div className="flex items-center justify-between">
-    <h2 className="text-2xl font-bold text-gray-900 hover:text-blue-hover transition-all">
+    <h2 className="text-xl sm:text-2xl font-bold text-gray-900 hover:text-blue-hover transition-all">
       {title}
     </h2>
     <Link
       href={href}
       className="text-sm text-[#666] hover:text-blue-hover flex items-center"
     >
-      <span>View All</span>
+      <span>{t("viewAll")}</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -53,27 +52,12 @@ export default async function Home({data}: {data: any}) {
   ) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
           <p>No match predictions available for this league.</p>
         </div>
       </div>
     );
   }
-
-  // Use the first post as mainMatch if available
-  const mainMatch: Post =
-    matchData.posts.length > 0
-      ? {...matchData.posts[0]}
-      : {
-          title: 'No Data',
-          featured_image: '',
-          slug: '',
-          published_date: '',
-          vn_date: ''
-        };
-
-
-
 
   const tipsResponse = await fetchTipsData(1, 10);
 
@@ -84,23 +68,30 @@ export default async function Home({data}: {data: any}) {
       : (tipsResponse as TipsResponse);
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          <div className="lg:col-span-3 space-y-8">
+          <div className="col-span-1 space-y-4 lg:col-span-3">
             <Hero data={homeData} />
-            <h2 className="text-2xl font-bold text-gray-900">
-              {t('freeTipsTitle')}
-            </h2>
+             <SectionHeader
+              title={t('freeTipsTitle')}
+              href="/soccer-tips"
+              t={t}
+            />
             <HomeFreeTips tips={tips} />
             <Aids data={homeData} />
             <SectionHeader
               title={t('predictionsTitle')}
-              href="/soccer-predictions/"
+              href="/match-predictions"
+               t={t}
             />
            <PredectionList posts={matchData.posts} />
             <BettingGENSection data={homeData} />
+             <p
+              className="content page text-[#323232]"
+              dangerouslySetInnerHTML={{__html: data.content || ''}}
+            />
           </div>
-          <div className="lg:col-span-1">
+          <div className="hidden col-span-1 lg:block lg:col-span-1">
             <Sidebar />
           </div>
         </div>

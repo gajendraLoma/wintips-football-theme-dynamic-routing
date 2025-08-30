@@ -11,8 +11,6 @@ export default function LocaleSwitcherMob() {
   const [isPending, startTransition] = useTransition();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-  const theme = "dark";
   const flagMap: Record<string, string> = {
     en: "/svg/eenFlag.svg",
     vi: "/svg/vviFlag.svg",
@@ -24,10 +22,8 @@ export default function LocaleSwitcherMob() {
   ];
 
   const handleLocaleChange = (value: string) => {
-    console.log("Changing locale to:", value); // Debug log
     startTransition(() => {
       setUserLocale(value as Locale).then(() => {
-        console.log("Locale updated to:", value); // Verify update
       }).catch((err) => {
         console.error("Locale update failed:", err); // Catch errors
       });
@@ -36,14 +32,12 @@ export default function LocaleSwitcherMob() {
   };
 
   const handleToggle = () => {
-    console.log("Toggling dropdown, new isOpen:", !isOpen); // Debug log
     setIsOpen((prev) => !prev);
   };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        console.log("Click outside, closing dropdown"); // Debug log
         setIsOpen(false);
       }
     };
@@ -59,7 +53,6 @@ export default function LocaleSwitcherMob() {
         className="dropdown-mob"
         onClick={handleToggle}
         onBlur={() => {
-          console.log("Blur event, closing dropdown"); // Debug log
           setIsOpen(false);
         }}
       >

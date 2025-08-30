@@ -3,8 +3,9 @@ import Image from "next/image";
 import {getTranslations} from 'next-intl/server';
 import Sidebar from "@/components/layout/Sidebar";
 import Link from "next/link";
+import { fetchMatchStandings, fetchMatchStandingsByLeague } from "@/apis";
+import { TSStandingTableRow, TSLeague, TSLeagueRankingPromotion } from "@/types/interface/getStandingsTypo";
 import { getFullImageUrl } from "@/lib/utils";
-import { fetchMatchStandings, fetchMatchStandingsByLeague } from "@/apis/services/standings";
 interface StandingsPageProps {
   data: {
     title: string;
@@ -17,7 +18,7 @@ const imageBaseUrl = "https://5goal.vip";
 export default async function StandingsPage({ data }: StandingsPageProps) {
   const t = await getTranslations();
 
-  // Fetch data based on league_id or default standings
+
   let standingsData;
   if (data.league_id) {
     standingsData = await fetchMatchStandingsByLeague(data.league_id);
@@ -25,7 +26,7 @@ export default async function StandingsPage({ data }: StandingsPageProps) {
     standingsData = await fetchMatchStandings();
   }
 
-  // Handle error or no data
+
   if (!standingsData || "error" in standingsData) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -34,23 +35,22 @@ export default async function StandingsPage({ data }: StandingsPageProps) {
     );
   }
 
-  // Derive leagues and standingsByLeagues based on API response
+
   const leagues = Array.isArray(standingsData?.data) ? standingsData.data : [];
   const standingsByLeagues = data.league_id ? standingsData : null;
-
   const standingTables = standingsByLeagues?.result?.[0]?.standing?.tables?.[0]?.rows || [];
   const promotions = standingsByLeagues?.result?.[0]?.standing?.promotions || [];
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <div className="lg:col-span-3 space-y-8">
-            <div className="bg-white px-4 md:px-8 py-6 max-w-[1280px] mx-auto">
-              {/* Breadcrumb */}
-              <nav className="flex text-sm text-gray-500 mb-2">
+            <div className="bg-white px-4 md:px-8 py-4 max-w-[1280px] mx-auto">
+ 
+              <nav className="flex items-center text-sm text-gray-500 mb-2">
                 <Link href="/" className="text-blue-600 hover:underline">
-                  Home
+                {t('home')}
                 </Link>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -62,24 +62,24 @@ export default async function StandingsPage({ data }: StandingsPageProps) {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="tabler-icon tabler-icon-chevron-right mx-1 relative bottom-[-3px]"
+                  className="tabler-icon tabler-icon-chevron-right mx-1 relative"
                 >
                   <path d="M9 6l6 6l-6 6"></path>
                 </svg>
                 <span>{data.title}</span>
               </nav>
 
-              {/* Title */}
+           
               <h1 className="text-2xl font-bold text-gray-800 mb-6">{data.title}</h1>
 
-              {/* Content Area */}
+           
            
                 <div className="space-y-6">
-                  {/* Render leagues data (standings-based) */}
+           {/* if u want league list just uncomment this block of code   */}
                   {/* {leagues.length > 0 && (
                     <div className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {leagues.slice(0, 18).map((league: TLeague, index: number) => (
+                        {leagues.slice(0, 18).map((league: TSLeague, index: number) => (
                           <div key={index} className="bg-gray-50 rounded p-4 shadow-sm border-gray-200">
                             <div className="flex items-center space-x-3 mb-3">
                               {league.logo && (
@@ -100,7 +100,7 @@ export default async function StandingsPage({ data }: StandingsPageProps) {
                     </div>
                   )} */}
 
-                  {/* Render standingsByLeagues data (league-based with matches) */}
+                
                   {standingsByLeagues && (
                     <div className="w-full bg-white rounded-2xl py-2">
                       <div className="w-full py-2">
@@ -122,8 +122,8 @@ export default async function StandingsPage({ data }: StandingsPageProps) {
                               <td className="text-center py-2"></td>
                             </tr>
                             {standingTables.length > 0 ? (
-                              standingTables.map((row: TStandingTableRow, index: number) => {
-                                const promotion = promotions.find((promotion: TLeagueRankingPromotion) => promotion.id === row.promotion_id);
+                              standingTables.map((row: TSStandingTableRow, index: number) => {
+                                const promotion = promotions.find((promotion: TSLeagueRankingPromotion) => promotion.id === row.promotion_id);
 
                                 return (
                                   <tr key={index} className="border-b last:border-b-0 text-[11px] sm:text-sm border-[#ECEFF3] hover:bg-[#275fe2a3] transition ease-linear">
@@ -165,7 +165,7 @@ export default async function StandingsPage({ data }: StandingsPageProps) {
                         </table>
                         <div className="flex flex-wrap py-2 gap-2">
                           {promotions.length > 0 ? (
-                            promotions.map((promotion: TLeagueRankingPromotion, index: number) => (
+                            promotions.map((promotion: TSLeagueRankingPromotion, index: number) => (
                               <div key={index} className="flex items-center gap-2">
                                 <div
                                   className="w-3 h-3 rounded-full"
@@ -182,7 +182,7 @@ export default async function StandingsPage({ data }: StandingsPageProps) {
                     </div>
                   )}
 
-                  {/* Empty state */}
+             
                   {leagues.length === 0 && !standingsByLeagues && (
                     <div className="py-8 text-center">
                       <div className="text-xl font-semibold text-gray-600 mb-2">
@@ -193,15 +193,15 @@ export default async function StandingsPage({ data }: StandingsPageProps) {
                 </div>
              
             </div>
-            {/* Content */}
+        
            content: <p
               className="content page text-[#323232]"
               dangerouslySetInnerHTML={{ __html: data.content }}
             />
           </div>
 
-          {/* Sidebar (Right Column) */}
-          <div className="lg:col-span-1">
+        
+          <div className="hidden col-span-1 lg:block lg:col-span-1">
             <Sidebar />
           </div>
         </div>

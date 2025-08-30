@@ -1,7 +1,7 @@
 // components/common/Footer.tsx
 import Link from 'next/link';
 import {getTranslations} from 'next-intl/server';
-import {fetchAllFooters} from '@/apis/services/menu';
+import {fetchAllFooters} from '@/apis';
 import ScrollToTopButton from './ScrollToTopButton';
 
 export default async function Footer({locale}: {locale: string}) {
@@ -23,20 +23,20 @@ export default async function Footer({locale}: {locale: string}) {
     if (!data || data.error) return null;
     return (
       <div>
-        <h3 className="text-lg font-semibold mb-4">
+        <h3 className="sm:text-lg font-semibold mb-2 sm:mb-4">
           {data.title ? getLabel(data.title, locale) : ''}
         </h3>
         <ul className="space-y-2 text-sm text-gray-400">
-          {data.result?.map((item: any, index: number) =>  (
-              <li key={index}>
-                <Link
-                  href={item.url}
-                  className="hover:text-white transition-colors"
-                >
-                  {getLabel(item.lang, locale)}
-                </Link>
-              </li>
-            ))}
+          {data.result?.map((item: any, index: number) => (
+            <li key={index}>
+              <Link
+                href={item.url}
+                className="hover:text-white transition-colors"
+              >
+                {getLabel(item.lang, locale)}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     );
@@ -44,15 +44,15 @@ export default async function Footer({locale}: {locale: string}) {
 
   return (
     <footer className="bg-gray-900 text-white relative">
-      <div className="py-12">
+      <div className="py-6 sm:py-12">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 pb-4 sm:pb-8">
             {renderFooterSection('footer-1')}
             {renderFooterSection('footer-2')}
             {renderFooterSection('footer-3')}
             {renderFooterSection('footer-4')}
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 pb-4 sm:pb-8">
             {renderFooterSection('footer-5')}
             {renderFooterSection('footer-6')}
             {renderFooterSection('footer-7')}

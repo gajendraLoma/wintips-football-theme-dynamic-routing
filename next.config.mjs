@@ -34,7 +34,7 @@ const nextConfig = {
     env: {
       API_DOMAIN: "https://theme.168dev.com",
       WINTIPS_DOMAIN: "https://wintips.com",
-      SITE_NAME: "DollarsWinTips"
+      SITE_NAME: "Football Theme"
     },
   };
 
