@@ -237,7 +237,7 @@ export default function OddsPage({data}: {data: any}) {
     <div className="flex-1 bg-gray-100">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
         {/* Breadcrumb */}
-        <nav className="flex text-sm text-gray-500 mb-2">
+        <nav className="flex items-center text-sm text-gray-500 mb-2">
           <Link href="/" className="text-blue-600 hover:underline">
                {t('home')}
           </Link>
@@ -251,7 +251,7 @@ export default function OddsPage({data}: {data: any}) {
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="tabler-icon tabler-icon-chevron-right mx-1 relative bottom-[-3px]"
+            className="tabler-icon tabler-icon-chevron-right mx-1 relative"
           >
             <path d="M9 6l6 6l-6 6"></path>
           </svg>

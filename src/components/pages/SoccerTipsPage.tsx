@@ -13,7 +13,7 @@ export default async function SoccerTipsPage({data}: {data: any}) {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           <div className="lg:col-span-3 space-y-8">
             <div className="bg-white px-4 md:px-8 py-4 max-w-[1280px] mx-auto">
-              <nav className="flex text-sm text-gray-500 mb-2">
+              <nav className="flex items-center text-sm text-gray-500 mb-2">
                 <Link href="/" className="text-blue-600 hover:underline">
                   {t('home')}
                 </Link>
@@ -27,7 +27,7 @@ export default async function SoccerTipsPage({data}: {data: any}) {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="tabler-icon tabler-icon-chevron-right mx-1 relative bottom-[-3px]"
+                  className="tabler-icon tabler-icon-chevron-right mx-1 relative"
                 >
                   <path d="M9 6l6 6l-6 6"></path>
                 </svg>

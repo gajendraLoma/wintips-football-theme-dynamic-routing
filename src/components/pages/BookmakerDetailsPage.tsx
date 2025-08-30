@@ -1,3 +1,4 @@
+// components/pages/BookmakerDetailsPage.tsx
 import Image from 'next/image';
 import Link from 'next/link';
 import {getFullImageUrl} from '@/lib/utils';
@@ -22,7 +23,7 @@ export default async function BookmakerDetailsPage({data}: Props) {
       >
         <div className="max-w-8xl mx-auto lg:px-8 py-10">
           {/* Breadcrumb */}
-          <nav className="flex text-sm text-gray-500 mb-2">
+          <nav className="flex items-center text-sm text-gray-500 mb-2">
             <Link href="/" className="text-blue-600 hover:underline">
               {t('home')}
             </Link>
@@ -36,7 +37,7 @@ export default async function BookmakerDetailsPage({data}: Props) {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="tabler-icon tabler-icon-chevron-right mx-1 relative bottom-[-3px]"
+              className="tabler-icon tabler-icon-chevron-right mx-1 relative"
             >
               <path d="M9 6l6 6l-6 6"></path>
             </svg>
@@ -56,7 +57,7 @@ export default async function BookmakerDetailsPage({data}: Props) {
               strokeWidth="2"
               strokeLinecap="round"
               strokeLinejoin="round"
-              className="tabler-icon tabler-icon-chevron-right mx-1 relative bottom-[-3px]"
+              className="tabler-icon tabler-icon-chevron-right mx-1 relative"
             >
               <path d="M9 6l6 6l-6 6"></path>
             </svg>
@@ -115,7 +116,7 @@ export default async function BookmakerDetailsPage({data}: Props) {
             <div className="bg-white px-4 md:px-8 py-4 max-w-[1280px] mx-auto">
               <div className="block lg:hidden">
                 {/* Breadcrumb */}
-                <nav className="flex text-sm text-gray-500 mb-2">
+                <nav className="flex items-center text-sm text-gray-500 mb-2">
                   <Link href="/" className="text-blue-600 hover:underline">
                     {t('home')}
                   </Link>
@@ -129,7 +130,7 @@ export default async function BookmakerDetailsPage({data}: Props) {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="tabler-icon tabler-icon-chevron-right mx-1 relative bottom-[-3px]"
+                    className="tabler-icon tabler-icon-chevron-right mx-1 relative"
                   >
                     <path d="M9 6l6 6l-6 6"></path>
                   </svg>
@@ -149,7 +150,7 @@ export default async function BookmakerDetailsPage({data}: Props) {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="tabler-icon tabler-icon-chevron-right mx-1 relative bottom-[-3px]"
+                    className="tabler-icon tabler-icon-chevron-right mx-1 relative"
                   >
                     <path d="M9 6l6 6l-6 6"></path>
                   </svg>

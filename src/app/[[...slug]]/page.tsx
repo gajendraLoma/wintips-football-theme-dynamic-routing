@@ -101,7 +101,7 @@ async function resolveDataBySlug(
       listProbe &&
       !('error' in listProbe) &&
       Array.isArray(listProbe.posts) &&
-      listProbe.posts.length > 0  // NEW: Ensure non-empty to validate existence
+      listProbe.posts.length > 0  
     ) {
       return {ok: true, type, data: listProbe};
     }
@@ -123,7 +123,7 @@ function buildSeo(metaSource: any, fallbackPath: string) {
   const SITENAME = process.env.SITE_NAME;
   const seoTitle = metaSource?.seo_title || metaSource?.title;
   const seoDescription = metaSource?.seo_description;
-  const imageUrl = getFullImageUrl(metaSource?.image || metaSource?.post_image);
+  const imageUrl = getFullImageUrl(metaSource?.image || metaSource?.post_image || "/images/series-soccer-tips-default.webp");
   return {
     title: seoTitle,
     description: seoDescription,

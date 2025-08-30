@@ -1,3 +1,4 @@
+// components/pages/MatchPredicttionPage.tsx
 import Sidebar from "@/components/layout/Sidebar";
 import LeagueFilter from "@/components/predection/LeagueFilter";
 import { fetchPostByCat, fetchTaxonomy } from "@/apis";
@@ -16,7 +17,7 @@ export default async function MatchPredicttionPage({ data }: { data: any }) {
           <div className="lg:col-span-3 space-y-8">
             <div className="bg-white px-4 md:px-8 py-4 max-w-[1280px] mx-auto">
               {/* Breadcrumb */}
-              <nav className="flex text-sm text-gray-500 mb-2">
+              <nav className="flex items-center text-sm text-gray-500 mb-2">
                   <Link href="/" className="text-blue-600 hover:underline">
                     {t('home')}
                 </Link>
@@ -30,7 +31,7 @@ export default async function MatchPredicttionPage({ data }: { data: any }) {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="tabler-icon tabler-icon-chevron-right mx-1 relative bottom-[-3px]"
+                  className="tabler-icon tabler-icon-chevron-right mx-1 relative"
                 >
                   <path d="M9 6l6 6l-6 6"></path>
                 </svg>
