@@ -15,7 +15,7 @@ export default function BigImageBlogSection({
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6">
       <div className="space-y-6">
-        <div className="block bg-white rounded overflow-hidden border group pb-4">
+        <div className="block bg-white rounded overflow-hidden lg:border group lg:pb-4">
           <div className="relative max-md:h-[230px] h-[330px] max-sm:h-48 cursor-pointer overflow-hidden rounded-md">
             <Link href={`${mainMatch?.slug}`} className="block w-full h-full">
               <Image
@@ -32,11 +32,11 @@ export default function BigImageBlogSection({
 
           <Link
             href={`${mainMatch?.slug}`}
-            className="block px-4 py-3 pb-0 text-lg font-semibold text-gray-900 transition-colors duration-300 hover:text-[#60a5fa]"
+            className="block lg:px-4 py-3 pb-0 text-lg font-semibold text-gray-900 transition-colors duration-300 hover:text-[#60a5fa]"
           >
             <h3>{mainMatch?.title}</h3>
           </Link>
-          <p className="px-4 text-sm  font-medium text-gray-800 transition-colors duration-300 line-clamp-2">
+          <p className="lg:px-4 text-sm font-medium text-gray-800 transition-colors duration-300 line-clamp-2">
             {sidebarMatches?.des}
           </p>
         </div>
