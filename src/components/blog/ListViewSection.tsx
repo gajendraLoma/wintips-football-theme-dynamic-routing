@@ -34,7 +34,7 @@ export default function ListViewSection({listMatches}: {listMatches: Post[]}) {
                 <div className="flex flex-col justify-center">
                   <Link
                     href={`${match?.slug || ''}`}
-                    className=" pb-0 text-sm lg:text-lg font-bold text-gray-900 transition-colors duration-300 hover:text-[#60a5fa] line-clamp-2"
+                    className="pb-0 text-sm lg:text-lg font-bold text-gray-900 transition-colors duration-300 hover:text-[#60a5fa] line-clamp-2"
                   >
                     <h3>{match?.title}</h3>
                   </Link>

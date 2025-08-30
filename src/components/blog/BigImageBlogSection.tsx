@@ -32,7 +32,7 @@ export default function BigImageBlogSection({
 
           <Link
             href={`${mainMatch?.slug}`}
-            className="block lg:px-4 py-3 pb-0 text-lg font-semibold text-gray-900 transition-colors duration-300 hover:text-[#60a5fa]"
+            className="block lg:px-4 py-3 pb-0 text-lg font-bold text-gray-900 transition-colors duration-300 hover:text-[#60a5fa]"
           >
             <h3>{mainMatch?.title}</h3>
           </Link>
@@ -47,14 +47,14 @@ export default function BigImageBlogSection({
             <div className="relative overflow-hidden">
               <Link
                 href={`${sidebarMatches?.slug}`}
-                className="block w-full h-64"
+                className="block w-full lg:h-64"
               >
                 <Image
                   src={getFullImageUrl(sidebarMatches?.featured_image)}
                   alt={sidebarMatches?.title || 'featured image'}
                   width={800}
                   height={450}
-                  className="w-full h-full object-cover"
+                  className="w-full lg:h-full object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </Link>
@@ -62,11 +62,11 @@ export default function BigImageBlogSection({
 
             <Link
               href={`${sidebarMatches?.slug}`}
-              className="block py-3 pb-0 text-lg font-semibold text-gray-900 transition-colors duration-300 hover:text-[#60a5fa] line-clamp-2"
+              className="py-3 pb-0 text-lg font-bold text-gray-900 transition-colors duration-300 hover:text-[#60a5fa] line-clamp-2"
             >
               <h3>{sidebarMatches?.title}</h3>
             </Link>
-            <p className="text-sm  font-medium text-gray-800 transition-colors duration-300 line-clamp-4">
+            <p className="text-sm  font-medium text-gray-800 transition-colors duration-300 line-clamp-2 lg:line-clamp-4">
               {sidebarMatches?.des}
             </p>
           </div>

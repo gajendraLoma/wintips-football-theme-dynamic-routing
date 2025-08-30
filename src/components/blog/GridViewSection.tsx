@@ -23,7 +23,7 @@ export default function GridViewSection({gridMatches}: {gridMatches: Post[]}) {
               />
             </div>
 
-            <h3 className="block pb-0 text-lg font-semibold text-gray-900 transition-colors duration-300 hover:text-[#60a5fa] line-clamp-2">
+            <h3 className="pb-0 text-lg font-bold text-gray-900 transition-colors duration-300 hover:text-[#60a5fa] line-clamp-2">
               {match?.title}
             </h3>
             
