@@ -148,6 +148,7 @@ export default async function TipsComp({ initialTips }: FreeTipsProps) {
                         width={19}
                         height={18}
                         src="/images/loading-icon-new.gif"
+                        unoptimized 
                       />
                     </div>
                   )}

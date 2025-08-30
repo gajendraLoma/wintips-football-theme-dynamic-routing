@@ -26,7 +26,13 @@ const MatchScheduleScore = ({match}: Props) => {
                             <div className="flex gap-2 items-center justify-end">
                                 <span className="text-[11px] sm:text-sm text-right text-[#090916]">{match.home_name}</span>
                                 <div className="w-[25px] h-[25px] relative">
-                                    <Image src={match.home_logo} alt="home logo" fill />
+                                <Image
+                                src={match.home_logo}
+                                alt="home logo"
+                                height={22}
+                                width={22}
+                        
+                                />
                                 </div>
                             </div>
                         </div>
@@ -42,7 +48,14 @@ const MatchScheduleScore = ({match}: Props) => {
                         <div className="flex-1">
                             <div className="flex gap-2 items-center">
                                 <div className="w-[25px] h-[25px] relative">
-                                    <Image src={match.away_logo} alt="away logo" fill />
+                                <Image
+                                src={match.away_logo}
+                                alt="away logo"
+                                height={22}
+                                width={22}
+                      
+                                />
+
                                 </div>
                                 <span className="text-[11px] sm:text-sm text-[#090916]">{match.away_name}</span>
                             </div>

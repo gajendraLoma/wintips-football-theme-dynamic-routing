@@ -141,10 +141,10 @@ export default async function StandingsPage({ data }: StandingsPageProps) {
                                       <div className="flex gap-2 items-center">
                                         <Image
                                           src={`${imageBaseUrl}${row.logo}`}
-                                          alt="home logo"
+                                          alt="logo"
                                           height={20}
                                           width={20}
-                                          objectFit="contain"
+                                        
                                         />
                                         <p>{row.team_name}</p>
                                       </div>
@@ -159,7 +159,7 @@ export default async function StandingsPage({ data }: StandingsPageProps) {
                                 );
                               })
                             ) : (
-                              <p className="text-center py-4">Data not found!</p>
+                              <p className="text-center py-4"></p>
                             )}
                           </tbody>
                         </table>
