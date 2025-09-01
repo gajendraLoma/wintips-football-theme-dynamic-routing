@@ -37,16 +37,14 @@ export default async function SoccerTipsPage({data}: {data: any}) {
               <h1 className="text-2xl font-bold mb-2">{data.title}</h1>
 
               <TipsComp initialTips={initialTips} />
-            </div>
-
-         <div className="">
+          <div className="pt-4">
             {
                 data.content ? (
                     <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
                 ) : ( null )
             }
           </div>
-
+            </div>
 
           </div>
 
