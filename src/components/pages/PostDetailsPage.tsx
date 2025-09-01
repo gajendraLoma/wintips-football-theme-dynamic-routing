@@ -175,54 +175,56 @@ export default async function PostDetailsPage({data, type}: Props) {
                     <div className="flex flex-col items-center justify-around gap-3 sm:w-auto w-full">
                       <span className="text-center text-sm font-bold pb-2">
                         {t('promotion_from')} &nbsp;
-                        <a
+                        <Link
                           className="text-blue-600"
                           target="_blank"
-                          href={W88_URL}
+                          href={W88_URL!}
                         >
                           W88
-                        </a>
+                        </Link>
                       </span>
 
                       <div className="relative rounded-full p-1 w-[305px] bg-gradient-to-r from-blue-400 to-indigo-700">
                         {/* Hand Icon */}
-                        <div className="absolute top-1/2 left-[-18px] transform -translate-y-1/2 flex items-center justify-center rounded-full border-4 border-gray-200 bg-white w-[70px] h-[70px]">
-                          <img
-                            alt="hand"
-                            loading="lazy"
-                            width={36}
-                            height={24}
-                            src="/images/hand.png"
-                          />
-                        </div>
 
-                        {/* Bet Now Button */}
-                        <div className="rounded-full border border-dashed border-white py-3 text-center group hover:opacity-80">
-                          <a
-                            target="_blank"
-                            className="text-md font-bold uppercase text-white no-underline hover:text-red-600"
-                            href={W88_URL}
-                          >
-                            {t('bet_now')}
-                          </a>
-                        </div>
+                        <Link
+                          href={W88_URL!}
+                          target="_blank"
+                          className="text-md font-bold uppercase text-white no-underline hover:text-red-600"
+                        >
+                          <div className="absolute top-1/2 left-[-18px] transform -translate-y-1/2 flex items-center justify-center rounded-full border-4 border-gray-200 bg-white w-[70px] h-[70px]">
+                            <img
+                              alt="hand"
+                              loading="lazy"
+                              width={36}
+                              height={24}
+                              src="/images/hand.png"
+                            />
+                          </div>
 
-                        {/* Right Chevron */}
-                        <div className="absolute top-1/2 right-3 transform -translate-y-1/2 flex items-center justify-center rounded-full bg-white w-10 h-10 text-gray-500">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="20"
-                            height="20"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="3"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <path d="M9 6l6 6l-6 6"></path>
-                          </svg>
-                        </div>
+                          {/* Bet Now Button */}
+
+                          <div className="rounded-full border border-dashed border-white py-3 text-center group hover:opacity-80">
+                            <div>{t('bet_now')}</div>
+                          </div>
+
+                          {/* Right Chevron */}
+                          <div className="absolute top-1/2 right-3 transform -translate-y-1/2 flex items-center justify-center rounded-full bg-white w-10 h-10 text-gray-500">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="20"
+                              height="20"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="3"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <path d="M9 6l6 6l-6 6"></path>
+                            </svg>
+                          </div>
+                        </Link>
                       </div>
                     </div>
                   </div>
