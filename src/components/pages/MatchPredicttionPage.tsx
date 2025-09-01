@@ -38,20 +38,17 @@ export default async function MatchPredicttionPage({ data }: { data: any }) {
                 <span>{data.title}</span>
               </nav>
               <h1 className="text-2xl font-bold mb-2">{data.title}</h1>
-
-
-
-
               <LeagueFilter leagues={leagueData} initialMatches={matchData} />
-            </div>
-
-            <div className="">
+          <div className="">
             {
                 data.content ? (
                     <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
                 ) : ( null )
             }
           </div>
+            </div>
+
+         
           </div>
 
           {/* Sidebar */}
