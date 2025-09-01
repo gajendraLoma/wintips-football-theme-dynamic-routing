@@ -14,6 +14,7 @@ export interface PostByCatResponse {
   posts: Post[];
   title: string | null;
   description: string | null;
+  content: string;
   seo_title: string | null;
   seo_desc: string | null;
 }
