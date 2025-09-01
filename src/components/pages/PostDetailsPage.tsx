@@ -26,7 +26,6 @@ export default async function PostDetailsPage({data, type}: Props) {
     : data?.categories?.[0]?.slug;
 
   const W88_URL = process.env.WINTIPS_BOOKMAKER_W88;
-  console.log('W88_URL', W88_URL);
 
   return (
     <main className="min-h-screen bg-gray-50">

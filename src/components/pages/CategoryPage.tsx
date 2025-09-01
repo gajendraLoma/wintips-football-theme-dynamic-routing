@@ -12,6 +12,7 @@ interface CategoryPageProps {
 export default async function CategoryPage({data, slug}: CategoryPageProps) {
   const t = await getTranslations();
   const perPage = 16; 
+
   if (!data || !data.posts || data.total_posts === 0 || 'error' in data) {
     return (
       <main className="min-h-screen bg-gray-50">
@@ -62,6 +63,21 @@ export default async function CategoryPage({data, slug}: CategoryPageProps) {
               </nav>
               <h1 className="text-2xl font-bold mb-2">{data.title}</h1>
                 <ClientCategoryBlog initialData={data} perPage={perPage} slug={slug} />
+                
+
+            <div className="">
+                    
+                      {data.content ? (
+                        <div
+                          className="content page text-[#323232]"
+                          dangerouslySetInnerHTML={{ __html: data.content }}
+                        />
+                      ) : data.description ? (
+                        <div className="content page text-[#323232]">
+                          {data.description}
+                        </div>
+                      ) : null}
+          </div>
             </div>
           </section>
 
