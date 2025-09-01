@@ -42,13 +42,11 @@ export default async function BlogPage({data}: {data: any}) {
             <ClientBlog initialData={initialData} perPage={perPage} />
             </div>
             {/* Page Content */}
-           <div className="">
-            {
-                data.content ? (
-                    <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
-                ) : ( null )
-            }
-          </div>
+          
+            {data.content && (
+              <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
+            )}
+      
 
           </section>
 

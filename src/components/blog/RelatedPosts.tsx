@@ -39,11 +39,11 @@ export default function RelatedPosts({RelatedPostData}: {RelatedPostData: Relate
                     alt={post.title || 'Default Image'}
                     width={400}
                     height={250}
-                    className="w-full h-full object-cover rounded-md"
+                    className="w-full h-full object-cover rounded-[10px]"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
-                <h3 className="text-sm sm:text-base font-medium text-gray-800 transition-colors duration-300 group-hover:text-[#60a5fa]">
+                <h3 className="text-sm sm:text-base font-medium text-gray-800 transition-colors duration-300 group-hover:text-[#60a5fa] line-clamp-2">
                   {post.title},
                 </h3>
               </Link>

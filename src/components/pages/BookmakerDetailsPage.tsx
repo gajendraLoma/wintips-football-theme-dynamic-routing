@@ -337,13 +337,9 @@ export default async function BookmakerDetailsPage({data}: Props) {
               </div>
 
               {/* Content */}
-              <div className="">
-            {
-                data.content ? (
-                    <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
-                ) : ( null )
-            }
-          </div>
+            {data.content && (
+              <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
+            )}
             </div>
           </div>
 

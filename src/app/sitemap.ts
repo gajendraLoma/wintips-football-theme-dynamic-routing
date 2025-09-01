@@ -14,37 +14,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 1.0,
   });
 
-
-  data.pages.forEach((item) => {
+ data.categories.forEach((item) => {
     sitemap.push({
       url: `${baseUrl}/${item.slug}`,
       lastModified: item.date ? new Date(item.date) : new Date(),
-      changeFrequency: 'daily',
-      priority: 0.5,
+      changeFrequency: 'monthly',
+      priority: 0.8,
     });
   });
 
-
-  data.posts.forEach((item) => {
-    sitemap.push({
-      url: `${baseUrl}/${item.slug}`,
-      lastModified: item.date ? new Date(item.date) : new Date(),
-      changeFrequency: 'daily',
-      priority: 0.5,
-    });
-  });
-
-
-  data.bookmakers.forEach((item) => {
-    sitemap.push({
-      url: `${baseUrl}/${item.slug}`,
-      lastModified: item.date ? new Date(item.date) : new Date(),
-      changeFrequency: 'daily',
-      priority: 0.5,
-    });
-  });
-
- 
   data.leagues.forEach((item) => {
     sitemap.push({
       url: `${baseUrl}/${item.slug}`,
@@ -55,15 +33,32 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   });
 
 
-  data.categories.forEach((item) => {
+ data.pages.forEach((item) => {
     sitemap.push({
       url: `${baseUrl}/${item.slug}`,
       lastModified: item.date ? new Date(item.date) : new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
+      changeFrequency: 'daily',
+      priority: 0.5,
     });
   });
 
+ data.posts.forEach((item) => {
+    sitemap.push({
+      url: `${baseUrl}/${item.slug}`,
+      lastModified: item.date ? new Date(item.date) : new Date(),
+      changeFrequency: 'daily',
+      priority: 0.5,
+    });
+  });
+
+ data.bookmakers.forEach((item) => {
+    sitemap.push({
+      url: `${baseUrl}/${item.slug}`,
+      lastModified: item.date ? new Date(item.date) : new Date(),
+      changeFrequency: 'daily',
+      priority: 0.5,
+    });
+  });
 
   data.predicts.forEach((item) => {
     sitemap.push({

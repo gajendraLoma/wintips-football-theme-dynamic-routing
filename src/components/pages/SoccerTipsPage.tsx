@@ -35,19 +35,12 @@ export default async function SoccerTipsPage({data}: {data: any}) {
               </nav>
 
               <h1 className="text-2xl font-bold mb-2">{data.title}</h1>
-
               <TipsComp initialTips={initialTips} />
-          <div className="pt-4">
-            {
-                data.content ? (
-                    <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
-                ) : ( null )
-            }
-          </div>
+            {data.content && (
+              <div className="content page text-[#323232] pt-4" dangerouslySetInnerHTML={{__html: data.content}}/>
+            )}
             </div>
-
           </div>
-
           <div className="hidden col-span-1 lg:block lg:col-span-1">
             <Sidebar />
           </div>

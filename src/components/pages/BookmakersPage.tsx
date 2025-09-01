@@ -43,11 +43,9 @@ export default async function BookmakersPage({ data }: { data: BookmakersPageDat
               <div className="lg:col-span-3 space-y-8">
      
       <div className="bg-white px-4 md:px-8 py-4 max-w-[1280px] mx-auto">
-            {
-                data.content ? (
-                    <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
-                ) : ( null )
-            }
+           {data.content && (
+              <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
+            )}
           </div>
 
               </div>

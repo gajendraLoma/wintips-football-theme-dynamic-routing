@@ -246,12 +246,9 @@ export default async function PostDetailsPage({data, type}: Props) {
               )}
 
               {/* Post Content */}
-              {data.content && (
-                <div
-                  className="content page text-[#323232]"
-                  dangerouslySetInnerHTML={{__html: data.content}}
-                />
-              )}
+             {data.content && (
+              <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
+            )}
 
               {/* Publish Date */}
               <p className="text-gray-600 font-bold">
