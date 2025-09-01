@@ -100,45 +100,7 @@ export default async function BookmakersTable({
                         </span>
                         <span className="text-[#7f7f7f] md:text-base">/10</span>
                       </div>
-
-                      <div className="flex gap-1 relative">
-                        {Array(5)
-                          .fill(0)
-                          .map((_, i) => {
-                            const barValue = (i + 1) * 2;
-                            let color = 'rgb(254, 135, 82)';
-                            if (item.rating >= 8) color = 'rgb(113, 166, 93)';
-                            else if (item.rating >= 6)
-                              color = 'rgb(255, 214, 39)';
-                            return (
-                              <div
-                                key={i}
-                                className="h-1 w-[17.5px] rounded-full bg-[#ccc] relative"
-                              >
-                                <div
-                                  style={{
-                                    width:
-                                      item.rating >= barValue ? '100%' : '0%',
-                                    height: '4px',
-                                    borderRadius: '2px',
-                                    backgroundColor: color,
-                                    position: 'absolute',
-                                    top: 0,
-                                    left: 0,
-                                    zIndex: 1
-                                  }}
-                                />
-                              </div>
-                            );
-                          })}
-                      </div>
-
-                      <div>
-                        <span className="mr-1 text-sm font-bold">
-                          {item.votes.toLocaleString()}
-                        </span>
-                        {t('votes')}
-                      </div>
+                   
                     </div>
                   </td>
 

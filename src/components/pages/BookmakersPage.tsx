@@ -38,10 +38,18 @@ export default async function BookmakersPage({ data }: { data: BookmakersPageDat
         <BookmakersTable bookmakers={data.bookmakers} />
 
         <div className="">
-          <div className="max-w-8xl mx-auto py-8">
+          <div className="max-w-8xl mx-auto py-4 lg:py-8">
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
               <div className="lg:col-span-3 space-y-8">
-                <p className="content page text-[#323232]" dangerouslySetInnerHTML={{ __html: data.content }} />
+     
+      <div className="bg-white px-4 md:px-8 py-4 max-w-[1280px] mx-auto">
+            {
+                data.content ? (
+                    <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
+                ) : ( null )
+            }
+          </div>
+
               </div>
 
               {/* Sidebar (Right Column) */}

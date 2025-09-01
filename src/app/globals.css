@@ -809,3 +809,24 @@ h2{
 }
 }
 
+.PredictionResultCard:before {
+    content: "";
+    position: absolute;
+    left: -40px;
+    top: -15px;
+    width: 100px;
+    height: 40px;
+    background: #1a73e8;
+    z-index: -1;
+}
+
+.PredictionResultCard {
+    position: absolute;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #fff;
+    text-align: center;
+    transform: rotate(-45deg);
+    left: 3px;
+    top: 5px;
+}

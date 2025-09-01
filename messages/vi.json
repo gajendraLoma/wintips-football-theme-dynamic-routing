@@ -108,7 +108,7 @@
     "reviews": "Đánh giá",
     "rating": "Xếp hạng",
     "links": "Liên kết",
-    "visitSite": "Truy cập trang web",
+    "visitSite": "Chơi Ngay",
     "review": "Đánh giá",
     "round": "Vòng đấu",
     "no_data_found": "Không tìm thấy dữ liệu",
@@ -130,5 +130,12 @@
     "all":"Tất cả",
     "notFoundtitle": "404 - Không Tìm Thấy Trang",
     "notFounddescription": "Trang bạn đang tìm kiếm không tồn tại. Vui lòng quay lại",
-    "notFoundhomepageLink": "trang chủ"
+    "notFoundhomepageLink": "trang chủ",
+    "asian_handicap": "Chấp Châu Á",
+    "over_under": "Trên/Dưới",
+    "promotion_from": "Nhận khuyến mãi 200 USD từ",
+    "bet_now": "Đặt cược ngay",
+    "prediction_result": "Dự đoán kết quả bóng đá"
+
+
 }

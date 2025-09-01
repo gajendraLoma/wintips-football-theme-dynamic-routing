@@ -194,10 +194,14 @@ export default async function StandingsPage({ data }: StandingsPageProps) {
              
             </div>
         
-           content: <p
-              className="content page text-[#323232]"
-              dangerouslySetInnerHTML={{ __html: data.content }}
-            />
+        
+           <div className="">
+            {
+                data.content ? (
+                    <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
+                ) : ( null )
+            }
+          </div>
           </div>
 
         

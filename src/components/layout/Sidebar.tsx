@@ -61,13 +61,14 @@ export default async function Sidebar() {
                     className="flex items-center justify-between bg-[#eaf4ff] rounded-lg pr-1"
                   >
                     <div className="flex items-center space-x-3 rounded-[5px]">
-                      <div className="inline-block h-[75px] w-[75px] shrink-0 bg-blue-500 rounded flex items-center justify-center text-white text-xs font-bold">
+                      <div className="inline-block h-[80px] w-[60px] shrink-0 bg-blue-500 rounded flex items-center justify-center text-white text-xs font-bold">
                         <Image
                           src={getFullImageUrl(bookmaker.image)}
                           alt={bookmaker.name}
                           width={75}
                           height={75}
                           className="rounded"
+                        style={{height:"inherit"}}
                         />
                       </div>
                       <div className="flex-1 min-w-0">
@@ -80,12 +81,12 @@ export default async function Sidebar() {
                     </div>
                     <Link
                       href={bookmaker.play_now}
-                      className="h-7 w-[90px] rounded-[14px] bg-white p-0 text-[9px] text-blue-500 hover:bg-white flex items-center justify-center gap-x-1 animate-btn-swing"
+                      className="h-7 w-[120px] rounded-[14px] bg-white p-0 text-blue-500 hover:bg-white flex items-center justify-center gap-x-1 animate-btn-swing"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       <span className="flex items-center">
-                        <span className="text-blue-500 text-[10px]">{t('playNow')}</span>
+                        <span className="text-blue-500 text-[12px]">{t('playNow')}</span>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="13"
