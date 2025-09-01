@@ -288,7 +288,7 @@ export default async function BookmakerDetailsPage({data}: Props) {
                     {t('why_choose')}
                   </h2>
                   <div className="flex flex-col gap-3 pl-2">
-                    <p
+                    <div
                       className="content page text-[#323232]"
                       dangerouslySetInnerHTML={{__html: bookmaker.why_choice}}
                     />
@@ -337,10 +337,13 @@ export default async function BookmakerDetailsPage({data}: Props) {
               </div>
 
               {/* Content */}
-              <p
-                className="content page text-[#323232]"
-                dangerouslySetInnerHTML={{__html: data.content}}
-              />
+              <div className="">
+            {
+                data.content ? (
+                    <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
+                ) : ( null )
+            }
+          </div>
             </div>
           </div>
 

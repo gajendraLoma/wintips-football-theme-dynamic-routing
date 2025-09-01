@@ -186,11 +186,14 @@ export default async function ResultPage({data}: ResultPageProps) {
                 </>
               </div>
             </div>
-            content:{' '}
-            <p
-              className="content page text-[#323232]"
-              dangerouslySetInnerHTML={{__html: data.content}}
-            />
+         
+            <div className="">
+            {
+                data.content ? (
+                    <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
+                ) : ( null )
+            }
+          </div>
           </div>
 
           <div className="hidden col-span-1 lg:block lg:col-span-1">

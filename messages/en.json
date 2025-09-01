@@ -129,6 +129,12 @@
     "all":"All",
     "notFoundtitle": "404 - Page Not Found",
     "notFounddescription": "The page you're looking for doesn't exist. Try going back to the",
-    "notFoundhomepageLink": "homepage"
+    "notFoundhomepageLink": "homepage",
+    "asian_handicap": "Asian Handicap",
+    "over_under": "Over/Under",
+    "promotion_from": "Get a promotion of 200 USD from",
+    "bet_now": "Bet now",
+    "prediction_result": "Prediction soccer results"
+  
 
 }

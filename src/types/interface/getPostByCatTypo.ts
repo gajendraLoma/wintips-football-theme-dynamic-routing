@@ -34,6 +34,16 @@ export interface RelatedPost {
   featured_image: string;
   slug: string;
 }
+export interface MatchDetails {
+  home_name: string;
+  home_logo: string;
+  away_name: string;
+  away_logo: string;
+  score_predict: string;
+  underover: string;
+  handicap: string;
+  match_time: string; // ISO string or "YYYY-MM-DD HH:mm:ss"
+}
 
 export interface PostDetails {
   status: number;
@@ -46,5 +56,6 @@ export interface PostDetails {
   categories: PCategory[];
   breadcrumb: Breadcrumb;
   related_posts: RelatedPost[];
+  match: MatchDetails; 
 }
 

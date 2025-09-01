@@ -42,9 +42,14 @@ export default async function BlogPage({data}: {data: any}) {
             <ClientBlog initialData={initialData} perPage={perPage} />
             </div>
             {/* Page Content */}
-            <p className="content page text-[#323232]"
-              dangerouslySetInnerHTML={{__html: data.content}}
-            />
+           <div className="">
+            {
+                data.content ? (
+                    <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
+                ) : ( null )
+            }
+          </div>
+
           </section>
 
           <aside className="hidden col-span-1 lg:block lg:col-span-1">
