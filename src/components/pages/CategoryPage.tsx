@@ -13,9 +13,6 @@ export default async function CategoryPage({data, slug}: CategoryPageProps) {
   const t = await getTranslations();
   const perPage = 16; 
 
-
-console.log("Category Page Data", data)
-
   if (!data || !data.posts || data.total_posts === 0 || 'error' in data) {
     return (
       <main className="min-h-screen bg-gray-50">
