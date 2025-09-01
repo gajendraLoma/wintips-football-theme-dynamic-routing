@@ -43,7 +43,7 @@ export default async function Navigation({locale}: {locale: string}) {
     <header className="bg-[#0065cb] text-white px-4 md:shadow-[0px_4px_30px_0px_#00000040] sticky top-0 left-0 right-0 z-50">
       <nav className="max-w-8xl mx-auto h-full flex justify-between items-center lg:px-8">
         <div className="py-1 md:py-2">
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center custom-btn">
             <Image
               alt="Wintips logo"
               loading="lazy"

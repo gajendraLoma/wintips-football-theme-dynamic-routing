@@ -8,8 +8,61 @@
 }
 
 
+/* header */
 
+.custom-btn {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+.custom-btn:before {
+    background: hsla(0, 0%, 100%, .7);
+    width: 60px;
+    left: -60px;
+    filter: blur(20px);
+    animation: shine-custom1 3s ease-in-out infinite;
+}
+.custom-btn:after {
+    background: hsla(0, 0%, 100%, .4);
+    width: 30px;
+    left: -30px;
+    filter: blur(3px);
+    animation: shine-custom2 3s ease-in-out infinite;
+}
 
+.custom-btn:after, .custom-btn:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    height: 100%;
+}
+
+@keyframes shine-custom1{
+0% {
+    opacity: .7;
+    transform: translateX(-100px) skewX(-15deg);
+    transition-property: opacity, transform;
+}
+25%, 100% {
+    opacity: .8;
+    transform: translateX(300px) skewX(-15deg);
+    transition-property: opacity, transform;
+}
+}
+
+@keyframes shine-custom2{
+0% {
+    opacity: 0;
+    transform: translateX(-100px) skewX(-15deg);
+    transition-property: opacity, transform;
+}
+25%, 100% {
+    opacity: 1;
+    transform: translateX(300px) skewX(-15deg);
+    transition-property: opacity, transform;
+}
+}
 
 
 /* Odds Page css  */
