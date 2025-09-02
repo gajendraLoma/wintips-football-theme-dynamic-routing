@@ -41,7 +41,7 @@ export default async function Navigation({locale}: {locale: string}) {
 
   return (
     <header className="bg-[#0065cb] text-white px-4 md:shadow-[0px_4px_30px_0px_#00000040] sticky top-0 left-0 right-0 z-50">
-      <nav className="max-w-8xl mx-auto h-full flex justify-between items-center lg:px-8">
+      <nav className="max-w-8xl mx-auto h-full flex justify-between items-center">
         <div className="py-1 md:py-2">
           <Link href="/" className="flex items-center custom-btn">
             <Image
@@ -55,7 +55,7 @@ export default async function Navigation({locale}: {locale: string}) {
           </Link>
         </div>
 
-        <ul className="hidden md:flex items-center gap-8 m-0 h-full">
+        <ul className="hidden xl:flex items-center gap-8 m-0 h-full">
           {menuItems.map((item, index) => (
             <li key={index} className="h-full py-4 relative group">
               {item.hasSubmenu ? (
@@ -98,7 +98,7 @@ export default async function Navigation({locale}: {locale: string}) {
           </li>
         </ul>
 
-        <div className="flex gap-1 items-center md:hidden">
+        <div className="flex gap-1 items-center xl:hidden">
           <LocaleSwitcherMob />
           <MobileNavigation menuItems={menuItems} />
         </div>

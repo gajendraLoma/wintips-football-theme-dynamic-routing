@@ -55,8 +55,8 @@ export default async function SchedulePage({data}: SchedulePageProps) {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          <div className="lg:col-span-3 space-y-8">
+        <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
+          <div className="xl:col-span-3 space-y-8">
             <div className="bg-white px-4 md:px-8 py-4 max-w-[1280px] mx-auto">
               {/* Breadcrumb */}
               <nav className="flex items-center text-sm text-gray-500 mb-2">
@@ -205,7 +205,7 @@ export default async function SchedulePage({data}: SchedulePageProps) {
             )}
           </div>
 
-          <div className="hidden col-span-1 lg:block lg:col-span-1">
+          <div className="hidden col-span-1 xl:block xl:col-span-1">
             <Sidebar />
           </div>
         </div>
