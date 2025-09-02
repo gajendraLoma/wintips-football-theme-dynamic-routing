@@ -28,7 +28,7 @@ export default function MobileNavigation({ menuItems }: { menuItems: MenuItem[] 
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) {
+      if (window.innerWidth >= 1280) {
         setIsOpen(false); 
       }
     };
@@ -39,7 +39,7 @@ export default function MobileNavigation({ menuItems }: { menuItems: MenuItem[] 
   return (
     <>
       <button
-        className="md:hidden"
+        className="xl:hidden"
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle mobile menu"
       >
@@ -48,7 +48,7 @@ export default function MobileNavigation({ menuItems }: { menuItems: MenuItem[] 
 
       <div
         className={clsx(
-          "md:hidden fixed inset-0 bg-[#1a222d] z-50 transition-transform duration-300 ease-in-out",
+          "xl:hidden fixed inset-0 bg-[#1a222d] z-50 transition-transform duration-300 ease-in-out",
           isOpen ? "translate-x-0" : "translate-x-full"
         )}
       >

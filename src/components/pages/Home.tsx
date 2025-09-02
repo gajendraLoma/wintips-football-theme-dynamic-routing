@@ -71,8 +71,8 @@ export default async function Home({data}: {data: any}) {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          <div className="col-span-1 space-y-4 lg:col-span-3">
+        <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
+          <div className="col-span-1 space-y-4 xl:col-span-3">
             <Hero data={homeData} />
              <SectionHeader
               title={t('freeTipsTitle')}
@@ -92,7 +92,7 @@ export default async function Home({data}: {data: any}) {
           <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content?.replace(new RegExp(Backend_url || '', 'g'), domain)}}/>
             )}
           </div>
-          <div className="hidden col-span-1 lg:block lg:col-span-1">
+          <div className="hidden col-span-1 xl:block xl:col-span-1">
             <Sidebar />
           </div>
         </div>
