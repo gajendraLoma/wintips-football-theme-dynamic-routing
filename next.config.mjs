@@ -1,5 +1,4 @@
 import createNextIntlPlugin from 'next-intl/plugin';
-
 const withNextIntl = createNextIntlPlugin();
 
 /** @type {import('next').NextConfig} */
@@ -23,20 +22,18 @@ const nextConfig = {
     eslint: {
       ignoreDuringBuilds: true,
     },
-    async rewrites() {
-    return [
-      {
-        source: '/api/tips/:path*',
-        destination: `${process.env.WINTIPS_DOMAIN}/wp-json/get/tips/:path*`,
-      },
-    ];
-  },
+ 
     env: {
-      API_DOMAIN: "https://theme.168dev.com",
-      WINTIPS_DOMAIN: "https://wintips.com",
-      SITE_NAME: "Football Theme"
+      HOME_URL: "https://theme.168dev.com",
+      API: "https://theme.168dev.com",
+      WINTIPS_HOME_URL: "https://wintips.com",
+      SITE_NAME: "FootballTheme"
     },
+
+
+
   };
 
 
 export default withNextIntl(nextConfig);
+ 

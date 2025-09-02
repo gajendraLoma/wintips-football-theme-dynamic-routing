@@ -134,7 +134,8 @@
     "over_under": "Over/Under",
     "promotion_from": "Get a promotion of 200 USD from",
     "bet_now": "Bet now",
-    "prediction_result": "Prediction soccer results"
+    "prediction_result": "Prediction soccer results",
+    "no_post_for_this_category":"No posts available for this category"
   
 
 }

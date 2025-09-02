@@ -6,8 +6,8 @@ interface SitemapItem {
 }
 
 async function fetchTaxonomies(type: 'league' | 'category'): Promise<SitemapItem[]> {
-  const apiBase = process.env.API_DOMAIN;
-  const url = `${apiBase}/wp-json/get/taxonomy?type=${type}`;
+  const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const url = `${API_BASE}/wp-json/get/taxonomy?type=${type}`;
   try {
     const res = await fetch(url);
     if (!res.ok) {
@@ -22,8 +22,8 @@ async function fetchTaxonomies(type: 'league' | 'category'): Promise<SitemapItem
 }
 
 async function fetchAllPosts(type: 'post' | 'page' | 'match_predict' | 'bookmaker'): Promise<SitemapItem[]> {
-  const apiBase = process.env.API_DOMAIN;
-  const url = `${apiBase}/wp-json/get/allpost?type=${type}`;
+  const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
+  const url = `${API_BASE}/wp-json/get/allpost?type=${type}`;
   try {
     const res = await fetch(url);
     if (!res.ok) {

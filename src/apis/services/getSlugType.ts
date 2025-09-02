@@ -1,5 +1,5 @@
 // apis/services/getSlugType.ts
-const API_BASE = process.env.API_DOMAIN;
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 export async function fetchSlugType(slug: string): Promise<{ type: string | null } | { error: string }> {
   try {
     const url = `${API_BASE}/wp-json/get/slugtype?slug=${slug}`;

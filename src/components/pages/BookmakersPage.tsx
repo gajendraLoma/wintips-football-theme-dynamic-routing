@@ -6,6 +6,8 @@ import { BookmakersPageData } from '../../types/interface/getBookmakerTypo';
 import { getTranslations } from 'next-intl/server';
 export default async function BookmakersPage({ data }: { data: BookmakersPageData }) {
   const t = await getTranslations();
+  const domain = process.env.NEXT_PUBLIC_DOMAIN_NAME;
+  const Backend_url = process.env.NEXT_PUBLIC_API_BASE_URL; 
   return (
     <div className="flex-1 bg-gray-100">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
@@ -43,9 +45,11 @@ export default async function BookmakersPage({ data }: { data: BookmakersPageDat
               <div className="lg:col-span-3 space-y-8">
      
       <div className="bg-white px-4 md:px-8 py-4 max-w-[1280px] mx-auto">
-           {data.content && (
-              <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
-            )}
+           
+        {data.content && (
+          <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content?.replace(new RegExp(Backend_url || '', 'g'), domain || '')}}/>
+        )}
+
           </div>
 
               </div>

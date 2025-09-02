@@ -14,6 +14,9 @@ interface Props {
 export default async function BookmakerDetailsPage({data}: Props) {
   const bookmaker = data.bookmaker;
   const t = await getTranslations();
+  const domain = process.env.NEXT_PUBLIC_DOMAIN_NAME;
+  const Backend_url = process.env.NEXT_PUBLIC_API_BASE_URL; 
+
   return (
     <>
       {/* 🔹 Banner Section */}
@@ -337,9 +340,12 @@ export default async function BookmakerDetailsPage({data}: Props) {
               </div>
 
               {/* Content */}
+               
             {data.content && (
-              <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
+          <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content?.replace(new RegExp(Backend_url || '', 'g'), domain || '')}}/>
             )}
+
+
             </div>
           </div>
 

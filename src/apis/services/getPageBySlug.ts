@@ -1,5 +1,5 @@
 // apis/services/getPageBySlug.ts
-const API_BASE = process.env.API_DOMAIN;
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 export async function fetchPageData(slug: string): Promise<any | { error: string }> {
   try {
     const url = slug ? `${API_BASE}/wp-json/get/page?slug=${slug}` : `${API_BASE}/wp-json/get/page`;
