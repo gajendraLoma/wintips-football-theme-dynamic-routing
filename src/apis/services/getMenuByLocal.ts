@@ -1,9 +1,9 @@
 // apis/services/getMenuByLocal.ts
 import { MenuData } from '@/types/interface/getMenuTypo';
-const apiBaseUrl = process.env.API_DOMAIN;
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 export async function fetchMenuData(location: string = 'menu-1'): Promise<MenuData | { error: string }> {
   try {
-    const res = await fetch(`${apiBaseUrl}/wp-json/getdata/menu?location=${location}`, {
+    const res = await fetch(`${API_BASE}/wp-json/getdata/menu?location=${location}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export async function fetchMenuData(location: string = 'menu-1'): Promise<MenuDa
 export async function fetchFooterByLocation(location: string) {
   try {
     const res = await fetch(
-      `${apiBaseUrl}/wp-json/getdata/menu?location=${location}`,
+      `${API_BASE}/wp-json/getdata/menu?location=${location}`,
       { next: { revalidate: 3600 } } // SSR + ISR
     );
 

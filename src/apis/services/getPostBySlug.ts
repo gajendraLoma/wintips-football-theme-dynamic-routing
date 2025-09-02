@@ -1,5 +1,5 @@
 // apis/services/getPostBySlug.ts
-const API_BASE = process.env.API_DOMAIN;
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 export async function fetchPostBySlug(type: string, slug: string): Promise<any | { error: string }> {
   try {
     const params = new URLSearchParams({ type, slug });

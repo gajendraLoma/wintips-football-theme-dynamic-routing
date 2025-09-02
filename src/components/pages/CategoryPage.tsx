@@ -12,6 +12,9 @@ interface CategoryPageProps {
 export default async function CategoryPage({data, slug}: CategoryPageProps) {
   const t = await getTranslations();
   const perPage = 16; 
+  const domain = process.env.NEXT_PUBLIC_DOMAIN_NAME;
+  const Backend_url = process.env.NEXT_PUBLIC_API_BASE_URL; 
+
 
   if (!data || !data.posts || data.total_posts === 0 || 'error' in data) {
     return (
@@ -20,7 +23,7 @@ export default async function CategoryPage({data, slug}: CategoryPageProps) {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <section className="lg:col-span-3 space-y-8">
               <div className="bg-white px-4 md:px-8 py-4 max-w-[1280px] mx-auto">
-                <p>No posts available for this category</p>
+                <p>{t("no_post_for_this_category")} </p>
               </div>
             </section>
             <aside className="hidden lg:block lg:col-span-1">
@@ -67,11 +70,13 @@ export default async function CategoryPage({data, slug}: CategoryPageProps) {
 
             <div className="">
                     
-                      {data.content ? (
-                        <div
-                          className="content page text-[#323232]"
-                          dangerouslySetInnerHTML={{ __html: data.content }}
-                        />
+
+
+
+
+                      {data.content ? (   
+          <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content?.replace(new RegExp(Backend_url || '', 'g'), domain || '')}}/>
+
                       ) : data.description ? (
                         <div className="content page text-[#323232]">
                           {data.description}

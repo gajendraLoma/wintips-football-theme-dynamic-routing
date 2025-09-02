@@ -7,6 +7,8 @@ export default async function SoccerTipsPage({data}: {data: any}) {
   const response = await fetchTipsData(1, 40);
   const initialTips = 'error' in response ? null : response;
   const t = await getTranslations();
+  const domain = process.env.NEXT_PUBLIC_DOMAIN_NAME;
+  const Backend_url = process.env.NEXT_PUBLIC_API_BASE_URL; 
    return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
@@ -35,19 +37,12 @@ export default async function SoccerTipsPage({data}: {data: any}) {
               </nav>
 
               <h1 className="text-2xl font-bold mb-2">{data.title}</h1>
-
               <TipsComp initialTips={initialTips} />
-          <div className="pt-4">
-            {
-                data.content ? (
-                    <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
-                ) : ( null )
-            }
-          </div>
+             {data.content && (
+          <div className="content page text-[#323232] pt-4" dangerouslySetInnerHTML={{__html: data.content?.replace(new RegExp(Backend_url || '', 'g'), domain)}}/>
+            )}
             </div>
-
           </div>
-
           <div className="hidden col-span-1 lg:block lg:col-span-1">
             <Sidebar />
           </div>

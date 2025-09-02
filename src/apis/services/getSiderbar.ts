@@ -1,11 +1,11 @@
 // apis/services/getSidebar.ts
 import { SSidebarData } from '@/types/interface/getSidebarTypo';
 
-const apiBaseUrl = process.env.API_DOMAIN;
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export async function fetchSidebarData(): Promise<SSidebarData | { error: string }> {
   try {
-    const res = await fetch(`${apiBaseUrl}/wp-json/get/siderbar`, {
+    const res = await fetch(`${API_BASE}/wp-json/get/siderbar`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'

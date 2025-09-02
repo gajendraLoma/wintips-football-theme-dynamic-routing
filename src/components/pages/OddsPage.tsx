@@ -72,6 +72,9 @@ export default function OddsPage({data}: {data: any}) {
     '1'
   ]);
 
+  const domain = process.env.NEXT_PUBLIC_DOMAIN_NAME;
+  const Backend_url = process.env.NEXT_PUBLIC_API_BASE_URL; 
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const media = window.matchMedia('(max-width: 768px)');
@@ -2711,13 +2714,9 @@ export default function OddsPage({data}: {data: any}) {
 
         {/* Content */}
             
-  <div className="">
-            {
-                data.content ? (
-                    <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
-                ) : ( null )
-            }
-          </div>
+         {data.content && (
+          <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content?.replace(new RegExp(Backend_url || '', 'g'), domain)}}/>
+            )}
 
 
       </div>

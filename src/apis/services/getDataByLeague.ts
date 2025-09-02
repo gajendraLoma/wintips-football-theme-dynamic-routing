@@ -1,5 +1,5 @@
 // apis/services/getDataByLeague.ts 
-const API_BASE = process.env.API_DOMAIN;
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export interface TaxonomyItem {
   title: string;

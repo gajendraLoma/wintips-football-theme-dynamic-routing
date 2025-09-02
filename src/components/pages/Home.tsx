@@ -59,6 +59,8 @@ export default async function Home({data}: {data: any}) {
     );
   }
 
+  const domain = process.env.NEXT_PUBLIC_DOMAIN_NAME;
+  const Backend_url = process.env.NEXT_PUBLIC_API_BASE_URL; 
   const tipsResponse = await fetchTipsData(1, 10);
 
   // Handle the response and align with TipsResponse | null
@@ -86,13 +88,9 @@ export default async function Home({data}: {data: any}) {
             />
            <PredectionList posts={matchData.posts} />
             <BettingGENSection data={homeData} />
-            <div className="">
-            {
-                data.content ? (
-                    <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
-                ) : ( null )
-            }
-          </div>
+           {data.content && (
+          <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content?.replace(new RegExp(Backend_url || '', 'g'), domain)}}/>
+            )}
           </div>
           <div className="hidden col-span-1 lg:block lg:col-span-1">
             <Sidebar />

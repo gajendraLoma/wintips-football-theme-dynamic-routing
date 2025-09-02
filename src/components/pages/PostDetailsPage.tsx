@@ -25,7 +25,8 @@ export default async function PostDetailsPage({data, type}: Props) {
     ? data?.breadcrumb?.slug
     : data?.categories?.[0]?.slug;
 
-  const W88_URL = process.env.WINTIPS_BOOKMAKER_W88;
+  const domain = process.env.NEXT_PUBLIC_DOMAIN_NAME;
+  const Backend_url = process.env.NEXT_PUBLIC_API_BASE_URL; 
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -173,22 +174,22 @@ export default async function PostDetailsPage({data, type}: Props) {
 
                     {/* Promotion / Bet Now */}
                     <div className="flex flex-col items-center justify-around gap-3 sm:w-auto w-full">
-                      <span className="text-center text-sm font-bold pb-2">
+                      {/* <span className="text-center text-sm font-bold pb-2">
                         {t('promotion_from')} &nbsp;
                         <Link
                           className="text-blue-600"
                           target="_blank"
-                          href={W88_URL!}
+                          href={"#"}
                         >
                           W88
                         </Link>
-                      </span>
+                      </span> */}
 
                       <div className="relative rounded-full p-1 w-[305px] bg-gradient-to-r from-blue-400 to-indigo-700">
                         {/* Hand Icon */}
 
                         <Link
-                          href={W88_URL!}
+                          href={"#"}
                           target="_blank"
                           className="text-md font-bold uppercase text-white no-underline hover:text-red-600"
                         >
@@ -246,12 +247,9 @@ export default async function PostDetailsPage({data, type}: Props) {
               )}
 
               {/* Post Content */}
-              {data.content && (
-                <div
-                  className="content page text-[#323232]"
-                  dangerouslySetInnerHTML={{__html: data.content}}
-                />
-              )}
+             {data.content && (
+          <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content?.replace(new RegExp(Backend_url || '', 'g'), domain || '')}}/>
+            )}
 
               {/* Publish Date */}
               <p className="text-gray-600 font-bold">

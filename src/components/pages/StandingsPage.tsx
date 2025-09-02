@@ -40,6 +40,9 @@ export default async function StandingsPage({ data }: StandingsPageProps) {
   const standingsByLeagues = data.league_id ? standingsData : null;
   const standingTables = standingsByLeagues?.result?.[0]?.standing?.tables?.[0]?.rows || [];
   const promotions = standingsByLeagues?.result?.[0]?.standing?.promotions || [];
+  const domain = process.env.NEXT_PUBLIC_DOMAIN_NAME;
+  const Backend_url = process.env.NEXT_PUBLIC_API_BASE_URL; 
+
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -191,17 +194,10 @@ export default async function StandingsPage({ data }: StandingsPageProps) {
                     </div>
                   )}
                 </div>
-             
             </div>
-        
-        
-           <div className="">
-            {
-                data.content ? (
-                    <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
-                ) : ( null )
-            }
-          </div>
+           {data.content && (
+          <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content?.replace(new RegExp(Backend_url || '', 'g'), domain || '')}}/>
+            )}
           </div>
 
         

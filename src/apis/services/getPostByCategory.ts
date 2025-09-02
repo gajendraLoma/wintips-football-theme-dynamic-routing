@@ -1,7 +1,7 @@
 
 // apis/services/getPostByCategory.ts
 import { PostByCatResponse } from '../../types/interface/getPostByCatTypo';
-const API_BASE = process.env.API_DOMAIN;
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE_URL;
 export async function fetchPostByCat(type: string, slug: string, post_type: string, per_page: number = 16, paged: number = 1): Promise<PostByCatResponse> {
   const params = new URLSearchParams({type,slug,post_type,per_page: per_page.toString(),paged: paged.toString(),});
   try {
