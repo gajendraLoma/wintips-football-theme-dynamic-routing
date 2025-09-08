@@ -13,6 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: 'yearly',
     priority: 1.0,
   });
+<<<<<<< Updated upstream
 
  data.categories.forEach((item) => {
     sitemap.push({
