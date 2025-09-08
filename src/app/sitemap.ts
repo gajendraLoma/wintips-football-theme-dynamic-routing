@@ -34,6 +34,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
 
  data.pages.forEach((item) => {
+=======
+  data.categories.forEach((item) => {
+>>>>>>> Stashed changes
     sitemap.push({
       url: `${HOME_URL}/${item.slug}`,
       lastModified: item.date ? new Date(item.date) : new Date(),
@@ -41,6 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.5,
     });
   });
+<<<<<<< Updated upstream
 
  data.posts.forEach((item) => {
     sitemap.push({
@@ -61,6 +65,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   });
 
   data.predicts.forEach((item) => {
+=======
+  data.leagues.forEach((item) => {
+>>>>>>> Stashed changes
     sitemap.push({
       url: `${HOME_URL}/${item.slug}`,
       lastModified: item.date ? new Date(item.date) : new Date(),
@@ -68,6 +75,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     });
   });
-
+  data.pages.forEach((item) => {
+    sitemap.push({
+      url: `${baseUrl}/${item.slug}`,
+      lastModified: item.date ? new Date(item.date) : new Date(),
+      changeFrequency: 'daily',
+      priority: 0.5,
+    });
+  });
+  data.posts.forEach((item) => {
+    sitemap.push({
+      url: `${baseUrl}/${item.slug}`,
+      lastModified: item.date ? new Date(item.date) : new Date(),
+      changeFrequency: 'daily',
+      priority: 0.5,
+    });
+  });
+  data.bookmakers.forEach((item) => {
+    sitemap.push({
+      url: `${baseUrl}/${item.slug}`,
+      lastModified: item.date ? new Date(item.date) : new Date(),
+      changeFrequency: 'daily',
+      priority: 0.5,
+    });
+  });
+  data.predicts.forEach((item) => {
+    sitemap.push({
+      url: `${baseUrl}/${item.slug}`,
+      lastModified: item.date ? new Date(item.date) : new Date(),
+      changeFrequency: 'daily',
+      priority: 0.5,
+    });
+  });
   return sitemap;
 }
