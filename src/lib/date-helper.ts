@@ -17,17 +17,17 @@ export const generateDates = () => {
 }
 
 export const formatDate = (timeStamp: number) => {
-    const date = new Date(timeStamp * 1000);
+  const date = new Date(timeStamp * 1000);
 
-    const day = String(date.getDate()).padStart(2, '0');
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
-    // const year = date.getFullYear();
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
 
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
 
-    return `${day}-${month} - ${hours}:${minutes}`;
-}
+  return `${hours}:${minutes} ${day}/${month}`;
+};
+
 
 
 export const ISOformatDate = (dateString: string) => {

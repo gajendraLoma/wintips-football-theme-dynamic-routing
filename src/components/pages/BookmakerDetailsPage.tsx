@@ -17,6 +17,8 @@ export default async function BookmakerDetailsPage({data}: Props) {
   const domain = process.env.NEXT_PUBLIC_DOMAIN_NAME;
   const Backend_url = process.env.NEXT_PUBLIC_API_BASE_URL; 
 
+
+  
   return (
     <>
       {/* 🔹 Banner Section */}
@@ -95,7 +97,7 @@ export default async function BookmakerDetailsPage({data}: Props) {
                   className="flex items-center gap-1 no-underline"
                 >
                   <span className="text-lg font-bold text-white">
-                    {t('get_it_now')} &nbsp;
+                    {t('play_now')} &nbsp;
                   </span>
                   <img
                     alt="icon"
@@ -186,7 +188,7 @@ export default async function BookmakerDetailsPage({data}: Props) {
                         className="flex items-center gap-1 no-underline"
                       >
                         <span className="text-sm font-bold text-white">
-                          {t('get_it_now')} &nbsp;
+                          {t('play_now')} &nbsp;
                         </span>
                         <img
                           alt="icon"

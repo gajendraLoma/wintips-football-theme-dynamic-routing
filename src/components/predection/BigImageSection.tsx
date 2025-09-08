@@ -13,7 +13,7 @@ export default function BigImageSection({
   sidebarMatches: Post[];
 }) {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-2 lg:gap-6">
       <div className="space-y-6">
         <Link
           href={`/${mainMatch.slug || ''}`}
@@ -49,7 +49,7 @@ export default function BigImageSection({
         </Link>
       </div>
 
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-2 lg:gap-3">
         {sidebarMatches.map((match, i) => (
           <Link
             key={i}
@@ -79,7 +79,7 @@ export default function BigImageSection({
               </div>
             </div>
           <div className="">
-            <h3 className="line-clamp-1 text-sm font-medium text-gray-900 leading-tight transition-colors duration-300 hover:text-[#60a5fa]">
+            <h3 className="line-clamp-1 text-sm font-semibold text-gray-900 leading-tight transition-colors duration-300 hover:text-[#60a5fa] mb-2">
                {match.title}
             </h3>
               <p className="text-xs font-medium text-gray-800 transition-colors duration-300 line-clamp-2">

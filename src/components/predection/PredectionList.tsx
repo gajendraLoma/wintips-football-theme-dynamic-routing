@@ -8,7 +8,7 @@ import Link from 'next/link';
 export default function PredectionList({posts}: {posts: Post[]}) {
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6 cursor-pointer pt-3 lg:pt-0">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 lg:gap-4 mb-6 cursor-pointer pt-3 lg:pt-0">
         {posts.map((post, i) => (
           <Link
             href={post.slug}
@@ -25,7 +25,7 @@ export default function PredectionList({posts}: {posts: Post[]}) {
               />
             </div>
             <div className="">
-              <h3 className="text-sm sm:text-base font-medium text-gray-800 hover:text-[#60a5fa] line-clamp-1 lg:line-clamp-2">
+              <h3 className="text-sm sm:text-base font-semibold text-gray-800 hover:text-[#60a5fa] line-clamp-1 lg:line-clamp-2 mb-2">
                 {post.title}
               </h3>
               <p className="text-xs font-medium text-gray-800 transition-colors duration-300 group-hover:text-[#60a5fa] line-clamp-2">
