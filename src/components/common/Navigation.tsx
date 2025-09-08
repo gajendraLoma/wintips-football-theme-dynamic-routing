@@ -6,7 +6,7 @@ import {fetchMenuData} from '@/apis';
 import MobileNavigation from './MobileNavigation';
 import LocaleSwitcherPc from './LocaleSwitcherPc';
 import LocaleSwitcherMob from './LocaleSwitcherMob';
-
+import he from "he";
 export default async function Navigation({locale}: {locale: string}) {
   const data = await fetchMenuData();
   const menuData = 'error' in data ? null : (data as MenuData);
@@ -64,7 +64,7 @@ export default async function Navigation({locale}: {locale: string}) {
                     href={item.url}
                     className="transition-colors flex items-center addhereActiveclass text-sm hover:text-[#60a5fa]"
                   >
-                    {item.label}
+                    {he.decode(item.label) || ''}
                     <ChevronDown className="ml-1 w-4 h-4" />
                   </Link>
                   <div className="absolute rounded top-[45px] hidden group-hover:block min-w-48 bg-[#ffffff] shadow border-[1px solid #cecccc] z-10">
@@ -76,7 +76,7 @@ export default async function Navigation({locale}: {locale: string}) {
                             className="transition-colors text-sm text-gray-700 hover:text-[#60a5fa]"
                             data-parent-url={sub.parentUrl}
                           >
-                            {sub.label}
+                            {he.decode(sub.label) || ''}
                           </Link>
                         </li>
                       ))}

@@ -27,7 +27,8 @@ const nextConfig = {
       HOME_URL: "https://theme.168dev.com",
       API: "https://theme.168dev.com",
       WINTIPS_HOME_URL: "https://wintips.com",
-      SITE_NAME: "FootballTheme"
+      SITE_NAME: "FootballTheme",
+      BETNOW_URL: "/bet-now",
     },
 
 

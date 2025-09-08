@@ -174,22 +174,9 @@ export default async function PostDetailsPage({data, type}: Props) {
 
                     {/* Promotion / Bet Now */}
                     <div className="flex flex-col items-center justify-around gap-3 sm:w-auto w-full">
-                      {/* <span className="text-center text-sm font-bold pb-2">
-                        {t('promotion_from')} &nbsp;
-                        <Link
-                          className="text-blue-600"
-                          target="_blank"
-                          href={"#"}
-                        >
-                          W88
-                        </Link>
-                      </span> */}
-
                       <div className="relative rounded-full p-1 w-[305px] bg-gradient-to-r from-blue-400 to-indigo-700">
-                        {/* Hand Icon */}
-
                         <Link
-                          href={"#"}
+                          href={process.env.BETNOW_URL || '/'}
                           target="_blank"
                           className="text-md font-bold uppercase text-white no-underline hover:text-red-600"
                         >
@@ -202,9 +189,6 @@ export default async function PostDetailsPage({data, type}: Props) {
                               src="/images/hand.png"
                             />
                           </div>
-
-                          {/* Bet Now Button */}
-
                           <div className="rounded-full border border-dashed border-white py-3 text-center group hover:opacity-80">
                             <div>{t('bet_now')}</div>
                           </div>
@@ -248,14 +232,8 @@ export default async function PostDetailsPage({data, type}: Props) {
 
               {/* Post Content */}
              {data.content && (
-          <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content?.replace(new RegExp(Backend_url || '', 'g'), domain || '')}}/>
-            )}
-
-              {/* Publish Date */}
-              <p className="text-gray-600 font-bold">
-                {t('publish_date')}: {ISOformatDate(data?.published_date)}
-              </p>
-
+              <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content?.replace(new RegExp(Backend_url || '', 'g'), domain || '')}}/>
+             )}
               {/* Related Posts */}
               <RelatedPosts RelatedPostData={data.related_posts || []} />
             </div>

@@ -337,18 +337,12 @@ export default async function BookmakerDetailsPage({data}: Props) {
                   />{' '}
                   {t('review')} {data.title}
                 </h2>
-              </div>
-
-              {/* Content */}
-               
-            {data.content && (
-          <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content?.replace(new RegExp(Backend_url || '', 'g'), domain || '')}}/>
-            )}
-
-
+              </div> 
+              {data.content && (
+                <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content?.replace(new RegExp(Backend_url || '', 'g'), domain || '')}}/>
+              )}
             </div>
           </div>
-
           {/* Sidebar (Right Column) */}
           <div className="hidden col-span-1 xl:block xl:col-span-1">
             <Sidebar />

@@ -41,21 +41,12 @@ export default async function BlogPage({data}: {data: any}) {
                 <span>{data.title}</span>
               </nav>
               <h1 className="text-2xl font-bold mb-2">{data.title}</h1>
-           
-            <ClientBlog initialData={initialData} perPage={perPage} />
-          
-          
-           {/* Page Content */}
-       
-            {data.content && (
-          <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content?.replace(new RegExp(Backend_url || '', 'g'), domain)}}/>
-            )}
-      
+              <ClientBlog initialData={initialData} perPage={perPage} />
+              {data.content && (
+                <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content?.replace(new RegExp(Backend_url || '', 'g'), domain)}}/>
+              )}
             </div>
-           
-
           </section>
-
           <aside className="hidden col-span-1 xl:block xl:col-span-1">
             <Sidebar />
           </aside>

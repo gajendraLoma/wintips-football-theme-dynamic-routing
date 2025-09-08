@@ -3,7 +3,7 @@ import Link from 'next/link';
 import {getTranslations} from 'next-intl/server';
 import {fetchAllFooters} from '@/apis';
 import ScrollToTopButton from './ScrollToTopButton';
-
+import he from "he";
 export default async function Footer({locale}: {locale: string}) {
   const t = await getTranslations();
   const footerData = await fetchAllFooters();
@@ -33,7 +33,7 @@ export default async function Footer({locale}: {locale: string}) {
                 href={item.url}
                 className="hover:text-white transition-colors"
               >
-                {getLabel(item.lang, locale)}
+                {he.decode(getLabel(item.lang, locale) || '')}
               </Link>
             </li>
           ))}
@@ -65,7 +65,7 @@ export default async function Footer({locale}: {locale: string}) {
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <p className="text-gray-400 text-sm">
-              {t('copyright', {year: new Date().getFullYear()})}
+              {`© ${new Date().getFullYear()} ${process.env.SITE_NAME}. All rights reserved.`}
             </p>
           </div>
         </div>

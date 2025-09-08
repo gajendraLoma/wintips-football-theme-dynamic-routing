@@ -88,21 +88,13 @@ export default async function Home({data}: {data: any}) {
             />
            <PredectionList posts={matchData.posts} />
             <BettingGENSection data={homeData} />
-<<<<<<< Updated upstream
-           {data.content && (
-          <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content?.replace(new RegExp(Backend_url || '', 'g'), domain)}}/>
-            )}
-          </div>
-          <div className="hidden col-span-1 xl:block xl:col-span-1">
-=======
-            {
+             {
                 data.content && (
                     <div className="content page text-[#323232]" dangerouslySetInnerHTML={{__html: data.content}}/>
                 )
             }
           </div>
           <div className="hidden col-span-1 lg:block lg:col-span-1">
->>>>>>> Stashed changes
             <Sidebar />
           </div>
         </div>
