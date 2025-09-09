@@ -54,12 +54,12 @@ export default async function ResultPage({data}: ResultPageProps) {
   const Backend_url = process.env.NEXT_PUBLIC_API_BASE_URL; 
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
-        <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
-          <div className="xl:col-span-3 space-y-8">
-            <div className="bg-white px-4 md:px-8 py-4 max-w-[1280px] mx-auto">
-              <nav className="flex items-center text-sm text-gray-500 mb-2">
+       <div className="min-h-screen bg-gray-50">
+  <div className="max-w-8xl mx-auto py-2 sm:py-4 md:py-6 lg:py-6 px-3">
+  <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+    <div className="xl:col-span-3 space-y-4 sm:space-y-6 md:space-y-8">
+      <div className="bg-white px-2 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-4 md:py-6 lg:py-6 max-w-[1280px] mx-auto">
+              <nav className="ruby md:!flex items-center text-sm text-gray-500 mb-3">
                 <Link href="/" className="text-blue-600 hover:underline">
                   {t('home')}
                 </Link>
@@ -79,7 +79,7 @@ export default async function ResultPage({data}: ResultPageProps) {
                 </svg>
                 <span>{data.title}</span>
               </nav>
-              <h1 className="text-2xl font-bold mb-2">{data.title}</h1>
+              <h1 className="text-2xl pt-3 md:pt-0 font-bold mb-2">{data.title}</h1>
               <div className="bg-white rounded-2xl">
                 <>
                   {leagues.length > 0 && (
@@ -87,7 +87,7 @@ export default async function ResultPage({data}: ResultPageProps) {
                       {leagues.map((league: TRLeague, index: number) => (
                         <div key={index} className="w-full">
                           <div className="group headerBg text-[#07302C] flex justify-between items-center py-2 px-4">
-                            <div className="px-0 flex gap-4 items-center">
+                            <div className="px-0 flex gap-2 lg:gap-4 items-center">
                               {league.league_logo && (
                                 <div className="w-6 h-6 relative">
                                   <Image
@@ -138,7 +138,7 @@ export default async function ResultPage({data}: ResultPageProps) {
                         (league: TRCompetition, index: number) => (
                           <div key={index} className="w-full">
                             <div className="group headerBg text-[#07302C] flex justify-between items-center py-2 px-4">
-                              <div className="px-0 flex gap-4 items-center">
+                              <div className="px-0 flex gap-2 lg:gap-4 items-center">
                                 {league.competition_logo && (
                                   <div className="w-6 h-6 relative">
                                     <Image

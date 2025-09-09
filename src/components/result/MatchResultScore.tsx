@@ -1,4 +1,4 @@
-import { formatDate } from "../../lib/date-helper";
+import { formatDate} from "../../lib/date-helper";
 import { TRMatch } from "@/types/interface/getResultsTypo";
 import Image from "next/image";
 

@@ -29,22 +29,23 @@ export default async function PostDetailsPage({data, type}: Props) {
   const Backend_url = process.env.NEXT_PUBLIC_API_BASE_URL; 
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
-        <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
-          <section className="xl:col-span-3 space-y-8">
-            <div className="bg-white px-4 md:px-8 py-4 max-w-[1280px] mx-auto">
+     <main className="min-h-screen bg-gray-50">
+  <div className="max-w-8xl mx-auto py-2 sm:py-4 md:py-6 lg:py-6 px-3">
+    <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+      <section className="xl:col-span-3 space-y-4 sm:space-y-6 md:space-y-8">
+        <div className="bg-white px-2 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-4 md:py-6 lg:py-6 max-w-[1280px] mx-auto">
               {/* Breadcrumb */}
-              <nav className="flex items-center text-sm text-gray-500 mb-2">
+              <nav className="ruby md:!flex items-center text-sm text-gray-500 mb-3">
                 <Link
                   href="/"
                   className="text-blue-600 hover:underline transition-colors"
                 >
                   {t('home')}
                 </Link>
+                     <ChevronIcon />
                 {breadcrumbName && breadcrumbSlug && (
                   <>
-                    <ChevronIcon />
+               
                     <Link
                       href={`/${breadcrumbSlug.replace(/^\//, '')}`}
                       className="text-blue-600 hover:underline transition-colors"
@@ -58,13 +59,13 @@ export default async function PostDetailsPage({data, type}: Props) {
               </nav>
 
               {/* Title */}
-              <h1 className="text-3xl font-bold mb-4">{data.title}</h1>
+              <h1 className="text-2xl pt-3 md:pt-0 font-bold mb-4">{data.title}</h1>
 
               {isMatchPredict && (
                 <>
                   {data.match && (
-                    <div className="mb-8 rounded-md bg-gray-100 md:p-7 py-2 max-sm:p-[5px] bg-[url('/images/backgroud-top-predictions.jpg')] bg-no-repeat bg-cover">
-                      <div className="flex justify-between gap-1 items-center">
+                    <div className="mb-6 rounded-md bg-gray-100 md:p-7 py-2 max-sm:py-[20px] bg-[url('/images/backgroud-top-predictions.jpg')] bg-no-repeat bg-cover">
+                      <div className="flex justify-between gap-1 items-center px-2">
                         <div className="flex sm:flex-1 flex-1 flex-col items-center">
                           <div className="flex sm:h-32 sm:w-32 w-[65px] h-[65px] items-center justify-center rounded-full bg-white shadow-sm">
                             <img
@@ -76,16 +77,16 @@ export default async function PostDetailsPage({data, type}: Props) {
                               src={getFullImageUrl(data.match.home_logo)}
                             />
                           </div>
-                          <span className="mt-4 font-bold text-center max-sm:text-[15px] text-lg">
+                          <span className="mt-2 lg:mt-4 font-bold text-center text-xs lg:text-lg">
                             {data.match.home_name}
                           </span>
                         </div>
 
                         <span className="flex sm:flex-[1] flex-1 h-full flex-col items-center">
-                          <p className="text-center max-sm:m-0 p2-5 font-bold text-[15px]">
+                          <p className="text-center max-sm:m-0 p2-5 font-bold text-xs lg:text-lg">
                             {data?.categories[0]?.name}
                           </p>
-                          <p className="m-0 max-sm:text-xs">
+                          <p className="m-0 max-sm:text-xs text-center">
                             {ISOformatDate(data.match.match_time)}
                           </p>
                         </span>
@@ -101,7 +102,7 @@ export default async function PostDetailsPage({data, type}: Props) {
                               src={getFullImageUrl(data.match.away_logo)}
                             />
                           </div>
-                          <span className="mt-4 font-bold text-center max-sm:text-[15px] text-lg">
+                          <span className="mt-2 lg:mt-4 font-bold text-center text-xs md:text-md lg:text-lg">
                             {data.match.away_name}
                           </span>
                         </div>
@@ -129,10 +130,10 @@ export default async function PostDetailsPage({data, type}: Props) {
                           className="mr-2"
                           src="/images/light.png"
                         />
-                        <span className="mr-1 text-base font-bold max-xl:text-[15px] max-lg:text-sm">
+                        <span className="mr-1 text-base font-bold max-xl:text-[15px] max-lg:text-xs">
                           {t('asian_handicap')}:
                         </span>
-                        <span className="flex gap-1 text-base font-bold text-blue-600 max-xl:text-[15px] max-lg:text-sm">
+                        <span className="flex gap-1 text-base font-bold text-blue-600 max-xl:text-[15px] max-lg:text-xs">
                           {data.match?.handicap || 'N/A'}
                         </span>
                       </p>
@@ -146,10 +147,10 @@ export default async function PostDetailsPage({data, type}: Props) {
                           className="mr-2"
                           src="/images/ball.png"
                         />
-                        <span className="mr-1 text-base font-bold max-xl:text-[15px] max-lg:text-sm">
+                        <span className="mr-1 text-base font-bold max-xl:text-[15px] max-lg:text-xs">
                           {t('score')}:
                         </span>
-                        <span className="text-base font-bold text-blue-600 max-xl:text-[15px] max-lg:text-sm">
+                        <span className="text-base font-bold text-blue-600 max-xl:text-[15px] max-lg:text-xs">
                           {data.match?.score_predict || 'N/A'}
                         </span>
                       </p>
@@ -163,10 +164,10 @@ export default async function PostDetailsPage({data, type}: Props) {
                           className="mr-2"
                           src="/images/ou.png"
                         />
-                        <span className="mr-1 text-base font-bold max-xl:text-[15px] max-lg:text-sm">
+                        <span className="mr-1 text-base font-bold max-xl:text-[15px] max-lg:text-xs">
                           {t('over_under')}:
                         </span>
-                        <span className="text-base font-bold text-blue-600 max-xl:text-[15px] max-lg:text-sm">
+                        <span className="text-base font-bold text-blue-600 max-xl:text-[15px] max-lg:text-xs">
                           {data.match?.underover || 'N/A'}
                         </span>
                       </p>
@@ -174,13 +175,13 @@ export default async function PostDetailsPage({data, type}: Props) {
 
                     {/* Promotion / Bet Now */}
                     <div className="flex flex-col items-center justify-around gap-3 sm:w-auto w-full">
-                      <div className="relative rounded-full p-1 w-[305px] bg-gradient-to-r from-blue-400 to-indigo-700">
+                      <div className="relative rounded-full p-1 w-[270px] lg:w-[305px] bg-gradient-to-r from-blue-400 to-indigo-700">
                         <Link
                           href={process.env.BETNOW_URL || '/'}
                           target="_blank"
                           className="text-md font-bold uppercase text-white no-underline hover:text-red-600"
                         >
-                          <div className="absolute top-1/2 left-[-18px] transform -translate-y-1/2 flex items-center justify-center rounded-full border-4 border-gray-200 bg-white w-[70px] h-[70px]">
+                          <div className="absolute top-1/2 left-[-18px] transform -translate-y-1/2 flex items-center justify-center rounded-full border-4 border-gray-200 bg-white w-[40px] h-[40px] lg:w-[70px] lg:h-[70px]">
                             <img
                               alt="hand"
                               loading="lazy"
@@ -189,12 +190,12 @@ export default async function PostDetailsPage({data, type}: Props) {
                               src="/images/hand.png"
                             />
                           </div>
-                          <div className="rounded-full border border-dashed border-white py-3 text-center group hover:opacity-80">
+                          <div className="rounded-full border border-dashed border-white py-2 lg:py-3 text-center group hover:opacity-80">
                             <div>{t('bet_now')}</div>
                           </div>
 
                           {/* Right Chevron */}
-                          <div className="absolute top-1/2 right-3 transform -translate-y-1/2 flex items-center justify-center rounded-full bg-white w-10 h-10 text-gray-500">
+                          <div className="absolute top-1/2 right-3 transform -translate-y-1/2 flex items-center justify-center rounded-full bg-white w-8 h-8 lg:w-10 lg:h-10 text-gray-500">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="20"

@@ -23,14 +23,13 @@ const {title, description, image, link} = banner_top;
 
   return (
     <section className="relative overflow-hidden">
-      <div className="relative w-full overflow-hidden rounded-[5px] h-[280px] md:p-[35px] md:h-[280px]">
-        <Image src={image} alt={title} fill />
-        
+      <div className="relative w-full overflow-hidden rounded-[5px] h-[290px] md:p-[35px] md:h-[290px]">
+        <Image src={image} alt={title} fill className="object-cover lg:object-fill"  />
         <div className="absolute md:relative top-0 z-20 max-w-[550px] p-[10px] md:p-0 text-white">
-          <h1 className="text-[19px] font-semibold uppercase leading-[25px]">
+          <h1 className="lg:text-[28px] font-semibold lg:leading-[36px] capitalize lg:uppercase">
             {title}
           </h1>
-          <div className="text-justify text-sm mt-2">
+          <div className="text-left text-sm mt-2">
             <p>{description}</p>
           </div>
 
@@ -38,7 +37,7 @@ const {title, description, image, link} = banner_top;
             <Link
               href={link}
               target="_blank"
-              className="group relative inline-flex items-center gap-5 mb-10 mt-5 h-[35px] w-[190px] justify-center rounded-full font-bold text-base shadow-lg text-white transition-all duration-200 overflow-hidden"
+              className="group relative inline-flex items-center gap-5 mb-10 mt-5 h-[35px] w-[150px] justify-center rounded-full font-bold text-base shadow-lg text-white transition-all duration-200 overflow-hidden"
               style={{
                 background:
                   'linear-gradient(rgb(0, 102, 204) 0%, rgb(0, 82, 163) 50%, rgb(0, 61, 122) 100%)',

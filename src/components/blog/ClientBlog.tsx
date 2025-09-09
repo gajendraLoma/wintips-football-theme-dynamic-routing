@@ -46,7 +46,7 @@ export default function ClientBlog({
       <GridViewSection gridMatches={gridMatches} />
       <ListViewSection listMatches={listMatches} />
 
-      <div className="mt-6">
+      <div className="mt-4 lg:mt-6">
         <Pagination
           totalPage={totalPage}
           currentPage={currentPage}

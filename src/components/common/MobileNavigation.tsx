@@ -68,59 +68,64 @@ export default function MobileNavigation({ menuItems }: { menuItems: MenuItem[] 
           </button>
         </div>
 
-        <ul className="flex flex-col gap-3 p-4">
-          {menuItems.map((item, index) => (
-            <li key={index}>
-              {item.hasSubmenu ? (
-                <>
-                  <div className="flex justify-between items-center">
-                    <Link
-                      href={item.url}
-                      className="flex justify-between text-sm hover:text-[#7BF179] transition-colors"
-                      onClick={closeNav}
-                    >
-                      {item.label}
-                    </Link>
-                    <button
-                      onClick={() => toggleMenu(`mobile-${index}`)}
-                      className="flex justify-between text-sm hover:text-[#7BF179] transition-colors pl-4"
-                    >
-                      <ChevronDown
-                        className={`w-4 h-4 transform transition-transform ${
-                          openMenu === `mobile-${index}` ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
-                  </div>
-                  {openMenu === `mobile-${index}` && (
-                    <ul className="flex flex-col mt-1">
-                      {item.submenu.map((sub, subIndex) => (
-                        <li key={subIndex}>
-                          <Link
-                            href={sub.url}
-                            onClick={closeNav}
-                            className="text-sm block hover:text-[#7BF179] transition-colors"
-                            data-parent-url={sub.parentUrl}
-                          >
-                            {sub.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </>
-              ) : (
-                <Link
-                  href={item.url}
-                  onClick={closeNav}
-                  className="text-sm block hover:text-[#7BF179] transition-colors"
-                >
-                  {item.label}
-                </Link>
-              )}
-            </li>
-          ))}
-        </ul>
+      <ul className="flex flex-col p-4">
+  {menuItems.map((item, index) => (
+    <li
+      key={index}
+      className="border-b border-white/20 py-3"
+    >
+      {item.hasSubmenu ? (
+        <>
+          <div className="flex justify-between items-center">
+            <Link
+              href={item.url}
+              className="flex justify-between text-sm hover:text-[#7BF179] transition-colors"
+              onClick={closeNav}
+            >
+              {item.label}
+            </Link>
+            <button
+              onClick={() => toggleMenu(`mobile-${index}`)}
+              className="flex justify-between text-sm hover:text-[#7BF179] transition-colors pl-4"
+            >
+              <ChevronDown
+                className={`w-4 h-4 transform transition-transform ${
+                  openMenu === `mobile-${index}` ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+          </div>
+
+          {openMenu === `mobile-${index}` && (
+            <ul className="flex flex-col mt-1">
+              {item.submenu.map((sub, subIndex) => (
+                <li key={subIndex} className="px-3 py-1">
+                  <Link
+                    href={sub.url}
+                    onClick={closeNav}
+                    className="text-sm block hover:text-[#7BF179] transition-colors"
+                    data-parent-url={sub.parentUrl}
+                  >
+                    {sub.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </>
+      ) : (
+        <Link
+          href={item.url}
+          onClick={closeNav}
+          className="text-sm block hover:text-[#7BF179] transition-colors"
+        >
+          {item.label}
+        </Link>
+      )}
+    </li>
+  ))}
+</ul>
+
       </div>
     </>
   );

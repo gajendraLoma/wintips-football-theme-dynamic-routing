@@ -137,7 +137,7 @@ export default function LocaleSwitcherMob() {
         .dropdown-option-mob img {
           margin-right: 8px;
         }
-        @media (min-width: 679px) {
+        @media (min-width: 1279px) {
           .dropdown-mob,
           .dropdown-options-mob,
           .dropdown-option-mob {

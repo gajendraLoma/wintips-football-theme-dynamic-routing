@@ -10,9 +10,9 @@ export default async function BookmakersPage({ data }: { data: BookmakersPageDat
   const Backend_url = process.env.NEXT_PUBLIC_API_BASE_URL; 
   return (
     <div className="flex-1 bg-gray-100">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
+      <div className="max-w-8xl mx-auto py-2 sm:py-4 md:py-6 lg:py-6 px-3">
         {/* Breadcrumb */}
-        <nav className="flex items-center text-sm text-gray-500 mb-2">
+        <nav className="ruby md:!flex items-center text-sm text-gray-500 mb-3">
           <Link href="/" className="text-blue-600 hover:underline">
               {t('home')}
           </Link>
@@ -34,7 +34,7 @@ export default async function BookmakersPage({ data }: { data: BookmakersPageDat
         </nav>
 
         {/* Title & Description */}
-        <h1 className="text-2xl font-bold mb-2">{data.title}</h1>
+        <h1 className="text-2xl pt-3 md:pt-0 font-bold mb-2">{data.title}</h1>
 
         {/* Table Header */}
         <BookmakersTable bookmakers={data.bookmakers} />

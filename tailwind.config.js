@@ -6,6 +6,9 @@ module.exports = {
        maxWidth: {
         '8xl': '92rem', // custom max-w
       },
+       display: {
+        ruby: "ruby",
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':

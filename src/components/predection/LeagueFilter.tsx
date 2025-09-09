@@ -93,7 +93,7 @@ export default function LeagueFilter({
       <BigImageSection mainMatch={mainMatch} sidebarMatches={sidebarMatches} />
       <div className="border-b my-4 hidden sm:block" />
       <PredectionList posts={rest} />
-      <div className="mt-6">
+      <div className="mt-4 lg:mt-6">
         <Pagination
           totalPage={totalPage}
           currentPage={currentPage}
