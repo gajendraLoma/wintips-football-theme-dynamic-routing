@@ -26,9 +26,9 @@ export default async function BookmakerDetailsPage({data}: Props) {
         className="w-full bg-cover bg-center bg-no-repeat relative hidden lg:block"
         style={{backgroundImage: "url('/images/banner-top-bookmaker.jpeg')"}}
       >
-        <div className="max-w-8xl mx-auto lg:px-8 py-10">
+        <div className="max-w-8xl mx-auto py-2 sm:py-4 md:py-6 lg:py-6 px-3">
           {/* Breadcrumb */}
-          <nav className="flex items-center text-sm text-gray-500 mb-2">
+          <nav className="flex items-center text-sm text-gray-500 mb-3">
             <Link href="/" className="text-blue-600 hover:underline">
               {t('home')}
             </Link>
@@ -115,13 +115,13 @@ export default async function BookmakerDetailsPage({data}: Props) {
         </div>
       </div>
 
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="max-w-8xl mx-auto py-2 sm:py-4 px-2 md:py-6 lg:py-6 px-4">
         <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
           <div className="xl:col-span-3 space-y-8">
             <div className="bg-white px-4 md:px-8 py-4 max-w-[1280px] mx-auto">
               <div className="block lg:hidden">
                 {/* Breadcrumb */}
-                <nav className="flex items-center text-sm text-gray-500 mb-2">
+                <nav className="ruby md:flex items-center text-sm text-gray-500 mb-3">
                   <Link href="/" className="text-blue-600 hover:underline">
                     {t('home')}
                   </Link>

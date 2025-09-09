@@ -70,7 +70,7 @@ export default async function Home({data}: {data: any}) {
       : (tipsResponse as TipsResponse);
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
+      <div className="max-w-8xl mx-auto py-2 sm:py-4 md:py-6 lg:py-6 px-3">
         <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
           <div className="col-span-1 space-y-4 xl:col-span-3">
             <Hero data={homeData} />

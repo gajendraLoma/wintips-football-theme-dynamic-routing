@@ -30,21 +30,22 @@ export default async function PostDetailsPage({data, type}: Props) {
 
   return (
      <main className="min-h-screen bg-gray-50">
-  <div className="max-w-8xl mx-auto px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8 py-2 sm:py-4 md:py-6 lg:py-8">
+  <div className="max-w-8xl mx-auto py-2 sm:py-4 md:py-6 lg:py-6 px-3">
     <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
       <section className="xl:col-span-3 space-y-4 sm:space-y-6 md:space-y-8">
-        <div className="bg-white px-2 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-4 md:py-6 lg:py-8 max-w-[1280px] mx-auto">
+        <div className="bg-white px-2 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-4 md:py-6 lg:py-6 max-w-[1280px] mx-auto">
               {/* Breadcrumb */}
-              <nav className="flex items-center text-sm text-gray-500 mb-2">
+              <nav className="ruby md:flex items-center text-sm text-gray-500 mb-3">
                 <Link
                   href="/"
                   className="text-blue-600 hover:underline transition-colors"
                 >
                   {t('home')}
                 </Link>
+                     <ChevronIcon />
                 {breadcrumbName && breadcrumbSlug && (
                   <>
-                    <ChevronIcon />
+               
                     <Link
                       href={`/${breadcrumbSlug.replace(/^\//, '')}`}
                       className="text-blue-600 hover:underline transition-colors"
@@ -58,13 +59,13 @@ export default async function PostDetailsPage({data, type}: Props) {
               </nav>
 
               {/* Title */}
-              <h1 className="text-3xl font-bold mb-4">{data.title}</h1>
+              <h1 className="text-2xl pt-3 md:pt-0 font-bold mb-4">{data.title}</h1>
 
               {isMatchPredict && (
                 <>
                   {data.match && (
                     <div className="mb-6 rounded-md bg-gray-100 md:p-7 py-2 max-sm:py-[20px] bg-[url('/images/backgroud-top-predictions.jpg')] bg-no-repeat bg-cover">
-                      <div className="flex justify-between gap-1 items-center">
+                      <div className="flex justify-between gap-1 items-center px-2">
                         <div className="flex sm:flex-1 flex-1 flex-col items-center">
                           <div className="flex sm:h-32 sm:w-32 w-[65px] h-[65px] items-center justify-center rounded-full bg-white shadow-sm">
                             <img
@@ -174,7 +175,7 @@ export default async function PostDetailsPage({data, type}: Props) {
 
                     {/* Promotion / Bet Now */}
                     <div className="flex flex-col items-center justify-around gap-3 sm:w-auto w-full">
-                      <div className="relative rounded-full p-1 w-[305px] bg-gradient-to-r from-blue-400 to-indigo-700">
+                      <div className="relative rounded-full p-1 w-[270px] lg:w-[305px] bg-gradient-to-r from-blue-400 to-indigo-700">
                         <Link
                           href={process.env.BETNOW_URL || '/'}
                           target="_blank"

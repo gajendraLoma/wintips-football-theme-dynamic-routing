@@ -238,7 +238,7 @@ export default function OddsPage({data}: {data: any}) {
 
   return (
     <div className="flex-1 bg-gray-100">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8">
+      <div className="max-w-8xl mx-auto py-2 sm:py-4 md:py-6 lg:py-6 px-3">
         {/* Breadcrumb */}
         <nav className="flex items-center text-sm text-gray-500 mb-2">
           <Link href="/" className="text-blue-600 hover:underline">
@@ -1343,7 +1343,7 @@ export default function OddsPage({data}: {data: any}) {
                                                         </span>
                                                         <span
                                                           style={{
-                                                            color: '#FFCF9D',
+                                                            color: '#2e3136 ',
                                                             fontWeight:
                                                               'normal',
                                                             fontSize: '13px'
@@ -1446,7 +1446,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                   className="border-dotted"
                                                                   style={{
                                                                     color:
-                                                                      '#FFCF9D',
+                                                                      '#2e3136 ',
                                                                     fontSize:
                                                                       '14px',
                                                                     fontWeight:
@@ -1477,7 +1477,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                   className="border-dotted"
                                                                   style={{
                                                                     color:
-                                                                      '#FFCF9D',
+                                                                      '#2e3136 ',
                                                                     fontSize:
                                                                       '14px',
                                                                     fontWeight:
@@ -1528,7 +1528,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                   className="border-dotted"
                                                                   style={{
                                                                     color:
-                                                                      '#FFCF9D',
+                                                                      '#2e3136 ',
                                                                     fontSize:
                                                                       '14px',
                                                                     fontWeight:
@@ -1550,7 +1550,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                   className="border-dotted"
                                                                   style={{
                                                                     color:
-                                                                      '#FFCF9D',
+                                                                      '#2e3136',
                                                                     fontSize:
                                                                       '14px',
                                                                     fontWeight:
@@ -1601,7 +1601,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                 className="border-dotted"
                                                                 style={{
                                                                   color:
-                                                                    '#FFCF9D',
+                                                                    '#2e3136 ',
                                                                   fontSize:
                                                                     '14px',
                                                                   fontWeight:
@@ -1626,7 +1626,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                 className="border-dotted"
                                                                 style={{
                                                                   color:
-                                                                    '#FFCF9D',
+                                                                    '#2e3136',
                                                                   fontSize:
                                                                     '14px',
                                                                   fontWeight:
@@ -1655,7 +1655,7 @@ export default function OddsPage({data}: {data: any}) {
                                                               className="bg-full mb-2"
                                                               style={{
                                                                 color:
-                                                                  '#FFCF9D',
+                                                                  '#2e3136',
                                                                 fontSize:
                                                                   '14px',
                                                                 fontWeight:
@@ -1675,7 +1675,7 @@ export default function OddsPage({data}: {data: any}) {
                                                               className="bg-full mb-2"
                                                               style={{
                                                                 color:
-                                                                  '#FFCF9D',
+                                                                  '#2e3136',
                                                                 fontSize:
                                                                   '14px',
                                                                 fontWeight:
@@ -1695,7 +1695,7 @@ export default function OddsPage({data}: {data: any}) {
                                                               className="bg-full mb-2"
                                                               style={{
                                                                 color:
-                                                                  '#FFCF9D',
+                                                                  '#2e3136',
                                                                 fontSize:
                                                                   '14px',
                                                                 fontWeight:
@@ -1763,7 +1763,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                   className="border-dotted"
                                                                   style={{
                                                                     color:
-                                                                      '#FFCF9D',
+                                                                      '#2e3136',
                                                                     fontSize:
                                                                       '14px',
                                                                     fontWeight:
@@ -1794,7 +1794,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                   className="border-dotted"
                                                                   style={{
                                                                     color:
-                                                                      '#FFCF9D',
+                                                                      '#2e3136',
                                                                     fontSize:
                                                                       '14px',
                                                                     fontWeight:
@@ -1845,7 +1845,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                   className="border-dotted"
                                                                   style={{
                                                                     color:
-                                                                      '#FFCF9D',
+                                                                      '#2e3136',
                                                                     fontSize:
                                                                       '14px',
                                                                     fontWeight:
@@ -1867,7 +1867,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                   className="border-dotted"
                                                                   style={{
                                                                     color:
-                                                                      '#FFCF9D',
+                                                                      '#2e3136',
                                                                     fontSize:
                                                                       '14px',
                                                                     fontWeight:
@@ -1918,7 +1918,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                 className="border-dotted"
                                                                 style={{
                                                                   color:
-                                                                    '#FFCF9D',
+                                                                    '#2e3136',
                                                                   fontSize:
                                                                     '14px',
                                                                   fontWeight:
@@ -1943,7 +1943,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                 className="border-dotted"
                                                                 style={{
                                                                   color:
-                                                                    '#FFCF9D',
+                                                                    '#2e3136',
                                                                   fontSize:
                                                                     '14px',
                                                                   fontWeight:
@@ -1972,7 +1972,7 @@ export default function OddsPage({data}: {data: any}) {
                                                               className="bg-full mb-2"
                                                               style={{
                                                                 color:
-                                                                  '#FFCF9D',
+                                                                  '#2e3136',
                                                                 fontSize:
                                                                   '14px',
                                                                 fontWeight:
@@ -1992,7 +1992,7 @@ export default function OddsPage({data}: {data: any}) {
                                                               className="bg-full mb-2"
                                                               style={{
                                                                 color:
-                                                                  '#FFCF9D',
+                                                                  '#2e3136',
                                                                 fontSize:
                                                                   '14px',
                                                                 fontWeight:
@@ -2012,7 +2012,7 @@ export default function OddsPage({data}: {data: any}) {
                                                               className="bg-full mb-2"
                                                               style={{
                                                                 color:
-                                                                  '#FFCF9D',
+                                                                  '#2e3136',
                                                                 fontSize:
                                                                   '14px',
                                                                 fontWeight:
@@ -2189,7 +2189,7 @@ export default function OddsPage({data}: {data: any}) {
                                                           </span>
                                                           <span
                                                             style={{
-                                                              color: '#FFCF9D',
+                                                              color: '#2e3136',
                                                               fontSize: '14px',
                                                               fontWeight: '500'
                                                             }}
@@ -2280,7 +2280,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                   className="border-dotted"
                                                                   style={{
                                                                     color:
-                                                                      '#FFCF9D',
+                                                                      '#2e3136',
                                                                     fontSize:
                                                                       '14px',
                                                                     fontWeight:
@@ -2312,7 +2312,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                   className="border-dotted"
                                                                   style={{
                                                                     color:
-                                                                      '#FFCF9D',
+                                                                      '#2e3136',
                                                                     fontSize:
                                                                       '14px',
                                                                     fontWeight:
@@ -2365,7 +2365,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                   className="border-dotted"
                                                                   style={{
                                                                     color:
-                                                                      '#FFCF9D',
+                                                                      '#2e3136',
                                                                     fontSize:
                                                                       '14px',
                                                                     fontWeight:
@@ -2387,7 +2387,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                   className="border-dotted"
                                                                   style={{
                                                                     color:
-                                                                      '#FFCF9D',
+                                                                      '#2e3136',
                                                                     fontSize:
                                                                       '14px',
                                                                     fontWeight:
@@ -2411,7 +2411,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                 className="bg-full mb-2"
                                                                 style={{
                                                                   color:
-                                                                    '#FFCF9D',
+                                                                    '#2e3136',
                                                                   fontSize:
                                                                     '14px',
                                                                   fontWeight:
@@ -2428,7 +2428,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                 className="bg-full mb-2"
                                                                 style={{
                                                                   color:
-                                                                    '#FFCF9D',
+                                                                    '#2e3136',
                                                                   fontSize:
                                                                     '14px',
                                                                   fontWeight:
@@ -2445,7 +2445,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                 className="bg-full mb-2"
                                                                 style={{
                                                                   color:
-                                                                    '#FFCF9D',
+                                                                    '#2e3136',
                                                                   fontSize:
                                                                     '14px',
                                                                   fontWeight:
@@ -2498,7 +2498,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                   className="border-dotted"
                                                                   style={{
                                                                     color:
-                                                                      '#FFCF9D',
+                                                                      '#2e3136',
                                                                     fontSize:
                                                                       '14px',
                                                                     fontWeight:
@@ -2530,7 +2530,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                   className="border-dotted"
                                                                   style={{
                                                                     color:
-                                                                      '#FFCF9D',
+                                                                      '#2e3136',
                                                                     fontSize:
                                                                       '14px',
                                                                     fontWeight:
@@ -2583,7 +2583,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                   className="border-dotted"
                                                                   style={{
                                                                     color:
-                                                                      '#FFCF9D',
+                                                                      '#2e3136',
                                                                     fontSize:
                                                                       '14px',
                                                                     fontWeight:
@@ -2605,7 +2605,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                   className="border-dotted"
                                                                   style={{
                                                                     color:
-                                                                      '#FFCF9D',
+                                                                      '#2e3136',
                                                                     fontSize:
                                                                       '14px',
                                                                     fontWeight:
@@ -2629,7 +2629,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                 className="bg-full mb-2"
                                                                 style={{
                                                                   color:
-                                                                    '#FFCF9D',
+                                                                    '#2e3136',
                                                                   fontSize:
                                                                     '14px',
                                                                   fontWeight:
@@ -2646,7 +2646,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                 className="bg-full mb-2"
                                                                 style={{
                                                                   color:
-                                                                    '#FFCF9D',
+                                                                    '#2e3136',
                                                                   fontSize:
                                                                     '14px',
                                                                   fontWeight:
@@ -2663,7 +2663,7 @@ export default function OddsPage({data}: {data: any}) {
                                                                 className="bg-full mb-2"
                                                                 style={{
                                                                   color:
-                                                                    '#FFCF9D',
+                                                                    '#2e3136',
                                                                   fontSize:
                                                                     '14px',
                                                                   fontWeight:

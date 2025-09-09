@@ -16,7 +16,7 @@ export default function RelatedPosts({RelatedPostData}: {RelatedPostData: Relate
   if (!RelatedPostData || RelatedPostData.length === 0) return null;
   return (
     <div className="mt-5 relatedPostSwiper">
-      <h2 className="text-3xl font-semibold mb-4 capitalize">{t('related_posts')}</h2>
+      <h2 className="text-2xl font-semibold mb-2 capitalize">{t('related_posts')}</h2>
       <Swiper
         modules={[Navigation, Pagination]}
         spaceBetween={20}

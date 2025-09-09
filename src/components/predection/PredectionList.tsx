@@ -8,7 +8,7 @@ import Link from 'next/link';
 export default function PredectionList({posts}: {posts: Post[]}) {
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 lg:gap-4 mb-6 cursor-pointer pt-3 lg:pt-0">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 lg:gap-4 mb-6 cursor-pointer lg:pt-0">
         {posts.map((post, i) => (
           <Link
             href={post.slug}
