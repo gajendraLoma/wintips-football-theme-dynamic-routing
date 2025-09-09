@@ -35,7 +35,7 @@ export default async function PostDetailsPage({data, type}: Props) {
       <section className="xl:col-span-3 space-y-4 sm:space-y-6 md:space-y-8">
         <div className="bg-white px-2 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-4 md:py-6 lg:py-6 max-w-[1280px] mx-auto">
               {/* Breadcrumb */}
-              <nav className="ruby md:flex items-center text-sm text-gray-500 mb-3">
+              <nav className="ruby md:!flex items-center text-sm text-gray-500 mb-3">
                 <Link
                   href="/"
                   className="text-blue-600 hover:underline transition-colors"

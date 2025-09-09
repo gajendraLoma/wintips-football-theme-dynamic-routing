@@ -36,7 +36,7 @@ export default async function BookmakersTable({
                 <th className="p-3">{t('bookmaker')}</th>
                 <th className="p-3 hidden lg:block">{t('bonus')}</th>
                 <th className="p-3">{t('rating')}</th>
-                <th className="p-3">{t('links')}</th>
+                <th className="p-3 text-center">{t('links')}</th>
               </tr>
             </thead>
             <tbody>
@@ -104,16 +104,16 @@ export default async function BookmakersTable({
                     </div>
                   </td>
 
-                  <td className="p-3 text-center">
+                  <td className="p-3 text-center grid justify-center">
                     <Link
                       href={item.play_now}
-                      className="flex items-center text-sm justify-center rounded-full bg-[#eaf4ff] max-md:px-[10px] max-md:py-[5px] max-xl:px-[10px] max-lg:w-max py-[5px] text-[#1877f2] transition-all duration-300 hover:bg-[#1877f2] hover:text-white"
+                      className="flex items-center text-sm justify-center rounded-full bg-[#eaf4ff] text-[#1877f2] px-8 py-1 transition-all duration-300 hover:bg-[#1877f2] hover:text-white"
                     >
                       {t('visitSite')}
                     </Link>
                     <Link
                       href={item.slug}
-                      className="transition-all text-sm duration-300 text-[#222222] hover:text-[#1877f2] no-underline"
+                      className="transition-all text-sm duration-300 text-[#222222] hover:text-[#1877f2] no-underline mt-2"
                     >
                       {t('review')}
                     </Link>

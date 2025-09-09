@@ -12,7 +12,7 @@ export default async function BookmakersPage({ data }: { data: BookmakersPageDat
     <div className="flex-1 bg-gray-100">
       <div className="max-w-8xl mx-auto py-2 sm:py-4 md:py-6 lg:py-6 px-3">
         {/* Breadcrumb */}
-        <nav className="ruby md:flex items-center text-sm text-gray-500 mb-3">
+        <nav className="ruby md:!flex items-center text-sm text-gray-500 mb-3">
           <Link href="/" className="text-blue-600 hover:underline">
               {t('home')}
           </Link>

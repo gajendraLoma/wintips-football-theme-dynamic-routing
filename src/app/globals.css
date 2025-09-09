@@ -540,11 +540,12 @@
 .livestream-odds .half-handicap span:last-child,
 .livestream-odds .full-ou span:last-child,
 .livestream-odds .half-ou span:last-child {
-  display: inline-block;
+  display: inline;
   width: 45px;
   text-align: center;
   margin: 0 0 0 2px ;
 }
+
 
 .home-odds-table-mobile .odds-label,
 .livestream-odds .odds-label {
@@ -631,6 +632,12 @@ nav.ruby{
 .content ol li, .content ul li {
     margin-bottom: 10px;
 }
+
+.content ol li {
+    list-style-type: decimal;
+    list-style-position: outside;
+}
+
 
 .content h1, .content h2, .content h3, .content h4, .content h5 {
     margin: 0 0 5px;

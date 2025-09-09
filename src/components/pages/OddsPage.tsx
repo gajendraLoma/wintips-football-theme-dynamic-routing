@@ -268,7 +268,7 @@ export default function OddsPage({data}: {data: any}) {
         {isMobile ? (
           <>
             {/* Mobile View */}
-            <div className="MOB block md:hidden main-wrap p-0 container mx-auto w-full">
+            <div className="MOB block lg:hidden main-wrap p-0 container mx-auto w-full">
               <div className="main-wrap container">
                 <div className="row">
                   <div className="home main-content-mobile col-12">
@@ -574,14 +574,14 @@ export default function OddsPage({data}: {data: any}) {
                                                 (odd) => odd.id === 59
                                               ) && (
                                                 <div className="flex flex-col">
-                                                  <span className="bg-full mb-2">
+                                                  <span className="bg-full !mb-2">
                                                     {safeParseFloat(
                                                       match.odds.find(
                                                         (odd) => odd.id === 59
                                                       )?.values[0]?.odd
                                                     )}
                                                   </span>
-                                                  <span className="bg-full mb-2">
+                                                  <span className="bg-full !mb-2">
                                                     {safeParseFloat(
                                                       match.odds.find(
                                                         (odd) => odd.id === 59
@@ -771,14 +771,14 @@ export default function OddsPage({data}: {data: any}) {
                                                 (odd) => odd.id === 19
                                               ) && (
                                                 <div className="flex flex-col">
-                                                  <span className="bg-full mb-2">
+                                                  <span className="bg-full !mb-2">
                                                     {safeParseFloat(
                                                       match.odds.find(
                                                         (odd) => odd.id === 19
                                                       )?.values[0]?.odd
                                                     )}
                                                   </span>
-                                                  <span className="bg-full mb-2">
+                                                  <span className="bg-full !mb-2">
                                                     {safeParseFloat(
                                                       match.odds.find(
                                                         (odd) => odd.id === 19
@@ -999,12 +999,12 @@ export default function OddsPage({data}: {data: any}) {
                                         >
                                           {match.full_1x2 && (
                                             <div className="flex flex-col">
-                                              <span className="bg-full mb-2">
+                                              <span className="bg-full !mb-2">
                                                 {safeParseFloat(
                                                   match.full_1x2[0]?.odd
                                                 )}
                                               </span>
-                                              <span className="bg-full mb-2">
+                                              <span className="bg-full !mb-2">
                                                 {safeParseFloat(
                                                   match.full_1x2[2]?.odd
                                                 )}
@@ -1131,12 +1131,12 @@ export default function OddsPage({data}: {data: any}) {
                                         >
                                           {match.half_1x2 && (
                                             <div className="flex flex-col">
-                                              <span className="bg-full mb-1">
+                                              <span className="bg-full !mb-1">
                                                 {safeParseFloat(
                                                   match.half_1x2[0]?.odd
                                                 )}
                                               </span>
-                                              <span className="bg-full mb-1">
+                                              <span className="bg-full !mb-1">
                                                 {safeParseFloat(
                                                   match.half_1x2[2]?.odd
                                                 )}

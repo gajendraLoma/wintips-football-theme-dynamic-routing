@@ -46,13 +46,13 @@ export default async function Footer({locale}: {locale: string}) {
     <footer className="bg-gray-900 text-white relative">
       <div className="py-6 sm:py-12">
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 sm:gap-8 pb-4 sm:pb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 xl:grid-cols-4 gap-4 sm:gap-8 pb-4 sm:pb-8">
             {renderFooterSection('footer-1')}
             {renderFooterSection('footer-2')}
             {renderFooterSection('footer-3')}
             {renderFooterSection('footer-4')}
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 sm:gap-8 pb-4 sm:pb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 xl:grid-cols-4 gap-4 sm:gap-8 pb-4 sm:pb-8">
             {renderFooterSection('footer-5')}
             {renderFooterSection('footer-6')}
             {renderFooterSection('footer-7')}

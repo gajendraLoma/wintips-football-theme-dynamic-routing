@@ -15,7 +15,7 @@ export default async function SoccerTipsPage({data}: {data: any}) {
   <div className="grid grid-cols-1 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
     <div className="xl:col-span-3 space-y-4 sm:space-y-6 md:space-y-8">
       <div className="bg-white px-2 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-4 md:py-6 lg:py-6 max-w-[1280px] mx-auto">
-              <nav className="ruby md:flex items-center text-sm text-gray-500 mb-3">
+              <nav className="ruby md:!flex items-center text-sm text-gray-500 mb-3">
                 <Link href="/" className="text-blue-600 hover:underline">
                   {t('home')}
                 </Link>
