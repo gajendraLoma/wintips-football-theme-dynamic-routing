@@ -94,7 +94,7 @@ export default async function Home({data}: {data: any}) {
                 )
             }
           </div>
-          <div className="hidden col-span-1 lg:block lg:col-span-1">
+          <div className="hidden col-span-1 xl:block xl:col-span-1">
             <Sidebar />
           </div>
         </div>
